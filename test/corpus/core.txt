@@ -1,0 +1,43 @@
+================================================================================
+HTML tags and placeholders
+================================================================================
+
+<main class="home">
+  <h1>${title}</h1>
+</main>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name))
+          (placeholder
+            (javascript_fragment))
+          (end_tag
+            (tag_name))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Top-level statements and scriptlet
+================================================================================
+
+import type { Input } from "pkg";
+$ const value = 1;
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_tail))
+  (scriptlet))

@@ -1,0 +1,26 @@
+{
+  "grammars": [
+    {
+      "name": "marko",
+      "camelcase": "Marko",
+      "scope": "source.marko",
+      "path": ".",
+      "file-types": [
+        "marko"
+      ]
+    }
+  ],
+  "metadata": {
+    "version": "0.1.0",
+    "license": "MIT",
+    "description": "Marko grammar for tree-sitter"
+  },
+  "bindings": {
+    "c": true,
+    "go": true,
+    "node": true,
+    "python": true,
+    "rust": true,
+    "swift": true
+  }
+}
