@@ -11,6 +11,9 @@ module.exports = grammar({
       $.scriptlet,
       $.placeholder,
       $.top_level_statement,
+      $.concise_tag,
+      $.concise_fence_block,
+      $.concise_fence_line,
       $.element,
       $.text,
     ),
@@ -25,6 +28,27 @@ module.exports = grammar({
     ),
 
     statement_tail: _ => /[^\n]*/,
+
+    concise_tag: $ => seq(
+      field('name', $._concise_tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
+      optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
+      optional($.concise_attribute_group),
+      repeat($.attribute),
+      optional($.concise_terminator),
+    ),
+
+    concise_attribute_group: $ => seq('[', repeat($.attribute), ']'),
+
+    concise_terminator: _ => ';',
+
+    concise_fence_block: $ => seq('---', repeat(choice($.element, $.placeholder, $.text)), '---'),
+
+    concise_fence_line: $ => seq('--', /[^\n]+/),
 
     element: $ => choice(
       $.normal_element,
@@ -70,6 +94,13 @@ module.exports = grammar({
       $.flow_tag_name,
       $.function_tag_name,
       $.dynamic_tag_name,
+      $.tag_name,
+    ),
+
+    _concise_tag_name: $ => choice(
+      $.builtin_tag_name,
+      $.flow_tag_name,
+      $.function_tag_name,
       $.tag_name,
     ),
 

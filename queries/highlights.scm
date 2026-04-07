@@ -2,6 +2,15 @@
 
 (scriptlet) @keyword
 
+(concise_tag) @tag
+(concise_attribute_group
+  ["[" "]"] @punctuation.bracket)
+(concise_terminator) @punctuation.delimiter
+(concise_fence_block
+  ["---" "---"] @punctuation.special)
+(concise_fence_line
+  ["--"] @punctuation.special)
+
 (placeholder
   ["${" "$!{" "}"] @punctuation.special)
 

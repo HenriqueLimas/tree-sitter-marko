@@ -64,6 +64,119 @@
     "fields": {}
   },
   {
+    "type": "concise_attribute_group",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "concise_fence_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "element",
+          "named": true
+        },
+        {
+          "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "text",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "concise_fence_line",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "concise_tag",
+    "named": true,
+    "fields": {
+      "name": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "builtin_tag_name",
+            "named": true
+          },
+          {
+            "type": "flow_tag_name",
+            "named": true
+          },
+          {
+            "type": "function_tag_name",
+            "named": true
+          },
+          {
+            "type": "tag_name",
+            "named": true
+          }
+        ]
+      }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute",
+          "named": true
+        },
+        {
+          "type": "concise_attribute_group",
+          "named": true
+        },
+        {
+          "type": "concise_terminator",
+          "named": true
+        },
+        {
+          "type": "shorthand_attribute",
+          "named": true
+        },
+        {
+          "type": "tag_arguments",
+          "named": true
+        },
+        {
+          "type": "tag_default_value",
+          "named": true
+        },
+        {
+          "type": "tag_method",
+          "named": true
+        },
+        {
+          "type": "tag_parameters",
+          "named": true
+        },
+        {
+          "type": "tag_variable",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "doctype",
     "named": true,
     "fields": {}
@@ -77,6 +190,18 @@
       "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "concise_fence_block",
+          "named": true
+        },
+        {
+          "type": "concise_fence_line",
+          "named": true
+        },
+        {
+          "type": "concise_tag",
+          "named": true
+        },
         {
           "type": "doctype",
           "named": true
@@ -188,6 +313,18 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "concise_fence_block",
+          "named": true
+        },
+        {
+          "type": "concise_fence_line",
+          "named": true
+        },
+        {
+          "type": "concise_tag",
+          "named": true
+        },
         {
           "type": "doctype",
           "named": true
@@ -577,6 +714,14 @@
     "named": false
   },
   {
+    "type": "--",
+    "named": false
+  },
+  {
+    "type": "---",
+    "named": false
+  },
+  {
     "type": "...",
     "named": false
   },
@@ -609,6 +754,14 @@
     "named": false
   },
   {
+    "type": "[",
+    "named": false
+  },
+  {
+    "type": "]",
+    "named": false
+  },
+  {
     "type": "attribute_name",
     "named": true
   },
@@ -623,6 +776,10 @@
   {
     "type": "class",
     "named": false
+  },
+  {
+    "type": "concise_terminator",
+    "named": true
   },
   {
     "type": "const",
