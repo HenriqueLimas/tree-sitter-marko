@@ -3,6 +3,8 @@ HTML tags and placeholders
 ================================================================================
 
 <main class="home">
+  <script>const x = 1</script>
+  <style.less>.a { color: red; }</style>
   <h1>${title}</h1>
 </main>
 
@@ -17,6 +19,21 @@ HTML tags and placeholders
           (regular_attribute
             (attribute_name)
             (quoted_attribute_value))))
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name))
+          (text)
+          (end_tag
+            (builtin_tag_name))))
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name)
+            (shorthand_attribute))
+          (text)
+          (end_tag
+            (builtin_tag_name))))
       (element
         (normal_element
           (start_tag

@@ -4,7 +4,15 @@ module.exports = grammar({
   extras: $ => [/\s/],
 
   rules: {
-    document: $ => repeat($._node),
+    document: $ => repeat($._document_node),
+
+    _document_node: $ => choice(
+      $.top_level_statement,
+      $.concise_tag,
+      $.concise_fence_block,
+      $.concise_fence_line,
+      $._node,
+    ),
 
     _node: $ => choice(
       $.doctype,
@@ -16,10 +24,6 @@ module.exports = grammar({
       $.script_block,
       $.scriptlet,
       $.placeholder,
-      $.top_level_statement,
-      $.concise_tag,
-      $.concise_fence_block,
-      $.concise_fence_line,
       $.element,
       $.text,
     ),

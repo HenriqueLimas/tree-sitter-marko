@@ -34,3 +34,69 @@
 ((script_block
   (script_block_content) @injection.content)
  (#set! injection.language "javascript"))
+
+((top_level_statement) @injection.content
+ (#set! injection.language "typescript")
+ (#set! injection.include-children))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#any-of? @tag "script" "html-script")
+ (#set! injection.language "javascript"))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag
+    (shorthand_attribute) @ext)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#eq? @tag "style")
+ (#eq? @ext ".less")
+ (#set! injection.language "less"))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag
+    (shorthand_attribute) @ext)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#eq? @tag "style")
+ (#eq? @ext ".scss")
+ (#set! injection.language "scss"))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag
+    (shorthand_attribute) @ext)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#eq? @tag "style")
+ (#any-of? @ext ".js" ".mjs" ".cjs")
+ (#set! injection.language "javascript"))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag
+    (shorthand_attribute) @ext)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#eq? @tag "style")
+ (#any-of? @ext ".ts" ".mts" ".cts")
+ (#set! injection.language "typescript"))
+
+((normal_element
+  (start_tag
+    (builtin_tag_name) @tag)
+  (text) @injection.content
+  (end_tag
+    (builtin_tag_name)))
+ (#any-of? @tag "style" "html-style")
+ (#set! injection.language "css"))
