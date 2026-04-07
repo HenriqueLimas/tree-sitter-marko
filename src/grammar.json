@@ -189,8 +189,35 @@
       "type": "SEQ",
       "members": [
         {
-          "type": "SYMBOL",
-          "name": "start_tag"
+          "type": "STRING",
+          "value": "<"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_tag_name"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_default_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "attribute"
+          }
         },
         {
           "type": "STRING",
@@ -210,8 +237,20 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "tag_name"
+            "name": "_tag_name"
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_default_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "REPEAT",
@@ -238,7 +277,7 @@
           "name": "name",
           "content": {
             "type": "SYMBOL",
-            "name": "tag_name"
+            "name": "_tag_name"
           }
         },
         {
@@ -247,9 +286,163 @@
         }
       ]
     },
+    "_tag_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "builtin_tag_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "flow_tag_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "function_tag_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "dynamic_tag_name"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tag_name"
+        }
+      ]
+    },
+    "builtin_tag_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "script"
+        },
+        {
+          "type": "STRING",
+          "value": "style"
+        },
+        {
+          "type": "STRING",
+          "value": "html-script"
+        },
+        {
+          "type": "STRING",
+          "value": "html-style"
+        },
+        {
+          "type": "STRING",
+          "value": "html-comment"
+        }
+      ]
+    },
+    "flow_tag_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "for"
+        },
+        {
+          "type": "STRING",
+          "value": "if"
+        },
+        {
+          "type": "STRING",
+          "value": "while"
+        },
+        {
+          "type": "STRING",
+          "value": "else-if"
+        },
+        {
+          "type": "STRING",
+          "value": "else"
+        },
+        {
+          "type": "STRING",
+          "value": "try"
+        },
+        {
+          "type": "STRING",
+          "value": "await"
+        },
+        {
+          "type": "STRING",
+          "value": "return"
+        }
+      ]
+    },
+    "function_tag_name": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "const"
+        },
+        {
+          "type": "STRING",
+          "value": "context"
+        },
+        {
+          "type": "STRING",
+          "value": "debug"
+        },
+        {
+          "type": "STRING",
+          "value": "define"
+        },
+        {
+          "type": "STRING",
+          "value": "id"
+        },
+        {
+          "type": "STRING",
+          "value": "let"
+        },
+        {
+          "type": "STRING",
+          "value": "log"
+        },
+        {
+          "type": "STRING",
+          "value": "lifecycle"
+        }
+      ]
+    },
+    "dynamic_tag_name": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "${"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "javascript_fragment"
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
     "tag_name": {
       "type": "PATTERN",
       "value": "[A-Za-z0-9_@][A-Za-z0-9_:@.-]*"
+    },
+    "tag_default_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "="
+        },
+        {
+          "type": "SYMBOL",
+          "name": "javascript_fragment"
+        }
+      ]
     },
     "attribute": {
       "type": "CHOICE",

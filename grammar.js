@@ -37,18 +37,43 @@ module.exports = grammar({
       $.end_tag,
     ),
 
-    self_closing_element: $ => seq($.start_tag, '/>'),
+    self_closing_element: $ => seq(
+      '<',
+      field('name', $._tag_name),
+      optional($.tag_default_value),
+      repeat($.attribute),
+      '/>',
+    ),
 
     start_tag: $ => seq(
       '<',
-      field('name', $.tag_name),
+      field('name', $._tag_name),
+      optional($.tag_default_value),
       repeat($.attribute),
       '>',
     ),
 
-    end_tag: $ => seq('</', field('name', $.tag_name), '>'),
+    end_tag: $ => seq('</', field('name', $._tag_name), '>'),
+
+    _tag_name: $ => choice(
+      $.builtin_tag_name,
+      $.flow_tag_name,
+      $.function_tag_name,
+      $.dynamic_tag_name,
+      $.tag_name,
+    ),
+
+    builtin_tag_name: _ => choice('script', 'style', 'html-script', 'html-style', 'html-comment'),
+
+    flow_tag_name: _ => choice('for', 'if', 'while', 'else-if', 'else', 'try', 'await', 'return'),
+
+    function_tag_name: _ => choice('const', 'context', 'debug', 'define', 'id', 'let', 'log', 'lifecycle'),
+
+    dynamic_tag_name: $ => seq('${', $.javascript_fragment, '}'),
 
     tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@.-]*/,
+
+    tag_default_value: $ => seq('=', $.javascript_fragment),
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute, $.shorthand_attribute),
 
