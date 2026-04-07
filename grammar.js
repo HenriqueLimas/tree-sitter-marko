@@ -8,6 +8,12 @@ module.exports = grammar({
 
     _node: $ => choice(
       $.doctype,
+      $.style_block_css,
+      $.style_block_less,
+      $.style_block_scss,
+      $.style_block_js,
+      $.style_block_ts,
+      $.script_block,
       $.scriptlet,
       $.placeholder,
       $.top_level_statement,
@@ -28,6 +34,22 @@ module.exports = grammar({
     ),
 
     statement_tail: _ => /[^\n]*/,
+
+    style_block_css: $ => prec(2, seq('style', '{', optional($.style_block_content), '}')),
+
+    style_block_less: $ => prec(2, seq('style.less', '{', optional($.style_block_content), '}')),
+
+    style_block_scss: $ => prec(2, seq('style.scss', '{', optional($.style_block_content), '}')),
+
+    style_block_js: $ => prec(2, seq('style.js', '{', optional($.script_block_content), '}')),
+
+    style_block_ts: $ => prec(2, seq('style.ts', '{', optional($.script_block_content), '}')),
+
+    script_block: $ => prec(2, seq('script', '{', optional($.script_block_content), '}')),
+
+    style_block_content: _ => /[^}]*/,
+
+    script_block_content: _ => /[^}]*/,
 
     concise_tag: $ => seq(
       field('name', $._concise_tag_name),

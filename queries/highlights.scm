@@ -2,6 +2,13 @@
 
 (scriptlet) @keyword
 
+(style_block_css) @keyword
+(style_block_less) @keyword
+(style_block_scss) @keyword
+(style_block_js) @keyword
+(style_block_ts) @keyword
+(script_block) @keyword
+
 (concise_tag) @tag
 (concise_attribute_group
   ["[" "]"] @punctuation.bracket)
