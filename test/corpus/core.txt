@@ -58,9 +58,55 @@ Marko flow and function tag names
       (start_tag
         (flow_tag_name)
         (tag_default_value
-          (javascript_fragment)))
+          (tag_default_fragment)))
       (element
         (self_closing_element
           (function_tag_name)))
+      (end_tag
+        (flow_tag_name)))))
+
+================================================================================
+Tag pre-attribute syntax and special attributes
+================================================================================
+
+<for.item#row/list|item,index| (item) { item.id } on-click(ev){ emit(ev) } key=rowKey no-update-if=isHydrating>
+  <div/>
+</for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (shorthand_attribute)
+        (shorthand_attribute)
+        (tag_variable
+          (tag_variable_fragment))
+        (tag_parameters
+          (tag_parameters_fragment))
+        (tag_arguments
+          (tag_arguments_fragment))
+        (tag_method
+          (tag_method_fragment))
+        (attribute
+          (regular_attribute
+            (special_attribute_name)
+            (attribute_arguments
+              (attribute_arguments_fragment))
+            (attribute_method
+              (attribute_method_fragment))))
+        (attribute
+          (regular_attribute
+            (special_attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (special_attribute_name)
+            (attribute_value_fragment))))
+      (element
+        (self_closing_element
+          (tag_name)))
       (end_tag
         (flow_tag_name)))))

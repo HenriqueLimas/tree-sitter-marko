@@ -40,7 +40,12 @@ module.exports = grammar({
     self_closing_element: $ => seq(
       '<',
       field('name', $._tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
       optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
       repeat($.attribute),
       '/>',
     ),
@@ -48,7 +53,12 @@ module.exports = grammar({
     start_tag: $ => seq(
       '<',
       field('name', $._tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
       optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
       repeat($.attribute),
       '>',
     ),
@@ -71,22 +81,54 @@ module.exports = grammar({
 
     dynamic_tag_name: $ => seq('${', $.javascript_fragment, '}'),
 
-    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@.-]*/,
+    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@-]*/,
 
-    tag_default_value: $ => seq('=', $.javascript_fragment),
+    tag_variable: $ => seq('/', $.tag_variable_fragment),
 
-    attribute: $ => choice($.spread_attribute, $.regular_attribute, $.shorthand_attribute),
+    tag_default_value: $ => seq('=', $.tag_default_fragment),
+
+    tag_parameters: $ => seq('|', optional($.tag_parameters_fragment), '|'),
+
+    tag_arguments: $ => seq('(', optional($.tag_arguments_fragment), ')'),
+
+    tag_method: $ => seq('{', optional($.tag_method_fragment), '}'),
+
+    tag_variable_fragment: _ => /[^\s=|(){}>]+/,
+
+    tag_default_fragment: _ => /[^\s>]+/,
+
+    tag_parameters_fragment: _ => /[^|\n]*/,
+
+    tag_arguments_fragment: _ => /[^)\n]*/,
+
+    tag_method_fragment: _ => /[^}\n]*/,
+
+    attribute: $ => choice($.spread_attribute, $.regular_attribute),
 
     spread_attribute: $ => seq('...', $.javascript_fragment),
 
     shorthand_attribute: _ => /[.#][A-Za-z0-9_$-]+/,
 
     regular_attribute: $ => seq(
-      field('name', $.attribute_name),
-      optional(seq('=', field('value', choice($.quoted_attribute_value, $.javascript_fragment, $.unquoted_attribute_value)))),
+      field('name', choice($.special_attribute_name, $.attribute_name)),
+      optional($.attribute_arguments),
+      optional($.attribute_method),
+      optional(seq('=', field('value', choice($.quoted_attribute_value, $.attribute_value_fragment, $.unquoted_attribute_value)))),
     ),
 
+    special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
+
     attribute_name: _ => /[A-Za-z0-9_$][A-Za-z0-9_$:-]*/,
+
+    attribute_arguments: $ => seq('(', optional($.attribute_arguments_fragment), ')'),
+
+    attribute_method: $ => seq('{', optional($.attribute_method_fragment), '}'),
+
+    attribute_arguments_fragment: _ => /[^)\n]*/,
+
+    attribute_method_fragment: _ => /[^}\n]*/,
+
+    attribute_value_fragment: _ => /[^\s,>"']+/,
 
     quoted_attribute_value: $ => choice(
       seq('"', repeat(choice(/[^"$]+/, $.placeholder)), '"'),

@@ -10,10 +10,31 @@
 (function_tag_name) @function
 (dynamic_tag_name
   ["${" "}"] @punctuation.special)
+(tag_variable) @variable
+(tag_default_value) @operator
+(tag_variable_fragment) @variable
+(tag_default_fragment) @expression
+(tag_parameters_fragment) @parameter
+(tag_arguments_fragment) @expression
+(tag_method_fragment) @expression
+(tag_parameters
+  ["|" "|"] @punctuation.delimiter)
+(tag_arguments
+  ["(" ")"] @punctuation.delimiter)
+(tag_method
+  ["{" "}"] @punctuation.delimiter)
 
 (tag_name) @tag
+(special_attribute_name) @keyword
 (attribute_name) @tag.attribute
 (shorthand_attribute) @tag.attribute
+(attribute_arguments
+  ["(" ")"] @punctuation.delimiter)
+(attribute_method
+  ["{" "}"] @punctuation.delimiter)
+(attribute_arguments_fragment) @expression
+(attribute_method_fragment) @expression
+(attribute_value_fragment) @expression
 
 [
   "<"

@@ -12,15 +12,51 @@
           "named": true
         },
         {
-          "type": "shorthand_attribute",
-          "named": true
-        },
-        {
           "type": "spread_attribute",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "attribute_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_arguments_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_arguments_fragment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "attribute_method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_method_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_method_fragment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "builtin_tag_name",
@@ -228,6 +264,10 @@
           {
             "type": "attribute_name",
             "named": true
+          },
+          {
+            "type": "special_attribute_name",
+            "named": true
           }
         ]
       },
@@ -236,7 +276,7 @@
         "required": false,
         "types": [
           {
-            "type": "javascript_fragment",
+            "type": "attribute_value_fragment",
             "named": true
           },
           {
@@ -249,6 +289,20 @@
           }
         ]
       }
+    },
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_arguments",
+          "named": true
+        },
+        {
+          "type": "attribute_method",
+          "named": true
+        }
+      ]
     }
   },
   {
@@ -291,7 +345,27 @@
           "named": true
         },
         {
+          "type": "shorthand_attribute",
+          "named": true
+        },
+        {
+          "type": "tag_arguments",
+          "named": true
+        },
+        {
           "type": "tag_default_value",
+          "named": true
+        },
+        {
+          "type": "tag_method",
+          "named": true
+        },
+        {
+          "type": "tag_parameters",
+          "named": true
+        },
+        {
+          "type": "tag_variable",
           "named": true
         }
       ]
@@ -352,11 +426,51 @@
           "named": true
         },
         {
+          "type": "shorthand_attribute",
+          "named": true
+        },
+        {
+          "type": "tag_arguments",
+          "named": true
+        },
+        {
           "type": "tag_default_value",
+          "named": true
+        },
+        {
+          "type": "tag_method",
+          "named": true
+        },
+        {
+          "type": "tag_parameters",
+          "named": true
+        },
+        {
+          "type": "tag_variable",
           "named": true
         }
       ]
     }
+  },
+  {
+    "type": "tag_arguments",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tag_arguments_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_arguments_fragment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "tag_default_value",
@@ -367,7 +481,57 @@
       "required": true,
       "types": [
         {
-          "type": "javascript_fragment",
+          "type": "tag_default_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_method",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tag_method_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_method_fragment",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "tag_parameters",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "tag_parameters_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "tag_variable",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": true,
+      "types": [
+        {
+          "type": "tag_variable_fragment",
           "named": true
         }
       ]
@@ -405,7 +569,19 @@
     "named": false
   },
   {
+    "type": "(",
+    "named": false
+  },
+  {
+    "type": ")",
+    "named": false
+  },
+  {
     "type": "...",
+    "named": false
+  },
+  {
+    "type": "/",
     "named": false
   },
   {
@@ -434,6 +610,10 @@
   },
   {
     "type": "attribute_name",
+    "named": true
+  },
+  {
+    "type": "attribute_value_fragment",
     "named": true
   },
   {
@@ -533,6 +713,10 @@
     "named": true
   },
   {
+    "type": "special_attribute_name",
+    "named": true
+  },
+  {
     "type": "statement_tail",
     "named": true
   },
@@ -545,7 +729,19 @@
     "named": false
   },
   {
+    "type": "tag_default_fragment",
+    "named": true
+  },
+  {
     "type": "tag_name",
+    "named": true
+  },
+  {
+    "type": "tag_parameters_fragment",
+    "named": true
+  },
+  {
+    "type": "tag_variable_fragment",
     "named": true
   },
   {
@@ -562,6 +758,14 @@
   },
   {
     "type": "while",
+    "named": false
+  },
+  {
+    "type": "{",
+    "named": false
+  },
+  {
+    "type": "|",
     "named": false
   },
   {

@@ -201,11 +201,66 @@
           }
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "shorthand_attribute"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_variable"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
               "name": "tag_default_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_parameters"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_arguments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_method"
             },
             {
               "type": "BLANK"
@@ -241,11 +296,66 @@
           }
         },
         {
+          "type": "REPEAT",
+          "content": {
+            "type": "SYMBOL",
+            "name": "shorthand_attribute"
+          }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_variable"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
           "type": "CHOICE",
           "members": [
             {
               "type": "SYMBOL",
               "name": "tag_default_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_parameters"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_arguments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_method"
             },
             {
               "type": "BLANK"
@@ -429,7 +539,20 @@
     },
     "tag_name": {
       "type": "PATTERN",
-      "value": "[A-Za-z0-9_@][A-Za-z0-9_:@.-]*"
+      "value": "[A-Za-z0-9_@][A-Za-z0-9_:@-]*"
+    },
+    "tag_variable": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "/"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "tag_variable_fragment"
+        }
+      ]
     },
     "tag_default_value": {
       "type": "SEQ",
@@ -440,9 +563,104 @@
         },
         {
           "type": "SYMBOL",
-          "name": "javascript_fragment"
+          "name": "tag_default_fragment"
         }
       ]
+    },
+    "tag_parameters": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "|"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_parameters_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "|"
+        }
+      ]
+    },
+    "tag_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_arguments_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "tag_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "tag_method_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "tag_variable_fragment": {
+      "type": "PATTERN",
+      "value": "[^\\s=|(){}>]+"
+    },
+    "tag_default_fragment": {
+      "type": "PATTERN",
+      "value": "[^\\s>]+"
+    },
+    "tag_parameters_fragment": {
+      "type": "PATTERN",
+      "value": "[^|\\n]*"
+    },
+    "tag_arguments_fragment": {
+      "type": "PATTERN",
+      "value": "[^)\\n]*"
+    },
+    "tag_method_fragment": {
+      "type": "PATTERN",
+      "value": "[^}\\n]*"
     },
     "attribute": {
       "type": "CHOICE",
@@ -454,10 +672,6 @@
         {
           "type": "SYMBOL",
           "name": "regular_attribute"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "shorthand_attribute"
         }
       ]
     },
@@ -485,9 +699,42 @@
           "type": "FIELD",
           "name": "name",
           "content": {
-            "type": "SYMBOL",
-            "name": "attribute_name"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "special_attribute_name"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_name"
+              }
+            ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_arguments"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_method"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -511,7 +758,7 @@
                       },
                       {
                         "type": "SYMBOL",
-                        "name": "javascript_fragment"
+                        "name": "attribute_value_fragment"
                       },
                       {
                         "type": "SYMBOL",
@@ -529,9 +776,75 @@
         }
       ]
     },
+    "special_attribute_name": {
+      "type": "PATTERN",
+      "value": "(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)"
+    },
     "attribute_name": {
       "type": "PATTERN",
       "value": "[A-Za-z0-9_$][A-Za-z0-9_$:-]*"
+    },
+    "attribute_arguments": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_arguments_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "attribute_method": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_method_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "attribute_arguments_fragment": {
+      "type": "PATTERN",
+      "value": "[^)\\n]*"
+    },
+    "attribute_method_fragment": {
+      "type": "PATTERN",
+      "value": "[^}\\n]*"
+    },
+    "attribute_value_fragment": {
+      "type": "PATTERN",
+      "value": "[^\\s,>\"']+"
     },
     "quoted_attribute_value": {
       "type": "CHOICE",
