@@ -369,9 +369,12 @@ module.exports = grammar({
     placeholder: $ => choice(
       seq('${', $.javascript_fragment, '}'),
       seq('$!{', $.javascript_fragment, '}'),
+      seq('${`', alias($.template_placeholder_fragment, $.javascript_fragment), '`}'),
     ),
 
-    javascript_fragment: _ => /[^{}<>\n"'`=][^{}<>\n"'`=]*/,
+    template_placeholder_fragment: _ => /[^`]*\$\{[^}]+\}[^`]*/,
+
+    javascript_fragment: _ => /[^{}<>\n=][^{}<>\n=]*/,
 
     text: _ => token(prec(-1, /[^<$\n][^<$\n]*/)),
   },

@@ -120,3 +120,48 @@ Attribute value object expression block
               (attribute_brace_fragment)))))
       (end_tag
         (tag_name)))))
+
+================================================================================
+Template string attribute with nested placeholder expression
+================================================================================
+
+<custom data=`${`Hello ${data.firstName + data.lastName}`}`></custom>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (backtick_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Quoted attribute containing placeholder expression with mixed quotes
+================================================================================
+
+<custom name="${'some text'}">TEST</custom>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (text)
+      (end_tag
+        (tag_name)))))

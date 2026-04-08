@@ -2362,12 +2362,38 @@
               "value": "}"
             }
           ]
+        },
+        {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "STRING",
+              "value": "${`"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "SYMBOL",
+                "name": "template_placeholder_fragment"
+              },
+              "named": true,
+              "value": "javascript_fragment"
+            },
+            {
+              "type": "STRING",
+              "value": "`}"
+            }
+          ]
         }
       ]
     },
+    "template_placeholder_fragment": {
+      "type": "PATTERN",
+      "value": "[^`]*\\$\\{[^}]+\\}[^`]*"
+    },
     "javascript_fragment": {
       "type": "PATTERN",
-      "value": "[^{}<>\\n\"'`=][^{}<>\\n\"'`=]*"
+      "value": "[^{}<>\\n=][^{}<>\\n=]*"
     },
     "text": {
       "type": "TOKEN",
