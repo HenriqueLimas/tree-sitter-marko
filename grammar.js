@@ -3,10 +3,6 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
-  externals: $ => [
-    $._eof_tag_end,
-  ],
-
   rules: {
     document: $ => repeat($._document_node),
 
@@ -117,7 +113,6 @@ module.exports = grammar({
       $.self_closing_element,
       $.void_element,
       $.normal_element,
-      $.open_element,
     ),
 
     void_element: $ => prec(2, seq(
@@ -131,7 +126,7 @@ module.exports = grammar({
     normal_element: $ => seq(
       $.start_tag,
       repeat($._node),
-      choice($.end_tag, $._eof_tag_end),
+      $.end_tag,
     ),
 
     self_closing_element: $ => choice(
@@ -160,20 +155,6 @@ module.exports = grammar({
         repeat($.attribute),
         '/>',
       ),
-    ),
-
-    open_element: $ => seq(
-      '<',
-      field('name', $._tag_name),
-      repeat($.shorthand_attribute),
-      optional($.tag_variable),
-      optional($.tag_default_value),
-      optional($.tag_parameters),
-      optional($.tag_arguments),
-      optional($.tag_method),
-      optional($.tag_default_value),
-      repeat($.attribute),
-      $._eof_tag_end,
     ),
 
     start_tag: $ => choice(

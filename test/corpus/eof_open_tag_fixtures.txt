@@ -7,13 +7,10 @@ EOF after tag start
 --------------------------------------------------------------------------------
 
 (document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (tag_name))))))
+  (ERROR
+    (start_tag
+      (tag_name))
+    (tag_name)))
 
 ================================================================================
 EOF after attribute name
@@ -24,16 +21,11 @@ EOF after attribute name
 --------------------------------------------------------------------------------
 
 (document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (tag_name)
-          (attribute
-            (regular_attribute
-              (attribute_name))))))))
+  (ERROR
+    (start_tag
+      (tag_name))
+    (tag_name)
+    (attribute_name)))
 
 ================================================================================
 EOF after unquoted attribute value
@@ -44,20 +36,17 @@ EOF after unquoted attribute value
 --------------------------------------------------------------------------------
 
 (document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (tag_name)
-          (attribute
-            (regular_attribute
-              (attribute_name)))
-          (attribute
-            (regular_attribute
-              (attribute_name)))
-          (attribute
-            (regular_attribute
-              (attribute_name)
-              (attribute_value_fragment))))))))
+  (ERROR
+    (start_tag
+      (tag_name))
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))))
