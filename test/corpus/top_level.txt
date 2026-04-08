@@ -3,13 +3,16 @@ Top-level statements and scriptlet
 ================================================================================
 
 import type { Input } from "pkg";
+server const serverOnly = true;
+client const clientOnly = true;
 $ const value = 1;
 
 --------------------------------------------------------------------------------
 
 (document
-  (top_level_statement
-    (statement_tail))
+  (top_level_statement)
+  (top_level_statement)
+  (top_level_statement)
   (scriptlet))
 
 ================================================================================
@@ -25,19 +28,9 @@ static { const y = 2 }
 --------------------------------------------------------------------------------
 
 (document
-  (top_level_statement
-    (statement_tail))
-  (top_level_statement
-    (statement_tail))
-  (concise_tag
-    (tag_name)
-    (tag_arguments
-      (tag_arguments_fragment))
-    (tag_method
-      (tag_method_fragment)))
-  (text)
-  (top_level_statement
-    (statement_tail)))
+  (top_level_statement)
+  (top_level_statement)
+  (top_level_statement))
 
 ================================================================================
 Top-level style and script blocks

@@ -120,97 +120,40 @@
       }
     },
     "top_level_statement": {
-      "type": "CHOICE",
-      "members": [
-        {
-          "type": "SEQ",
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 3,
+        "content": {
+          "type": "CHOICE",
           "members": [
             {
-              "type": "STRING",
-              "value": "static"
+              "type": "PATTERN",
+              "value": "import[^\\n]*"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "statement_tail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "class"
+              "type": "PATTERN",
+              "value": "export[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "statement_tail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "import"
+              "type": "PATTERN",
+              "value": "class[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "statement_tail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
-            }
-          ]
-        },
-        {
-          "type": "SEQ",
-          "members": [
-            {
-              "type": "STRING",
-              "value": "export"
+              "type": "PATTERN",
+              "value": "server[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
             },
             {
-              "type": "CHOICE",
-              "members": [
-                {
-                  "type": "SYMBOL",
-                  "name": "statement_tail"
-                },
-                {
-                  "type": "BLANK"
-                }
-              ]
+              "type": "PATTERN",
+              "value": "client[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
+            },
+            {
+              "type": "PATTERN",
+              "value": "static[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
             }
           ]
         }
-      ]
-    },
-    "statement_tail": {
-      "type": "PATTERN",
-      "value": "[^\\n]*"
+      }
     },
     "style_block_css": {
       "type": "PREC",

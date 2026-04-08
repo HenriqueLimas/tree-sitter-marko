@@ -33,14 +33,14 @@ module.exports = grammar({
 
     html_comment: _ => token(prec(2, /<!--([^-]|-[^-])*-->/)),
 
-    top_level_statement: $ => choice(
-      seq('static', optional($.statement_tail)),
-      seq('class', optional($.statement_tail)),
-      seq('import', optional($.statement_tail)),
-      seq('export', optional($.statement_tail)),
-    ),
-
-    statement_tail: _ => /[^\n]*/,
+    top_level_statement: _ => token(prec(3, choice(
+      /import[^\n]*/,
+      /export[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+      /class[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+      /server[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+      /client[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+      /static[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+    ))),
 
     style_block_css: $ => prec(2, seq('style', '{', optional($.style_block_content), '}')),
 
