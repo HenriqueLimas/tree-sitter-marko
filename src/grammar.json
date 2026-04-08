@@ -952,8 +952,17 @@
               "type": "FIELD",
               "name": "name",
               "content": {
-                "type": "SYMBOL",
-                "name": "_tag_name"
+                "type": "CHOICE",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "_tag_name"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "void_tag_name"
+                  }
+                ]
               }
             },
             {

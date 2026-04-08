@@ -135,7 +135,7 @@ module.exports = grammar({
     self_closing_element: $ => choice(
       seq(
         '<',
-        field('name', $._tag_name),
+        field('name', choice($._tag_name, $.void_tag_name)),
         repeat($.shorthand_attribute),
         optional($.tag_variable),
         optional($.tag_default_value),

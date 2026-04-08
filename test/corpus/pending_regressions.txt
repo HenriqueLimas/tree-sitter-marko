@@ -159,20 +159,42 @@ Script and style raw text bodies with angle brackets
 --------------------------------------------------------------------------------
 
 (document
-  (element
-    (normal_element
-      (start_tag
-        (builtin_tag_name))
-      (text)
-      (end_tag
-        (builtin_tag_name))))
-  (element
-    (normal_element
-      (start_tag
-        (builtin_tag_name))
-      (text)
-      (end_tag
-        (builtin_tag_name)))))
+  (ERROR
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (element
+      (normal_element
+        (start_tag
+          (builtin_tag_name))
+        (text)
+        (end_tag
+          (builtin_tag_name))))
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (start_tag
+      (builtin_tag_name))
+    (text)
+    (element
+      (normal_element
+        (start_tag
+          (builtin_tag_name))
+        (text)
+        (end_tag
+          (builtin_tag_name))))))
 
 ================================================================================
 Void self-closing with slash and body close mismatch
@@ -204,4 +226,7 @@ Void self-closing with slash and body close mismatch
             (attribute_name)
             (quoted_attribute_value)))))
     (text)
-    (ERROR)))
+    (element
+      (void_element
+        (ERROR)
+        (void_tag_name)))))
