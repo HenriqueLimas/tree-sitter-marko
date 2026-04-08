@@ -246,6 +246,9 @@ module.exports = grammar({
       optional($.attribute_arguments),
       optional($.attribute_method),
       optional(seq('=', field('value', choice(
+        $.attribute_expression_value,
+        $.attribute_brace_value,
+        $.backtick_attribute_value,
         $.quoted_attribute_value,
         $.attribute_bracket_value,
         $.attribute_paren_value,
@@ -276,6 +279,15 @@ module.exports = grammar({
 
     attribute_paren_fragment: _ => /[^()"'$]+/,
 
+    attribute_brace_value: $ => seq('{', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.attribute_brace_fragment,
+      $.attribute_brace_value,
+    )), '}'),
+
+    attribute_brace_fragment: _ => /[^{}"'$]+/,
+
     attribute_bracket_value: $ => seq('[', repeat(choice(
       $.quoted_attribute_value,
       $.placeholder,
@@ -295,14 +307,35 @@ module.exports = grammar({
       $.attribute_method_nested_block,
     )), '}'),
 
-    attribute_value_fragment: _ => /[^\s,>"'()\[\]{}]+/,
+    attribute_value_fragment: _ => /[^\s,>"'`()\[\]{}]+/,
+
+    attribute_expression_value: $ => seq(
+      $.attribute_expression_atom,
+      repeat1(seq($.attribute_expression_operator, $.attribute_expression_atom)),
+    ),
+
+    attribute_expression_atom: $ => choice(
+      $.quoted_attribute_value,
+      $.backtick_attribute_value,
+      $.placeholder,
+      $.attribute_paren_value,
+      $.attribute_bracket_value,
+      $.attribute_brace_value,
+      $.attribute_expression_fragment,
+    ),
+
+    attribute_expression_operator: _ => /\+|\-|\*|\/|%|&&|\|\||\?\?|===|==|!==|!=|<=|>=|<|>/,
+
+    attribute_expression_fragment: _ => /[A-Za-z0-9_.:]+/,
+
+    backtick_attribute_value: $ => seq('`', repeat(choice(/[^`$]+/, $.placeholder)), '`'),
 
     quoted_attribute_value: $ => choice(
       seq('"', repeat(choice(/[^"$]+/, $.placeholder)), '"'),
       seq("'", repeat(choice(/[^'$]+/, $.placeholder)), "'"),
     ),
 
-    unquoted_attribute_value: _ => /[^\s"'=<>`]+/,
+    unquoted_attribute_value: _ => /[^\s"'=<>`()\[\]{}]+/,
 
     scriptlet: _ => /\$\s+[^\s{\n][^\n]*/,
 

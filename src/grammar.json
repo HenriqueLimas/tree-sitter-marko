@@ -1743,6 +1743,18 @@
                     "members": [
                       {
                         "type": "SYMBOL",
+                        "name": "attribute_expression_value"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "attribute_brace_value"
+                      },
+                      {
+                        "type": "SYMBOL",
+                        "name": "backtick_attribute_value"
+                      },
+                      {
+                        "type": "SYMBOL",
                         "name": "quoted_attribute_value"
                       },
                       {
@@ -1884,6 +1896,47 @@
       "type": "PATTERN",
       "value": "[^()\"'$]+"
     },
+    "attribute_brace_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_brace_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_brace_value"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "attribute_brace_fragment": {
+      "type": "PATTERN",
+      "value": "[^{}\"'$]+"
+    },
     "attribute_bracket_value": {
       "type": "SEQ",
       "members": [
@@ -1968,7 +2021,102 @@
     },
     "attribute_value_fragment": {
       "type": "PATTERN",
-      "value": "[^\\s,>\"'()\\[\\]{}]+"
+      "value": "[^\\s,>\"'`()\\[\\]{}]+"
+    },
+    "attribute_expression_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "attribute_expression_atom"
+        },
+        {
+          "type": "REPEAT1",
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "attribute_expression_operator"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_expression_atom"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "attribute_expression_atom": {
+      "type": "CHOICE",
+      "members": [
+        {
+          "type": "SYMBOL",
+          "name": "quoted_attribute_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "backtick_attribute_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "placeholder"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_paren_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_bracket_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_brace_value"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "attribute_expression_fragment"
+        }
+      ]
+    },
+    "attribute_expression_operator": {
+      "type": "PATTERN",
+      "value": "\\+|\\-|\\*|\\/|%|&&|\\|\\||\\?\\?|===|==|!==|!=|<=|>=|<|>"
+    },
+    "attribute_expression_fragment": {
+      "type": "PATTERN",
+      "value": "[A-Za-z0-9_.:]+"
+    },
+    "backtick_attribute_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "`"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "PATTERN",
+                "value": "[^`$]+"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "`"
+        }
+      ]
     },
     "quoted_attribute_value": {
       "type": "CHOICE",
@@ -2035,7 +2183,7 @@
     },
     "unquoted_attribute_value": {
       "type": "PATTERN",
-      "value": "[^\\s\"'=<>`]+"
+      "value": "[^\\s\"'=<>`()\\[\\]{}]+"
     },
     "scriptlet": {
       "type": "PATTERN",

@@ -125,3 +125,126 @@ Flow tag arguments with quoted parens
           (tag_arguments_fragment)))
       (end_tag
         (flow_tag_name)))))
+
+================================================================================
+Attribute value with nested parens and quoted close
+================================================================================
+
+<a data=((a-b)/2 + ")")></a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_paren_value
+              (attribute_paren_value
+                (attribute_paren_fragment))
+              (attribute_paren_fragment)
+              (quoted_attribute_value)))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute value with nested parens and single quotes
+================================================================================
+
+<a data=((a-b)/2 + ')')></a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_paren_value
+              (attribute_paren_value
+                (attribute_paren_fragment))
+              (attribute_paren_fragment)
+              (quoted_attribute_value)))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute value string concatenation
+================================================================================
+
+<div foo='a'+bar></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_expression_value
+              (attribute_expression_atom
+                (quoted_attribute_value))
+              (attribute_expression_operator)
+              (attribute_expression_atom
+                (attribute_expression_fragment))))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute value multiline backtick template
+================================================================================
+
+<hello message=`Hello
+    ${foo}!`></hello>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (backtick_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute value object expression block
+================================================================================
+
+<a data={
+    "a": "{b}"
+}></a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_brace_value
+              (attribute_brace_fragment)
+              (quoted_attribute_value)
+              (attribute_brace_fragment)
+              (quoted_attribute_value)
+              (attribute_brace_fragment)))))
+      (end_tag
+        (tag_name)))))
