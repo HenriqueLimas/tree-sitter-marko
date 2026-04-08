@@ -517,7 +517,7 @@
     "fields": {},
     "children": {
       "multiple": false,
-      "required": true,
+      "required": false,
       "types": [
         {
           "type": "javascript_fragment",
@@ -737,6 +737,14 @@
       "types": [
         {
           "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "quoted_dollar_brace_fragment",
+          "named": true
+        },
+        {
+          "type": "quoted_dollar_fragment",
           "named": true
         }
       ]
@@ -1470,6 +1478,14 @@
   {
     "type": "log",
     "named": false
+  },
+  {
+    "type": "quoted_dollar_brace_fragment",
+    "named": true
+  },
+  {
+    "type": "quoted_dollar_fragment",
+    "named": true
   },
   {
     "type": "return",

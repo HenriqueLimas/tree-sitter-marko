@@ -1,0 +1,33 @@
+================================================================================
+Empty placeholder expression in dynamic tag
+================================================================================
+
+<${}/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (dynamic_tag_name))))
+
+================================================================================
+Invalid placeholder expression in quoted attribute
+================================================================================
+
+<foo invalid="${;"></foo>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value
+              (quoted_dollar_brace_fragment)))))
+      (end_tag
+        (tag_name)))))

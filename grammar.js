@@ -198,7 +198,7 @@ module.exports = grammar({
 
     function_tag_name: _ => choice('const', 'context', 'debug', 'define', 'id', 'let', 'log', 'lifecycle'),
 
-    dynamic_tag_name: $ => seq('${', $.javascript_fragment, '}'),
+    dynamic_tag_name: $ => seq('${', optional($.javascript_fragment), '}'),
 
     tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@-]*/,
 
@@ -357,9 +357,13 @@ module.exports = grammar({
     backtick_attribute_value: $ => seq('`', repeat(choice(/[^`$]+/, $.placeholder)), '`'),
 
     quoted_attribute_value: $ => choice(
-      seq('"', repeat(choice(/[^"$]+/, $.placeholder)), '"'),
-      seq("'", repeat(choice(/[^'$]+/, $.placeholder)), "'"),
+      seq('"', repeat(choice(/[^"$]+/, $.placeholder, $.quoted_dollar_fragment, $.quoted_dollar_brace_fragment)), '"'),
+      seq("'", repeat(choice(/[^'$]+/, $.placeholder, $.quoted_dollar_fragment, $.quoted_dollar_brace_fragment)), "'"),
     ),
+
+    quoted_dollar_fragment: _ => /\$[^\{][^"']*/,
+
+    quoted_dollar_brace_fragment: _ => /\$\{[^}"']*;[^}"']*/,
 
     unquoted_attribute_value: _ => /[^\s"'=<>`()\[\]{}\/]+/,
 

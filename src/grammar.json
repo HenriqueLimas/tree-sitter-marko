@@ -1466,8 +1466,16 @@
           "value": "${"
         },
         {
-          "type": "SYMBOL",
-          "name": "javascript_fragment"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "javascript_fragment"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "STRING",
@@ -2267,6 +2275,14 @@
                   {
                     "type": "SYMBOL",
                     "name": "placeholder"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "quoted_dollar_fragment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "quoted_dollar_brace_fragment"
                   }
                 ]
               }
@@ -2296,6 +2312,14 @@
                   {
                     "type": "SYMBOL",
                     "name": "placeholder"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "quoted_dollar_fragment"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "quoted_dollar_brace_fragment"
                   }
                 ]
               }
@@ -2307,6 +2331,14 @@
           ]
         }
       ]
+    },
+    "quoted_dollar_fragment": {
+      "type": "PATTERN",
+      "value": "\\$[^\\{][^\"']*"
+    },
+    "quoted_dollar_brace_fragment": {
+      "type": "PATTERN",
+      "value": "\\$\\{[^}\"']*;[^}\"']*"
     },
     "unquoted_attribute_value": {
       "type": "PATTERN",
