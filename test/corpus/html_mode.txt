@@ -1,0 +1,116 @@
+================================================================================
+HTML tags and placeholders
+================================================================================
+
+<main class="home">
+  <script>const x = 1</script>
+  <style.less>.a { color: red; }</style>
+  <h1>${title}</h1>
+</main>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name))
+          (text)
+          (end_tag
+            (builtin_tag_name))))
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name)
+            (shorthand_attribute))
+          (text)
+          (end_tag
+            (builtin_tag_name))))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name))
+          (placeholder
+            (javascript_fragment))
+          (end_tag
+            (tag_name))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Builtin html style/script tag variants
+================================================================================
+
+<html-script>const x = 1</html-script>
+<html-style>.x { color: red; }</html-style>
+<style.scss>.x { color: red; }</style>
+<style.js>const x = 1</style>
+<style.ts>const x: number = 1</style>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name)))))
+
+================================================================================
+Placeholder variants
+================================================================================
+
+<div>$!{unsafeHtml}</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (placeholder
+        (javascript_fragment))
+      (end_tag
+        (tag_name)))))
