@@ -28,7 +28,7 @@ Marko 6 let and const forms
     (tag_variable
       (tag_variable_fragment))
     (tag_default_value
-      (tag_default_fragment)))
+      (unquoted_attribute_value)))
   (function_tag_statement
     (function_tag_name)
     (tag_variable

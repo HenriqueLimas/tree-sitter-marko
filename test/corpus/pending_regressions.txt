@@ -12,77 +12,92 @@ Pending regressions placeholder
       (tag_name))))
 
 ================================================================================
-Attribute operators in concise and html forms
+Double hyphen concise text forms
 ================================================================================
 
-a=x . y a
-a=x && y a
-a=x ? y : z a
-a = (x) => { console.log("y") } a
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script -- var a = 'marko';
 
-<a=x . y a/>
-<a=x && y a/>
-<a=x ? y : z a/>
-<a= (x) => { console.log("y") } a/>
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      ---
+      var a = 'marko';
+      ---
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      -- var a = 'marko';
 
 --------------------------------------------------------------------------------
 
 (document
+  (doctype)
   (concise_tag
     (tag_name)
-    (tag_default_value
-      (attribute_expression_value
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_line)
+  (doctype)
   (concise_tag
     (tag_name)
-    (tag_default_value
-      (attribute_expression_value
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_block
+    (text))
+  (doctype)
   (concise_tag
     (tag_name)
-    (tag_default_value
-      (attribute_expression_value
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
   (concise_tag
-    (tag_name)
-    (tag_default_value
-      (attribute_expression_value
-        (attribute_expression_atom
-          (attribute_paren_value
-            (attribute_paren_fragment)))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_brace_value
-            (attribute_brace_fragment)
-            (quoted_attribute_value)
-            (attribute_brace_fragment)))))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_line))
+
+================================================================================
+Attribute operators in html default values
+================================================================================
+
+<a=x . y a/>
+<a=x && y a/>
+<a=x ? y : z a/>
+
+--------------------------------------------------------------------------------
+
+(document
   (element
     (self_closing_element
       (tag_name)
@@ -122,23 +137,6 @@ a = (x) => { console.log("y") } a
           (attribute_expression_operator)
           (attribute_expression_atom
             (attribute_expression_fragment))))
-      (attribute
-        (regular_attribute
-          (attribute_name)))))
-  (element
-    (self_closing_element
-      (tag_name)
-      (tag_default_value
-        (attribute_expression_value
-          (attribute_expression_atom
-            (attribute_paren_value
-              (attribute_paren_fragment)))
-          (attribute_expression_operator)
-          (attribute_expression_atom
-            (attribute_brace_value
-              (attribute_brace_fragment)
-              (quoted_attribute_value)
-              (attribute_brace_fragment)))))
       (attribute
         (regular_attribute
           (attribute_name))))))
