@@ -1283,16 +1283,24 @@
           "value": "["
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "attribute_bracket_fragment"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_bracket_fragment"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
@@ -1302,7 +1310,7 @@
     },
     "attribute_bracket_fragment": {
       "type": "PATTERN",
-      "value": "[^\\]]*"
+      "value": "[^\"'$\\]]+"
     },
     "attribute_arguments_fragment": {
       "type": "PATTERN",

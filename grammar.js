@@ -189,9 +189,13 @@ module.exports = grammar({
 
     attribute_method: $ => seq('{', optional($.attribute_method_fragment), '}'),
 
-    attribute_bracket_value: $ => seq('[', optional($.attribute_bracket_fragment), ']'),
+    attribute_bracket_value: $ => seq('[', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.attribute_bracket_fragment,
+    )), ']'),
 
-    attribute_bracket_fragment: _ => /[^\]]*/,
+    attribute_bracket_fragment: _ => /[^"'$\]]+/,
 
     attribute_arguments_fragment: _ => /[^)\n]*/,
 

@@ -31,6 +31,14 @@ Bracket attribute expression multiline
           (regular_attribute
             (attribute_name)
             (attribute_bracket_value
+              (attribute_bracket_fragment)
+              (quoted_attribute_value)
+              (attribute_bracket_fragment)
+              (quoted_attribute_value)
+              (attribute_bracket_fragment)
+              (quoted_attribute_value)
+              (attribute_bracket_fragment)
+              (quoted_attribute_value)
               (attribute_bracket_fragment)))))
       (end_tag
         (tag_name)))))
