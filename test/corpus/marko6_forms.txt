@@ -1,0 +1,34 @@
+================================================================================
+Marko 6 let and const forms
+================================================================================
+
+<let/open:=input.open>
+<let/interacted=false>
+
+<const/{
+  a11yText = "accordion",
+  details,
+}=input>
+
+--------------------------------------------------------------------------------
+
+(document
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment))
+    (tag_default_value
+      (tag_default_fragment)))
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment))
+    (tag_default_value
+      (tag_default_fragment)))
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable)
+    (tag_method
+      (tag_method_block_fragment))
+    (tag_default_value
+      (tag_default_fragment))))

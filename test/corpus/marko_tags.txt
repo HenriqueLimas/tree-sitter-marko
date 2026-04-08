@@ -45,7 +45,7 @@ Tag pre-attribute syntax and special attributes
         (tag_arguments
           (tag_arguments_fragment))
         (tag_method
-          (tag_method_fragment))
+          (tag_method_block_fragment))
         (attribute
           (regular_attribute
             (special_attribute_name)

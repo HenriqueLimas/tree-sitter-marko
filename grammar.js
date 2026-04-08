@@ -8,6 +8,7 @@ module.exports = grammar({
 
     _document_node: $ => choice(
       $.top_level_statement,
+      $.function_tag_statement,
       $.concise_tag,
       $.concise_fence_block,
       $.concise_fence_line,
@@ -70,6 +71,7 @@ module.exports = grammar({
       optional($.tag_parameters),
       optional($.tag_arguments),
       optional($.tag_method),
+      optional($.tag_default_value),
       optional($.concise_attribute_group),
       repeat($.attribute),
       optional($.concise_terminator),
@@ -82,6 +84,20 @@ module.exports = grammar({
     concise_fence_block: $ => seq('---', repeat(choice($.element, $.placeholder, $.text)), '---'),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
+
+    function_tag_statement: $ => prec(2, seq(
+      '<',
+      field('name', $.function_tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
+      optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
+      optional($.tag_default_value),
+      repeat($.attribute),
+      '>',
+    )),
 
     element: $ => choice(
       $.normal_element,
@@ -103,6 +119,7 @@ module.exports = grammar({
       optional($.tag_parameters),
       optional($.tag_arguments),
       optional($.tag_method),
+      optional($.tag_default_value),
       repeat($.attribute),
       '/>',
     ),
@@ -116,6 +133,7 @@ module.exports = grammar({
       optional($.tag_parameters),
       optional($.tag_arguments),
       optional($.tag_method),
+      optional($.tag_default_value),
       repeat($.attribute),
       '>',
     ),
@@ -147,15 +165,15 @@ module.exports = grammar({
 
     tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@-]*/,
 
-    tag_variable: $ => seq('/', $.tag_variable_fragment),
+    tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
-    tag_default_value: $ => seq('=', $.tag_default_fragment),
+    tag_default_value: $ => seq(choice(':=', '='), $.tag_default_fragment),
 
     tag_parameters: $ => seq('|', optional($.tag_parameters_fragment), '|'),
 
     tag_arguments: $ => seq('(', optional($.tag_arguments_fragment), ')'),
 
-    tag_method: $ => seq('{', optional($.tag_method_fragment), '}'),
+    tag_method: $ => seq('{', optional($.tag_method_block_fragment), '}'),
 
     tag_variable_fragment: _ => /[^\s=|(){}>]+/,
 
@@ -165,7 +183,7 @@ module.exports = grammar({
 
     tag_arguments_fragment: _ => /[^)\n]*/,
 
-    tag_method_fragment: _ => /[^}\n]*/,
+    tag_method_block_fragment: _ => /[^}]*/,
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute),
 

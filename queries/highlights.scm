@@ -33,7 +33,7 @@
 (tag_default_fragment) @expression
 (tag_parameters_fragment) @parameter
 (tag_arguments_fragment) @expression
-(tag_method_fragment) @expression
+(tag_method_block_fragment) @expression
 (tag_parameters
   ["|" "|"] @punctuation.delimiter)
 (tag_arguments

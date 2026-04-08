@@ -60,7 +60,7 @@
 ((tag_arguments_fragment) @injection.content
  (#set! injection.language "javascript"))
 
-((tag_method_fragment) @injection.content
+((tag_method_block_fragment) @injection.content
  (#set! injection.language "javascript"))
 
 ((normal_element
