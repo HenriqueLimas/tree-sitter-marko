@@ -419,6 +419,11 @@
     }
   },
   {
+    "type": "declaration",
+    "named": true,
+    "fields": {}
+  },
+  {
     "type": "doctype",
     "named": true,
     "fields": {}
@@ -446,6 +451,10 @@
         },
         {
           "type": "concise_tag",
+          "named": true
+        },
+        {
+          "type": "declaration",
           "named": true
         },
         {
@@ -654,6 +663,10 @@
           "named": true
         },
         {
+          "type": "declaration",
+          "named": true
+        },
+        {
           "type": "doctype",
           "named": true
         },
@@ -715,6 +728,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "open_tag_comment",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "placeholder",
@@ -825,6 +843,10 @@
         },
         {
           "type": "attribute_method",
+          "named": true
+        },
+        {
+          "type": "open_tag_comment",
           "named": true
         }
       ]
@@ -1016,6 +1038,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "statement_line_tail",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "style_block_content",
@@ -1355,6 +1382,14 @@
     "named": false
   },
   {
+    "type": "/*",
+    "named": false
+  },
+  {
+    "type": "//",
+    "named": false
+  },
+  {
     "type": "/>",
     "named": false
   },
@@ -1375,11 +1410,19 @@
     "named": false
   },
   {
+    "type": "<?",
+    "named": false
+  },
+  {
     "type": "=",
     "named": false
   },
   {
     "type": ">",
+    "named": false
+  },
+  {
+    "type": "?>",
     "named": false
   },
   {
@@ -1600,10 +1643,6 @@
   },
   {
     "type": "statement_block_tail",
-    "named": true
-  },
-  {
-    "type": "statement_line_tail",
     "named": true
   },
   {

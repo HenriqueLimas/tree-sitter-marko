@@ -16,6 +16,7 @@ module.exports = grammar({
     ),
 
     _node: $ => choice(
+      $.declaration,
       $.doctype,
       $.cdata,
       $.html_comment,
@@ -33,6 +34,8 @@ module.exports = grammar({
     ),
 
     doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, optional('>')),
+
+    declaration: $ => seq('<?', /[^?>]+/, optional('?>')),
 
     cdata: _ => token(prec(2, /<!\[CDATA\[[\s\S]*?\]\]>/)),
 
@@ -260,13 +263,19 @@ module.exports = grammar({
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute),
 
+    open_tag_comment: $ => choice(
+      seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'),
+      seq('//', /[^\n]*/),
+    ),
+
     spread_attribute: $ => seq('...', alias($.spread_attribute_fragment, $.javascript_fragment)),
 
     spread_attribute_fragment: _ => /[^\s/>]+/,
 
     shorthand_attribute: _ => /[.#][A-Za-z0-9_$-]+/,
 
-    regular_attribute: $ => seq(
+    regular_attribute: $ => prec.right(seq(
+      repeat($.open_tag_comment),
       field('name', choice($.special_attribute_name, $.attribute_name)),
       optional($.attribute_bound_value),
       optional($.attribute_arguments),
@@ -281,7 +290,8 @@ module.exports = grammar({
         $.attribute_value_fragment,
         $.unquoted_attribute_value,
       )))),
-    ),
+      repeat($.open_tag_comment),
+    )),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 
