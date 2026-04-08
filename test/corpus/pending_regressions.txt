@@ -147,3 +147,61 @@ EOF placeholder edge forms
       (builtin_tag_name))
     (text)
     (javascript_fragment)))
+
+================================================================================
+Script and style raw text bodies with angle brackets
+================================================================================
+
+<style>/* block comment within <style> */"string within \"<style>\""'string within \'<style>\''</style>
+<script>// line comment within <script>
+/* block comment within <script> */"string within \"<script>\""'string within \'<script>\''</script>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name)))))
+
+================================================================================
+Void self-closing with slash and body close mismatch
+================================================================================
+
+<img src="foo.png"/>
+---
+<img src="marko.png">
+    This is not allowed!
+</img>
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (void_tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_fence_block
+    (element
+      (void_element
+        (void_tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value)))))
+    (text)
+    (ERROR)))
