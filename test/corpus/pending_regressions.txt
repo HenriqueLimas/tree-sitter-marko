@@ -1,91 +1,12 @@
 ================================================================================
-EOF after tag start
+Pending regressions placeholder
 ================================================================================
 
-<a><b
+<div/>
 
 --------------------------------------------------------------------------------
 
 (document
   (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (start_tag
-            (tag_name))))))
-  (element
-    (open_element
-      (start_tag
-        (tag_name)))))
-
-================================================================================
-EOF after attribute name
-================================================================================
-
-<a><b selected
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (start_tag
-            (tag_name)
-            (attribute
-              (regular_attribute
-                (attribute_name))))))))
-  (element
-    (open_element
-      (start_tag
-        (tag_name)
-        (attribute
-          (regular_attribute
-            (attribute_name)))))))
-
-================================================================================
-EOF after unquoted attribute value
-================================================================================
-
-<a><b selected something test=123
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (element
-        (open_element
-          (start_tag
-            (tag_name)
-            (attribute
-              (regular_attribute
-                (attribute_name)))
-            (attribute
-              (regular_attribute
-                (attribute_name)))
-            (attribute
-              (regular_attribute
-                (attribute_name)
-                (attribute_value_fragment))))))))
-  (element
-    (open_element
-      (start_tag
-        (tag_name)
-        (attribute
-          (regular_attribute
-            (attribute_name)))
-        (attribute
-          (regular_attribute
-            (attribute_name)))
-        (attribute
-          (regular_attribute
-            (attribute_name)
-            (attribute_value_fragment)))))))
+    (self_closing_element
+      (tag_name))))

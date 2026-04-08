@@ -1,0 +1,63 @@
+================================================================================
+EOF after tag start
+================================================================================
+
+<a><b
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (open_element
+          (tag_name))))))
+
+================================================================================
+EOF after attribute name
+================================================================================
+
+<a><b selected
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (open_element
+          (tag_name)
+          (attribute
+            (regular_attribute
+              (attribute_name))))))))
+
+================================================================================
+EOF after unquoted attribute value
+================================================================================
+
+<a><b selected something test=123
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (open_element
+          (tag_name)
+          (attribute
+            (regular_attribute
+              (attribute_name)))
+          (attribute
+            (regular_attribute
+              (attribute_name)))
+          (attribute
+            (regular_attribute
+              (attribute_name)
+              (attribute_value_fragment))))))))

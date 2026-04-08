@@ -1,4 +1,5 @@
 #include <tree_sitter/parser.h>
+#include <ctype.h>
 
 enum TokenType {
   EOF_TAG_END,
@@ -21,6 +22,10 @@ void tree_sitter_marko_external_scanner_deserialize(void *p, const char *b, unsi
 bool tree_sitter_marko_external_scanner_scan(void *payload, TSLexer *lexer, const bool *valid_symbols) {
   (void)payload;
   if (!valid_symbols[EOF_TAG_END]) return false;
+
+  while (lexer->lookahead && isspace((unsigned char)lexer->lookahead)) {
+    lexer->advance(lexer, true);
+  }
 
   if (lexer->lookahead == 0) {
     lexer->result_symbol = EOF_TAG_END;
