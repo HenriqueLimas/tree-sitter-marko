@@ -10,9 +10,12 @@ $ const value = 1;
 --------------------------------------------------------------------------------
 
 (document
-  (top_level_statement)
-  (top_level_statement)
-  (top_level_statement)
+  (top_level_statement
+    (statement_line_tail))
+  (top_level_statement
+    (statement_line_tail))
+  (top_level_statement
+    (statement_line_tail))
   (scriptlet))
 
 ================================================================================
@@ -28,9 +31,13 @@ static { const y = 2 }
 --------------------------------------------------------------------------------
 
 (document
-  (top_level_statement)
-  (top_level_statement)
-  (top_level_statement))
+  (top_level_statement
+    (statement_block_tail))
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_block_tail)))
 
 ================================================================================
 Top-level style and script blocks

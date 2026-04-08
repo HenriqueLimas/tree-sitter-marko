@@ -842,6 +842,25 @@
     }
   },
   {
+    "type": "top_level_statement",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "statement_block_tail",
+          "named": true
+        },
+        {
+          "type": "statement_line_tail",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "\"",
     "named": false
   },
@@ -930,6 +949,14 @@
     "named": false
   },
   {
+    "type": "class",
+    "named": false
+  },
+  {
+    "type": "client",
+    "named": false
+  },
+  {
     "type": "concise_terminator",
     "named": true
   },
@@ -955,6 +982,10 @@
   },
   {
     "type": "else-if",
+    "named": false
+  },
+  {
+    "type": "export",
     "named": false
   },
   {
@@ -986,6 +1017,10 @@
     "named": false
   },
   {
+    "type": "import",
+    "named": false
+  },
+  {
     "type": "javascript_fragment",
     "named": true
   },
@@ -1014,12 +1049,28 @@
     "named": true
   },
   {
+    "type": "server",
+    "named": false
+  },
+  {
     "type": "shorthand_attribute",
     "named": true
   },
   {
     "type": "special_attribute_name",
     "named": true
+  },
+  {
+    "type": "statement_block_tail",
+    "named": true
+  },
+  {
+    "type": "statement_line_tail",
+    "named": true
+  },
+  {
+    "type": "static",
+    "named": false
   },
   {
     "type": "style",
@@ -1075,10 +1126,6 @@
   },
   {
     "type": "text",
-    "named": true
-  },
-  {
-    "type": "top_level_statement",
     "named": true
   },
   {
