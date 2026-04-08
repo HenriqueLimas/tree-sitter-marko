@@ -44,3 +44,48 @@ Attribute operators in html default values
         (tag_default_fragment))
       (ERROR
         (UNEXPECTED ' ')))))
+
+================================================================================
+Attribute value EOF and missing-value errors
+================================================================================
+
+<span class=>
+<div if(a==b
+<a><b selected
+<a><b selected something test=123
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (ERROR))
+    (ERROR
+      (tag_name)
+      (attribute_name)
+      (attribute_arguments_fragment))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (MISSING ">"))
+    (start_tag
+      (tag_name))
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))))
