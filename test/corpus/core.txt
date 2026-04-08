@@ -208,3 +208,116 @@ Tag pre-attribute syntax and special attributes
           (tag_name)))
       (end_tag
         (flow_tag_name)))))
+
+================================================================================
+Top-level statement variants
+================================================================================
+
+export const x = 1;
+class {
+  onMount() {}
+}
+static { const y = 2 }
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_tail))
+  (top_level_statement
+    (statement_tail))
+  (concise_tag
+    (tag_name)
+    (tag_arguments
+      (tag_arguments_fragment))
+    (tag_method
+      (tag_method_fragment)))
+  (text)
+  (top_level_statement
+    (statement_tail)))
+
+================================================================================
+Block variants for style and script
+================================================================================
+
+style.js {
+  const make = () => ({ color: "red" })
+}
+
+--------------------------------------------------------------------------------
+
+(document
+  (style_block_js
+    (script_block_content))
+  (text)
+  (text))
+
+================================================================================
+Builtin html style/script tag variants
+================================================================================
+
+<html-script>const x = 1</html-script>
+<html-style>.x { color: red; }</html-style>
+<style.scss>.x { color: red; }</style>
+<style.js>const x = 1</style>
+<style.ts>const x: number = 1</style>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (shorthand_attribute))
+      (text)
+      (end_tag
+        (builtin_tag_name)))))
+
+================================================================================
+Placeholder variants
+================================================================================
+
+<div>$!{unsafeHtml}</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (placeholder
+        (javascript_fragment))
+      (end_tag
+        (tag_name)))))
