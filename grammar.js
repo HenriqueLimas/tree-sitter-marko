@@ -45,7 +45,7 @@ module.exports = grammar({
 
     statement_line_tail: _ => /[^\n]*/,
 
-    statement_block_tail: _ => /[^{}\n]*(\{[^}]*\})?[^\n]*/,
+    statement_block_tail: _ => /[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
 
     style_block_css: $ => prec(2, seq('style', '{', optional($.style_block_content), '}')),
 

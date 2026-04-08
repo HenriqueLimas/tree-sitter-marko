@@ -35,7 +35,6 @@ static { const y = 2 }
     (statement_block_tail))
   (top_level_statement
     (statement_block_tail))
-  (text)
   (top_level_statement
     (statement_block_tail)))
 
@@ -93,3 +92,24 @@ style.js {
     (script_block_content))
   (text)
   (text))
+
+================================================================================
+Multiline export interface block
+================================================================================
+
+export interface Input<Open extends number | number[] | undefined>
+  extends Omit<Marko.HTML.UL, "aria-roledescription"> {
+  size?: "regular" | "large";
+  open?: Open;
+}
+
+<div/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_block_tail))
+  (element
+    (self_closing_element
+      (tag_name))))

@@ -260,7 +260,7 @@
     },
     "statement_block_tail": {
       "type": "PATTERN",
-      "value": "[^{}\\n]*(\\{[^}]*\\})?[^\\n]*"
+      "value": "[^\\n]*(\\n[ \\t][^\\n]*)*(\\n\\})?"
     },
     "style_block_css": {
       "type": "PREC",
