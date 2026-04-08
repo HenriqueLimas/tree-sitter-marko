@@ -1,0 +1,75 @@
+================================================================================
+Double hyphen concise text forms
+================================================================================
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script -- var a = 'marko';
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      ---
+      var a = 'marko';
+      ---
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      -- var a = 'marko';
+
+--------------------------------------------------------------------------------
+
+(document
+  (doctype)
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_line)
+  (doctype)
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_block
+    (text))
+  (doctype)
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (ERROR)
+  (concise_fence_line))

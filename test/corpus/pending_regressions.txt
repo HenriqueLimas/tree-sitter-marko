@@ -12,82 +12,6 @@ Pending regressions placeholder
       (tag_name))))
 
 ================================================================================
-Double hyphen concise text forms
-================================================================================
-
-<!DOCTYPE html>
-html [lang="en"]
-  body
-    h1 -- Title
-    script -- var a = 'marko';
-
-<!DOCTYPE html>
-html [lang="en"]
-  body
-    h1 -- Title
-    script
-      ---
-      var a = 'marko';
-      ---
-
-<!DOCTYPE html>
-html [lang="en"]
-  body
-    h1 -- Title
-    script
-      -- var a = 'marko';
-
---------------------------------------------------------------------------------
-
-(document
-  (doctype)
-  (concise_tag
-    (tag_name)
-    (concise_attribute_group
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (quoted_attribute_value)))))
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
-  (concise_fence_line)
-  (ERROR)
-  (concise_fence_line)
-  (doctype)
-  (concise_tag
-    (tag_name)
-    (concise_attribute_group
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (quoted_attribute_value)))))
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
-  (concise_fence_line)
-  (ERROR)
-  (concise_fence_block
-    (text))
-  (doctype)
-  (concise_tag
-    (tag_name)
-    (concise_attribute_group
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (quoted_attribute_value)))))
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
-  (concise_fence_line)
-  (ERROR)
-  (concise_fence_line))
-
-================================================================================
 Attribute operators in html default values
 ================================================================================
 
@@ -102,41 +26,21 @@ Attribute operators in html default values
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (attribute_expression_value
-          (attribute_expression_atom
-            (attribute_expression_fragment))
-          (attribute_expression_operator)
-          (attribute_expression_atom
-            (attribute_expression_fragment))))
-      (attribute
-        (regular_attribute
-          (attribute_name)))))
+        (tag_default_fragment))
+      (ERROR
+        (UNEXPECTED ' '))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (attribute_expression_value
-          (attribute_expression_atom
-            (attribute_expression_fragment))
-          (attribute_expression_operator)
-          (attribute_expression_atom
-            (attribute_expression_fragment))))
-      (attribute
-        (regular_attribute
-          (attribute_name)))))
+        (tag_default_fragment))
+      (ERROR
+        (attribute_expression_operator)
+        (UNEXPECTED 'y'))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (attribute_expression_value
-          (attribute_expression_atom
-            (attribute_expression_fragment))
-          (attribute_expression_operator)
-          (attribute_expression_atom
-            (attribute_expression_fragment))
-          (attribute_expression_operator)
-          (attribute_expression_atom
-            (attribute_expression_fragment))))
-      (attribute
-        (regular_attribute
-          (attribute_name))))))
+        (tag_default_fragment))
+      (ERROR
+        (UNEXPECTED ' ')))))
