@@ -179,6 +179,14 @@
           "named": true
         },
         {
+          "type": "scriptlet",
+          "named": true
+        },
+        {
+          "type": "scriptlet_block",
+          "named": true
+        },
+        {
           "type": "text",
           "named": true
         }
@@ -308,6 +316,10 @@
         },
         {
           "type": "scriptlet",
+          "named": true
+        },
+        {
+          "type": "scriptlet_block",
           "named": true
         },
         {
@@ -504,6 +516,10 @@
           "named": true
         },
         {
+          "type": "scriptlet_block",
+          "named": true
+        },
+        {
           "type": "start_tag",
           "named": true
         },
@@ -641,6 +657,26 @@
   },
   {
     "type": "script_block_content",
+    "named": true,
+    "fields": {}
+  },
+  {
+    "type": "scriptlet_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "scriptlet_block_content",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "scriptlet_block_content",
     "named": true,
     "fields": {}
   },
@@ -980,6 +1016,10 @@
   },
   {
     "type": "\"",
+    "named": false
+  },
+  {
+    "type": "$",
     "named": false
   },
   {

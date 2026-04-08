@@ -75,6 +75,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "scriptlet_block"
+        },
+        {
+          "type": "SYMBOL",
           "name": "scriptlet"
         },
         {
@@ -660,6 +664,14 @@
               {
                 "type": "SYMBOL",
                 "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "scriptlet_block"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "scriptlet"
               },
               {
                 "type": "SYMBOL",
@@ -1978,7 +1990,40 @@
     },
     "scriptlet": {
       "type": "PATTERN",
-      "value": "\\$\\s+[^\\n]+"
+      "value": "\\$\\s+[^\\s{\\n][^\\n]*"
+    },
+    "scriptlet_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "$"
+        },
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "scriptlet_block_content"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
+    },
+    "scriptlet_block_content": {
+      "type": "PATTERN",
+      "value": "[^}]*"
     },
     "placeholder": {
       "type": "CHOICE",

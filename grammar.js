@@ -24,6 +24,7 @@ module.exports = grammar({
       $.style_block_js,
       $.style_block_ts,
       $.script_block,
+      $.scriptlet_block,
       $.scriptlet,
       $.placeholder,
       $.element,
@@ -81,7 +82,13 @@ module.exports = grammar({
 
     concise_terminator: _ => ';',
 
-    concise_fence_block: $ => seq('---', repeat(choice($.element, $.placeholder, $.text)), '---'),
+    concise_fence_block: $ => seq('---', repeat(choice(
+      $.element,
+      $.placeholder,
+      $.scriptlet_block,
+      $.scriptlet,
+      $.text,
+    )), '---'),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
 
@@ -285,7 +292,11 @@ module.exports = grammar({
 
     unquoted_attribute_value: _ => /[^\s"'=<>`]+/,
 
-    scriptlet: _ => /\$\s+[^\n]+/,
+    scriptlet: _ => /\$\s+[^\s{\n][^\n]*/,
+
+    scriptlet_block: $ => seq('$', '{', optional($.scriptlet_block_content), '}'),
+
+    scriptlet_block_content: _ => /[^}]*/,
 
     placeholder: $ => choice(
       seq('${', $.javascript_fragment, '}'),
