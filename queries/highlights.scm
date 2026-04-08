@@ -49,7 +49,10 @@
   ["(" ")"] @punctuation.delimiter)
 (attribute_method
   ["{" "}"] @punctuation.delimiter)
+(attribute_bracket_value
+  ["[" "]"] @punctuation.bracket)
 (attribute_arguments_fragment) @expression
+(attribute_bracket_fragment) @expression
 (attribute_method_fragment) @expression
 (attribute_value_fragment) @expression
 

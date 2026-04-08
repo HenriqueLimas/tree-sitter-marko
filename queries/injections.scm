@@ -39,6 +39,30 @@
  (#set! injection.language "typescript")
  (#set! injection.include-children))
 
+((attribute_arguments_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((attribute_bracket_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((attribute_method_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((attribute_value_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((tag_default_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((tag_parameters_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((tag_arguments_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
+((tag_method_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
 ((normal_element
   (start_tag
     (builtin_tag_name) @tag)

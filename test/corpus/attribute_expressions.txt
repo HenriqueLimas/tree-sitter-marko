@@ -1,0 +1,36 @@
+================================================================================
+Bracket attribute expression multiline
+================================================================================
+
+<ul
+  ...htmlInput
+  aria-roledescription=a11yText
+  class=[
+    "accordion",
+    size === "large" && "accordion--large",
+    inputClass,
+    interacted && "accordion--animated",
+  ]>
+</ul>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (spread_attribute
+            (javascript_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bracket_value
+              (attribute_bracket_fragment)))))
+      (end_tag
+        (tag_name)))))

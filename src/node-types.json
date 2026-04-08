@@ -39,6 +39,21 @@
     "fields": {}
   },
   {
+    "type": "attribute_bracket_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": false,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_bracket_fragment",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "attribute_method",
     "named": true,
     "fields": {},
@@ -452,6 +467,10 @@
         "multiple": false,
         "required": false,
         "types": [
+          {
+            "type": "attribute_bracket_value",
+            "named": true
+          },
           {
             "type": "attribute_value_fragment",
             "named": true
@@ -885,6 +904,10 @@
   {
     "type": "]",
     "named": false
+  },
+  {
+    "type": "attribute_bracket_fragment",
+    "named": true
   },
   {
     "type": "attribute_name",

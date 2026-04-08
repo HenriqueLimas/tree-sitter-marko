@@ -173,7 +173,12 @@ module.exports = grammar({
       field('name', choice($.special_attribute_name, $.attribute_name)),
       optional($.attribute_arguments),
       optional($.attribute_method),
-      optional(seq('=', field('value', choice($.quoted_attribute_value, $.attribute_value_fragment, $.unquoted_attribute_value)))),
+      optional(seq('=', field('value', choice(
+        $.quoted_attribute_value,
+        $.attribute_bracket_value,
+        $.attribute_value_fragment,
+        $.unquoted_attribute_value,
+      )))),
     ),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
@@ -183,6 +188,10 @@ module.exports = grammar({
     attribute_arguments: $ => seq('(', optional($.attribute_arguments_fragment), ')'),
 
     attribute_method: $ => seq('{', optional($.attribute_method_fragment), '}'),
+
+    attribute_bracket_value: $ => seq('[', optional($.attribute_bracket_fragment), ']'),
+
+    attribute_bracket_fragment: _ => /[^\]]*/,
 
     attribute_arguments_fragment: _ => /[^)\n]*/,
 
