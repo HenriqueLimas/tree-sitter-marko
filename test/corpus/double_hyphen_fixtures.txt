@@ -1,5 +1,5 @@
 ================================================================================
-Double hyphen concise text forms
+Double hyphen concise text forms (htmljs target)
 ================================================================================
 
 <!DOCTYPE html>
