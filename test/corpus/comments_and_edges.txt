@@ -1,0 +1,33 @@
+================================================================================
+HTML comment and extension variants
+================================================================================
+
+<!-- hello -->
+style.mjs { const a = 1 }
+style.mts { const b = 2 }
+
+--------------------------------------------------------------------------------
+
+(document
+  (html_comment)
+  (style_block_js
+    (script_block_content))
+  (style_block_ts
+    (script_block_content)))
+
+================================================================================
+Preserved html-comment tag
+================================================================================
+
+<html-comment><!-- keep me --></html-comment>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (html_comment)
+      (end_tag
+        (builtin_tag_name)))))

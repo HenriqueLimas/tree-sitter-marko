@@ -43,6 +43,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "html_comment"
+        },
+        {
+          "type": "SYMBOL",
           "name": "style_block_css"
         },
         {
@@ -103,6 +107,17 @@
           "value": ">"
         }
       ]
+    },
+    "html_comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "PATTERN",
+          "value": "<!--([^-]|-[^-])*-->"
+        }
+      }
     },
     "top_level_statement": {
       "type": "CHOICE",
@@ -303,8 +318,21 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "style.js"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "style.js"
+              },
+              {
+                "type": "STRING",
+                "value": "style.mjs"
+              },
+              {
+                "type": "STRING",
+                "value": "style.cjs"
+              }
+            ]
           },
           {
             "type": "STRING",
@@ -336,8 +364,21 @@
         "type": "SEQ",
         "members": [
           {
-            "type": "STRING",
-            "value": "style.ts"
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "STRING",
+                "value": "style.ts"
+              },
+              {
+                "type": "STRING",
+                "value": "style.mts"
+              },
+              {
+                "type": "STRING",
+                "value": "style.cts"
+              }
+            ]
           },
           {
             "type": "STRING",

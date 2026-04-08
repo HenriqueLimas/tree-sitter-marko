@@ -1,4 +1,5 @@
 (doctype) @keyword
+(html_comment) @comment
 
 (scriptlet) @keyword
 

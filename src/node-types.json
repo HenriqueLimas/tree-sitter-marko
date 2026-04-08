@@ -211,6 +211,10 @@
           "named": true
         },
         {
+          "type": "html_comment",
+          "named": true
+        },
+        {
           "type": "placeholder",
           "named": true
         },
@@ -347,6 +351,10 @@
         },
         {
           "type": "end_tag",
+          "named": true
+        },
+        {
+          "type": "html_comment",
           "named": true
         },
         {
@@ -958,6 +966,10 @@
     "named": false
   },
   {
+    "type": "html_comment",
+    "named": true
+  },
+  {
     "type": "id",
     "named": false
   },
@@ -1018,11 +1030,27 @@
     "named": false
   },
   {
+    "type": "style.cjs",
+    "named": false
+  },
+  {
+    "type": "style.cts",
+    "named": false
+  },
+  {
     "type": "style.js",
     "named": false
   },
   {
     "type": "style.less",
+    "named": false
+  },
+  {
+    "type": "style.mjs",
+    "named": false
+  },
+  {
+    "type": "style.mts",
     "named": false
   },
   {

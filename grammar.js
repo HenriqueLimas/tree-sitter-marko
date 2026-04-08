@@ -16,6 +16,7 @@ module.exports = grammar({
 
     _node: $ => choice(
       $.doctype,
+      $.html_comment,
       $.style_block_css,
       $.style_block_less,
       $.style_block_scss,
@@ -29,6 +30,8 @@ module.exports = grammar({
     ),
 
     doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, '>'),
+
+    html_comment: _ => token(prec(2, /<!--([^-]|-[^-])*-->/)),
 
     top_level_statement: $ => choice(
       seq('static', optional($.statement_tail)),
@@ -45,9 +48,9 @@ module.exports = grammar({
 
     style_block_scss: $ => prec(2, seq('style.scss', '{', optional($.style_block_content), '}')),
 
-    style_block_js: $ => prec(2, seq('style.js', '{', optional($.script_block_content), '}')),
+    style_block_js: $ => prec(2, seq(choice('style.js', 'style.mjs', 'style.cjs'), '{', optional($.script_block_content), '}')),
 
-    style_block_ts: $ => prec(2, seq('style.ts', '{', optional($.script_block_content), '}')),
+    style_block_ts: $ => prec(2, seq(choice('style.ts', 'style.mts', 'style.cts'), '{', optional($.script_block_content), '}')),
 
     script_block: $ => prec(2, seq('script', '{', optional($.script_block_content), '}')),
 
