@@ -10,3 +10,135 @@ Pending regressions placeholder
   (element
     (self_closing_element
       (tag_name))))
+
+================================================================================
+Attribute operators in concise and html forms
+================================================================================
+
+a=x . y a
+a=x && y a
+a=x ? y : z a
+a = (x) => { console.log("y") } a
+
+<a=x . y a/>
+<a=x && y a/>
+<a=x ? y : z a/>
+<a= (x) => { console.log("y") } a/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (attribute_expression_value
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (attribute_expression_value
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (attribute_expression_value
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (attribute_expression_value
+        (attribute_expression_atom
+          (attribute_paren_value
+            (attribute_paren_fragment)))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_brace_value
+            (attribute_brace_fragment)
+            (quoted_attribute_value)
+            (attribute_brace_fragment)))))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (attribute_expression_value
+          (attribute_expression_atom
+            (attribute_expression_fragment))
+          (attribute_expression_operator)
+          (attribute_expression_atom
+            (attribute_expression_fragment))))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (attribute_expression_value
+          (attribute_expression_atom
+            (attribute_expression_fragment))
+          (attribute_expression_operator)
+          (attribute_expression_atom
+            (attribute_expression_fragment))))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (attribute_expression_value
+          (attribute_expression_atom
+            (attribute_expression_fragment))
+          (attribute_expression_operator)
+          (attribute_expression_atom
+            (attribute_expression_fragment))
+          (attribute_expression_operator)
+          (attribute_expression_atom
+            (attribute_expression_fragment))))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (attribute_expression_value
+          (attribute_expression_atom
+            (attribute_paren_value
+              (attribute_paren_fragment)))
+          (attribute_expression_operator)
+          (attribute_expression_atom
+            (attribute_brace_value
+              (attribute_brace_fragment)
+              (quoted_attribute_value)
+              (attribute_brace_fragment)))))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))
