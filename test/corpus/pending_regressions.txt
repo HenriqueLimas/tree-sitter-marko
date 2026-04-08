@@ -1,12 +1,113 @@
 ================================================================================
-Pending regressions placeholder
+Open html tags without explicit closing slash
 ================================================================================
 
-<div/>
+<div> A <img src="image1.png"> B <img src="image2.png"> C <img src="image3.png"> D </div>
 
 --------------------------------------------------------------------------------
 
 (document
   (element
-    (self_closing_element
-      (tag_name))))
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (element
+        (open_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (quoted_attribute_value)))))
+      )
+      (text)
+      (element
+        (open_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (quoted_attribute_value)))))
+      )
+      (text)
+      (element
+        (open_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (quoted_attribute_value)))))
+      )
+      (text)
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+EOF after tag start
+================================================================================
+
+<a><b
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (open_element
+      (start_tag
+        (tag_name))))
+  (element
+    (open_element
+      (start_tag
+        (tag_name)))))
+
+================================================================================
+EOF after attribute name
+================================================================================
+
+<a><b selected
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (open_element
+      (start_tag
+        (tag_name))))
+  (element
+    (open_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)))))))
+
+================================================================================
+EOF after unquoted attribute value
+================================================================================
+
+<a><b selected something test=123
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (open_element
+      (start_tag
+        (tag_name))))
+  (element
+    (open_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))))))
