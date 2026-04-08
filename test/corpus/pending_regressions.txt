@@ -1,51 +1,4 @@
 ================================================================================
-Open html tags without explicit closing slash
-================================================================================
-
-<div> A <img src="image1.png"> B <img src="image2.png"> C <img src="image3.png"> D </div>
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (text)
-      (element
-        (open_element
-          (start_tag
-            (tag_name)
-            (attribute
-              (regular_attribute
-                (attribute_name)
-                (quoted_attribute_value)))))
-      )
-      (text)
-      (element
-        (open_element
-          (start_tag
-            (tag_name)
-            (attribute
-              (regular_attribute
-                (attribute_name)
-                (quoted_attribute_value)))))
-      )
-      (text)
-      (element
-        (open_element
-          (start_tag
-            (tag_name)
-            (attribute
-              (regular_attribute
-                (attribute_name)
-                (quoted_attribute_value)))))
-      )
-      (text)
-      (end_tag
-        (tag_name)))))
-
-================================================================================
 EOF after tag start
 ================================================================================
 
@@ -55,9 +8,13 @@ EOF after tag start
 
 (document
   (element
-    (open_element
+    (normal_element
       (start_tag
-        (tag_name))))
+        (tag_name))
+      (element
+        (open_element
+          (start_tag
+            (tag_name))))))
   (element
     (open_element
       (start_tag
@@ -73,9 +30,16 @@ EOF after attribute name
 
 (document
   (element
-    (open_element
+    (normal_element
       (start_tag
-        (tag_name))))
+        (tag_name))
+      (element
+        (open_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name))))))))
   (element
     (open_element
       (start_tag
@@ -94,9 +58,23 @@ EOF after unquoted attribute value
 
 (document
   (element
-    (open_element
+    (normal_element
       (start_tag
-        (tag_name))))
+        (tag_name))
+      (element
+        (open_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name)))
+            (attribute
+              (regular_attribute
+                (attribute_name)))
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (attribute_value_fragment))))))))
   (element
     (open_element
       (start_tag

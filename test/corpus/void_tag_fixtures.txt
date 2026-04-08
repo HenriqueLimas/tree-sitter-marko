@@ -1,0 +1,40 @@
+================================================================================
+Open html void tags without explicit closing slash
+================================================================================
+
+<div> A <img src="image1.png"> B <img src="image2.png"> C <img src="image3.png"> D </div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (element
+        (void_element
+          (void_tag_name)
+          (attribute
+            (regular_attribute
+              (attribute_name)
+              (quoted_attribute_value)))))
+      (text)
+      (element
+        (void_element
+          (void_tag_name)
+          (attribute
+            (regular_attribute
+              (attribute_name)
+              (quoted_attribute_value)))))
+      (text)
+      (element
+        (void_element
+          (void_tag_name)
+          (attribute
+            (regular_attribute
+              (attribute_name)
+              (quoted_attribute_value)))))
+      (text)
+      (end_tag
+        (tag_name)))))

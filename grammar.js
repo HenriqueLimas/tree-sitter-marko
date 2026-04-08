@@ -3,6 +3,10 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
+  externals: $ => [
+    $._eof_tag_end,
+  ],
+
   rules: {
     document: $ => repeat($._document_node),
 
@@ -111,13 +115,23 @@ module.exports = grammar({
 
     element: $ => choice(
       $.self_closing_element,
+      $.void_element,
       $.normal_element,
+      $.open_element,
     ),
+
+    void_element: $ => prec(2, seq(
+      '<',
+      field('name', $.void_tag_name),
+      repeat($.shorthand_attribute),
+      repeat($.attribute),
+      '>',
+    )),
 
     normal_element: $ => seq(
       $.start_tag,
       repeat($._node),
-      $.end_tag,
+      choice($.end_tag, $._eof_tag_end),
     ),
 
     self_closing_element: $ => choice(
@@ -146,6 +160,20 @@ module.exports = grammar({
         repeat($.attribute),
         '/>',
       ),
+    ),
+
+    open_element: $ => seq(
+      '<',
+      field('name', $._tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
+      optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
+      optional($.tag_default_value),
+      repeat($.attribute),
+      $._eof_tag_end,
     ),
 
     start_tag: $ => choice(
@@ -197,6 +225,8 @@ module.exports = grammar({
     flow_tag_name: _ => choice('for', 'if', 'while', 'else-if', 'else', 'try', 'await', 'return'),
 
     function_tag_name: _ => choice('const', 'context', 'debug', 'define', 'id', 'let', 'log', 'lifecycle'),
+
+    void_tag_name: _ => choice('area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'link', 'meta', 'param', 'source', 'track', 'wbr'),
 
     dynamic_tag_name: $ => seq('${', optional($.javascript_fragment), '}'),
 
