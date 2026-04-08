@@ -1,0 +1,139 @@
+================================================================================
+Whitespace around equals
+================================================================================
+
+<div foo = bar></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Valueless self-closed attribute
+================================================================================
+
+<var foo/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))))
+
+================================================================================
+Tag arguments plus attribute arguments
+================================================================================
+
+<for(var i = 0; i < 10; i++) if(x > y)></for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (tag_arguments
+          (tag_arguments_fragment))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_arguments
+              (attribute_arguments_fragment)))))
+      (end_tag
+        (flow_tag_name)))))
+
+================================================================================
+Argument and parameters variants
+================================================================================
+
+<${x}(y)/>
+<${x}|y|/>
+<tag.x(y)/>
+<tag.x|y|/>
+<tag#x(y)/>
+<tag#x|y|/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (dynamic_tag_name
+        (javascript_fragment))
+      (tag_arguments
+        (tag_arguments_fragment))))
+  (element
+    (self_closing_element
+      (dynamic_tag_name
+        (javascript_fragment))
+      (tag_parameters
+        (tag_parameters_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (shorthand_attribute)
+      (tag_arguments
+        (tag_arguments_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (shorthand_attribute)
+      (tag_parameters
+        (tag_parameters_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (shorthand_attribute)
+      (tag_arguments
+        (tag_arguments_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (shorthand_attribute)
+      (tag_parameters
+        (tag_parameters_fragment)))))
+
+================================================================================
+Text after concise tag fence
+================================================================================
+
+span -- Hello World
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_line))
+
+================================================================================
+HTML comment in tag body
+================================================================================
+
+<a><!--<b></b>--></a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (html_comment)
+      (end_tag
+        (tag_name)))))

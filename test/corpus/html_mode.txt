@@ -114,3 +114,26 @@ Placeholder variants
         (javascript_fragment))
       (end_tag
         (tag_name)))))
+
+================================================================================
+Multiline html-style content
+================================================================================
+
+<html-style>
+  .foo {
+    color: red;
+  }
+</html-style>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (text)
+      (text)
+      (end_tag
+        (builtin_tag_name)))))

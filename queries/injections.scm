@@ -45,7 +45,7 @@
 ((attribute_paren_fragment) @injection.content
  (#set! injection.language "javascript"))
 
-((attribute_bracket_fragment) @injection.content
+((attribute_bracket_value) @injection.content
  (#set! injection.language "javascript"))
 
 ((attribute_method_fragment) @injection.content

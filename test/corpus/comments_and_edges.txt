@@ -31,3 +31,55 @@ Preserved html-comment tag
       (html_comment)
       (end_tag
         (builtin_tag_name)))))
+
+================================================================================
+Empty closing tags
+================================================================================
+
+<div>
+    Hello World
+    <span>
+        Hello Universe
+    </>
+</>
+
+<ul.features>
+    <li for(feature in [])>
+        ${feature}
+    </li>
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (element
+        (normal_element
+          (start_tag
+            (tag_name))
+          (text)
+          (end_tag)))
+      (end_tag)))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (shorthand_attribute))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name)
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (attribute_arguments
+                  (attribute_arguments_fragment)))))
+          (placeholder
+            (javascript_fragment))
+          (end_tag
+            (tag_name))))
+      (end_tag))))
