@@ -34,6 +34,50 @@
     }
   },
   {
+    "type": "attribute_bound_value",
+    "named": true,
+    "fields": {
+      "value": {
+        "multiple": false,
+        "required": true,
+        "types": [
+          {
+            "type": "attribute_brace_value",
+            "named": true
+          },
+          {
+            "type": "attribute_bracket_value",
+            "named": true
+          },
+          {
+            "type": "attribute_expression_value",
+            "named": true
+          },
+          {
+            "type": "attribute_paren_value",
+            "named": true
+          },
+          {
+            "type": "attribute_value_fragment",
+            "named": true
+          },
+          {
+            "type": "backtick_attribute_value",
+            "named": true
+          },
+          {
+            "type": "quoted_attribute_value",
+            "named": true
+          },
+          {
+            "type": "unquoted_attribute_value",
+            "named": true
+          }
+        ]
+      }
+    }
+  },
+  {
     "type": "attribute_brace_fragment",
     "named": true,
     "fields": {}
@@ -756,6 +800,10 @@
           "named": true
         },
         {
+          "type": "attribute_bound_value",
+          "named": true
+        },
+        {
           "type": "attribute_method",
           "named": true
         }
@@ -1097,7 +1145,35 @@
       "required": true,
       "types": [
         {
+          "type": "attribute_brace_value",
+          "named": true
+        },
+        {
+          "type": "attribute_bracket_value",
+          "named": true
+        },
+        {
+          "type": "attribute_expression_value",
+          "named": true
+        },
+        {
+          "type": "attribute_paren_value",
+          "named": true
+        },
+        {
+          "type": "backtick_attribute_value",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        },
+        {
           "type": "tag_default_fragment",
+          "named": true
+        },
+        {
+          "type": "unquoted_attribute_value",
           "named": true
         }
       ]

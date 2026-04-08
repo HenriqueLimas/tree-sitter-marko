@@ -815,11 +815,11 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "normal_element"
+          "name": "self_closing_element"
         },
         {
           "type": "SYMBOL",
-          "name": "self_closing_element"
+          "name": "normal_element"
         }
       ]
     },
@@ -1494,8 +1494,41 @@
           ]
         },
         {
-          "type": "SYMBOL",
-          "name": "tag_default_fragment"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "quoted_attribute_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "attribute_bracket_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "attribute_paren_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "attribute_brace_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "backtick_attribute_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "attribute_expression_value"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "tag_default_fragment"
+            },
+            {
+              "type": "SYMBOL",
+              "name": "unquoted_attribute_value"
+            }
+          ]
         }
       ]
     },
@@ -1600,7 +1633,7 @@
     },
     "tag_default_fragment": {
       "type": "PATTERN",
-      "value": "[^\\s>]+"
+      "value": "[^\\s>\\/()\\[\\]{}\"'`]+"
     },
     "tag_parameters_fragment": {
       "type": "PATTERN",
@@ -1672,10 +1705,19 @@
           "value": "..."
         },
         {
-          "type": "SYMBOL",
-          "name": "javascript_fragment"
+          "type": "ALIAS",
+          "content": {
+            "type": "SYMBOL",
+            "name": "spread_attribute_fragment"
+          },
+          "named": true,
+          "value": "javascript_fragment"
         }
       ]
+    },
+    "spread_attribute_fragment": {
+      "type": "PATTERN",
+      "value": "[^\\s/>]+"
     },
     "shorthand_attribute": {
       "type": "PATTERN",
@@ -1700,6 +1742,18 @@
               }
             ]
           }
+        },
+        {
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_bound_value"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         },
         {
           "type": "CHOICE",
@@ -1791,7 +1845,57 @@
     },
     "attribute_name": {
       "type": "PATTERN",
-      "value": "[A-Za-z0-9_$][A-Za-z0-9_$:-]*"
+      "value": "[A-Za-z0-9_$][A-Za-z0-9_$-]*"
+    },
+    "attribute_bound_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": ":="
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "attribute_expression_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_brace_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "backtick_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_bracket_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_paren_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_value_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "unquoted_attribute_value"
+              }
+            ]
+          }
+        }
+      ]
     },
     "attribute_arguments": {
       "type": "SEQ",
@@ -2021,7 +2125,7 @@
     },
     "attribute_value_fragment": {
       "type": "PATTERN",
-      "value": "[^\\s,>\"'`()\\[\\]{}]+"
+      "value": "[^\\s,>\"'`()\\[\\]{}\\/]+"
     },
     "attribute_expression_value": {
       "type": "SEQ",
@@ -2183,7 +2287,7 @@
     },
     "unquoted_attribute_value": {
       "type": "PATTERN",
-      "value": "[^\\s\"'=<>`()\\[\\]{}]+"
+      "value": "[^\\s\"'=<>`()\\[\\]{}\\/]+"
     },
     "scriptlet": {
       "type": "PATTERN",

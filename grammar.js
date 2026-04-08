@@ -107,8 +107,8 @@ module.exports = grammar({
     )),
 
     element: $ => choice(
-      $.normal_element,
       $.self_closing_element,
+      $.normal_element,
     ),
 
     normal_element: $ => seq(
@@ -201,7 +201,16 @@ module.exports = grammar({
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
-    tag_default_value: $ => seq(choice(':=', '='), $.tag_default_fragment),
+    tag_default_value: $ => seq(choice(':=', '='), choice(
+      $.quoted_attribute_value,
+      $.attribute_bracket_value,
+      $.attribute_paren_value,
+      $.attribute_brace_value,
+      $.backtick_attribute_value,
+      $.attribute_expression_value,
+      $.tag_default_fragment,
+      $.unquoted_attribute_value,
+    )),
 
     tag_parameters: $ => seq('|', optional($.tag_parameters_fragment), '|'),
 
@@ -220,7 +229,7 @@ module.exports = grammar({
 
     tag_variable_fragment: _ => /[^\s=|(){}>]+/,
 
-    tag_default_fragment: _ => /[^\s>]+/,
+    tag_default_fragment: _ => /[^\s>\/()\[\]{}"'`]+/,
 
     tag_parameters_fragment: _ => /[^|\n]*/,
 
@@ -237,12 +246,15 @@ module.exports = grammar({
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute),
 
-    spread_attribute: $ => seq('...', $.javascript_fragment),
+    spread_attribute: $ => seq('...', alias($.spread_attribute_fragment, $.javascript_fragment)),
+
+    spread_attribute_fragment: _ => /[^\s/>]+/,
 
     shorthand_attribute: _ => /[.#][A-Za-z0-9_$-]+/,
 
     regular_attribute: $ => seq(
       field('name', choice($.special_attribute_name, $.attribute_name)),
+      optional($.attribute_bound_value),
       optional($.attribute_arguments),
       optional($.attribute_method),
       optional(seq('=', field('value', choice(
@@ -259,7 +271,18 @@ module.exports = grammar({
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 
-    attribute_name: _ => /[A-Za-z0-9_$][A-Za-z0-9_$:-]*/,
+    attribute_name: _ => /[A-Za-z0-9_$][A-Za-z0-9_$-]*/,
+
+    attribute_bound_value: $ => seq(':=', field('value', choice(
+      $.attribute_expression_value,
+      $.attribute_brace_value,
+      $.backtick_attribute_value,
+      $.quoted_attribute_value,
+      $.attribute_bracket_value,
+      $.attribute_paren_value,
+      $.attribute_value_fragment,
+      $.unquoted_attribute_value,
+    ))),
 
     attribute_arguments: $ => seq('(', optional($.attribute_arguments_fragment), ')'),
 
@@ -307,7 +330,7 @@ module.exports = grammar({
       $.attribute_method_nested_block,
     )), '}'),
 
-    attribute_value_fragment: _ => /[^\s,>"'`()\[\]{}]+/,
+    attribute_value_fragment: _ => /[^\s,>"'`()\[\]{}\/]+/,
 
     attribute_expression_value: $ => seq(
       $.attribute_expression_atom,
@@ -335,7 +358,7 @@ module.exports = grammar({
       seq("'", repeat(choice(/[^'$]+/, $.placeholder)), "'"),
     ),
 
-    unquoted_attribute_value: _ => /[^\s"'=<>`()\[\]{}]+/,
+    unquoted_attribute_value: _ => /[^\s"'=<>`()\[\]{}\/]+/,
 
     scriptlet: _ => /\$\s+[^\s{\n][^\n]*/,
 
