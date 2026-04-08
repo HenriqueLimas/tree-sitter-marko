@@ -10,6 +10,16 @@ Marko 6 let and const forms
   details,
 }=input>
 
+<const/{
+  class: inputClass,
+  size,
+  details,
+  a11yText = "accordion",
+  open: inputOpen,
+  openChange,
+  ...htmlInput
+}=input>
+
 --------------------------------------------------------------------------------
 
 (document
@@ -29,6 +39,17 @@ Marko 6 let and const forms
     (function_tag_name)
     (tag_variable)
     (tag_method
+      (tag_method_block_fragment)
+      (quoted_attribute_value)
+      (tag_method_block_fragment))
+    (tag_default_value
+      (tag_default_fragment)))
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable)
+    (tag_method
+      (tag_method_block_fragment)
+      (quoted_attribute_value)
       (tag_method_block_fragment))
     (tag_default_value
       (tag_default_fragment))))

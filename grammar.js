@@ -173,7 +173,11 @@ module.exports = grammar({
 
     tag_arguments: $ => seq('(', optional($.tag_arguments_fragment), ')'),
 
-    tag_method: $ => seq('{', optional($.tag_method_block_fragment), '}'),
+    tag_method: $ => seq('{', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.tag_method_block_fragment,
+    )), '}'),
 
     tag_variable_fragment: _ => /[^\s=|(){}>]+/,
 
@@ -183,7 +187,7 @@ module.exports = grammar({
 
     tag_arguments_fragment: _ => /[^)\n]*/,
 
-    tag_method_block_fragment: _ => /[^}]*/,
+    tag_method_block_fragment: _ => /[^"'$}]+/,
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute),
 
@@ -198,6 +202,7 @@ module.exports = grammar({
       optional(seq('=', field('value', choice(
         $.quoted_attribute_value,
         $.attribute_bracket_value,
+        $.attribute_paren_value,
         $.attribute_value_fragment,
         $.unquoted_attribute_value,
       )))),
@@ -209,7 +214,21 @@ module.exports = grammar({
 
     attribute_arguments: $ => seq('(', optional($.attribute_arguments_fragment), ')'),
 
-    attribute_method: $ => seq('{', optional($.attribute_method_fragment), '}'),
+    attribute_method: $ => seq('{', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.attribute_method_fragment,
+      $.attribute_method_nested_block,
+    )), '}'),
+
+    attribute_paren_value: $ => seq('(', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.attribute_paren_fragment,
+      $.attribute_paren_value,
+    )), ')'),
+
+    attribute_paren_fragment: _ => /[^()"'$]+/,
 
     attribute_bracket_value: $ => seq('[', repeat(choice(
       $.quoted_attribute_value,
@@ -221,9 +240,16 @@ module.exports = grammar({
 
     attribute_arguments_fragment: _ => /[^)\n]*/,
 
-    attribute_method_fragment: _ => /[^}\n]*/,
+    attribute_method_fragment: _ => /[^{}"'$]+/,
 
-    attribute_value_fragment: _ => /[^\s,>"']+/,
+    attribute_method_nested_block: $ => seq('{', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.attribute_method_fragment,
+      $.attribute_method_nested_block,
+    )), '}'),
+
+    attribute_value_fragment: _ => /[^\s,>"'()\[\]{}]+/,
 
     quoted_attribute_value: $ => choice(
       seq('"', repeat(choice(/[^"$]+/, $.placeholder)), '"'),

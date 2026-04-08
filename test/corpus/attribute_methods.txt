@@ -1,0 +1,46 @@
+================================================================================
+Complex attribute args and methods
+================================================================================
+
+<evo-details
+  ...item
+  open=(
+    Array.isArray(open) ? open.includes(index) : open === index
+  )
+  openChange(isOpen) {
+    interacted = true;
+    if (Array.isArray(open)) {
+      const currentOpen = open;
+    }
+  }/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_paren_value
+            (attribute_paren_fragment)
+            (attribute_paren_value
+              (attribute_paren_fragment))
+            (attribute_paren_fragment)
+            (attribute_paren_value
+              (attribute_paren_fragment))
+            (attribute_paren_fragment))))
+      (attribute
+        (regular_attribute
+          (special_attribute_name)
+          (attribute_arguments
+            (attribute_arguments_fragment))
+          (attribute_method
+            (attribute_method_fragment)
+            (attribute_method_nested_block
+              (attribute_method_fragment))
+            (attribute_method_fragment)))))))

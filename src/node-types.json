@@ -66,11 +66,77 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
         {
           "type": "attribute_method_fragment",
+          "named": true
+        },
+        {
+          "type": "attribute_method_nested_block",
+          "named": true
+        },
+        {
+          "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_method_nested_block",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_method_fragment",
+          "named": true
+        },
+        {
+          "type": "attribute_method_nested_block",
+          "named": true
+        },
+        {
+          "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "attribute_paren_value",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "attribute_paren_fragment",
+          "named": true
+        },
+        {
+          "type": "attribute_paren_value",
+          "named": true
+        },
+        {
+          "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
           "named": true
         }
       ]
@@ -529,6 +595,10 @@
             "named": true
           },
           {
+            "type": "attribute_paren_value",
+            "named": true
+          },
+          {
             "type": "attribute_value_fragment",
             "named": true
           },
@@ -845,20 +915,23 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": false,
+      "multiple": true,
       "required": false,
       "types": [
+        {
+          "type": "placeholder",
+          "named": true
+        },
+        {
+          "type": "quoted_attribute_value",
+          "named": true
+        },
         {
           "type": "tag_method_block_fragment",
           "named": true
         }
       ]
     }
-  },
-  {
-    "type": "tag_method_block_fragment",
-    "named": true,
-    "fields": {}
   },
   {
     "type": "tag_parameters",
@@ -995,6 +1068,10 @@
   },
   {
     "type": "attribute_name",
+    "named": true
+  },
+  {
+    "type": "attribute_paren_fragment",
     "named": true
   },
   {
@@ -1167,6 +1244,10 @@
   },
   {
     "type": "tag_default_fragment",
+    "named": true
+  },
+  {
+    "type": "tag_method_block_fragment",
     "named": true
   },
   {

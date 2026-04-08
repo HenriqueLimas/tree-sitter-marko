@@ -42,6 +42,9 @@
 ((attribute_arguments_fragment) @injection.content
  (#set! injection.language "javascript"))
 
+((attribute_paren_fragment) @injection.content
+ (#set! injection.language "javascript"))
+
 ((attribute_bracket_fragment) @injection.content
  (#set! injection.language "javascript"))
 
@@ -58,9 +61,6 @@
  (#set! injection.language "javascript"))
 
 ((tag_arguments_fragment) @injection.content
- (#set! injection.language "javascript"))
-
-((tag_method_block_fragment) @injection.content
  (#set! injection.language "javascript"))
 
 ((normal_element

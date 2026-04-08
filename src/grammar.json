@@ -1333,16 +1333,24 @@
           "value": "{"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "tag_method_block_fragment"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "tag_method_block_fragment"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
@@ -1368,7 +1376,7 @@
     },
     "tag_method_block_fragment": {
       "type": "PATTERN",
-      "value": "[^}]*"
+      "value": "[^\"'$}]+"
     },
     "attribute": {
       "type": "CHOICE",
@@ -1470,6 +1478,10 @@
                       },
                       {
                         "type": "SYMBOL",
+                        "name": "attribute_paren_value"
+                      },
+                      {
+                        "type": "SYMBOL",
                         "name": "attribute_value_fragment"
                       },
                       {
@@ -1529,22 +1541,75 @@
           "value": "{"
         },
         {
-          "type": "CHOICE",
-          "members": [
-            {
-              "type": "SYMBOL",
-              "name": "attribute_method_fragment"
-            },
-            {
-              "type": "BLANK"
-            }
-          ]
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_method_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_method_nested_block"
+              }
+            ]
+          }
         },
         {
           "type": "STRING",
           "value": "}"
         }
       ]
+    },
+    "attribute_paren_value": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "("
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_paren_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_paren_value"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ")"
+        }
+      ]
+    },
+    "attribute_paren_fragment": {
+      "type": "PATTERN",
+      "value": "[^()\"'$]+"
     },
     "attribute_bracket_value": {
       "type": "SEQ",
@@ -1589,11 +1654,48 @@
     },
     "attribute_method_fragment": {
       "type": "PATTERN",
-      "value": "[^}\\n]*"
+      "value": "[^{}\"'$]+"
+    },
+    "attribute_method_nested_block": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "{"
+        },
+        {
+          "type": "REPEAT",
+          "content": {
+            "type": "CHOICE",
+            "members": [
+              {
+                "type": "SYMBOL",
+                "name": "quoted_attribute_value"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "placeholder"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_method_fragment"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_method_nested_block"
+              }
+            ]
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "}"
+        }
+      ]
     },
     "attribute_value_fragment": {
       "type": "PATTERN",
-      "value": "[^\\s,>\"']+"
+      "value": "[^\\s,>\"'()\\[\\]{}]+"
     },
     "quoted_attribute_value": {
       "type": "CHOICE",
