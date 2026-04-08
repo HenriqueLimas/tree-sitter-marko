@@ -77,3 +77,51 @@ $ {
   (concise_fence_block
     (scriptlet_block
       (scriptlet_block_content))))
+
+================================================================================
+Flow tag arguments with nested parens in fence
+================================================================================
+
+---
+<if(notEmpty(data.colors))>
+</if>
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block
+    (element
+      (normal_element
+        (start_tag
+          (flow_tag_name)
+          (tag_arguments
+            (tag_arguments_fragment)
+            (tag_arguments_nested
+              (tag_arguments_fragment))))
+        (end_tag
+          (flow_tag_name))))))
+
+================================================================================
+Flow tag arguments with quoted parens
+================================================================================
+
+<for (x in ["Hello ${name}!", "(World)"])></for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (tag_arguments
+          (tag_arguments_fragment)
+          (quoted_attribute_value
+            (placeholder
+              (javascript_fragment)))
+          (tag_arguments_fragment)
+          (quoted_attribute_value)
+          (tag_arguments_fragment)))
+      (end_tag
+        (flow_tag_name)))))

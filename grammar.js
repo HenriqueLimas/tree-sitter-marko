@@ -205,7 +205,12 @@ module.exports = grammar({
 
     tag_parameters: $ => seq('|', optional($.tag_parameters_fragment), '|'),
 
-    tag_arguments: $ => seq('(', optional($.tag_arguments_fragment), ')'),
+    tag_arguments: $ => seq('(', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.tag_arguments_fragment,
+      $.tag_arguments_nested,
+    )), ')'),
 
     tag_method: $ => seq('{', repeat(choice(
       $.quoted_attribute_value,
@@ -219,7 +224,14 @@ module.exports = grammar({
 
     tag_parameters_fragment: _ => /[^|\n]*/,
 
-    tag_arguments_fragment: _ => /[^)\n]*/,
+    tag_arguments_fragment: _ => /[^()"'$]+/,
+
+    tag_arguments_nested: $ => seq('(', repeat(choice(
+      $.quoted_attribute_value,
+      $.placeholder,
+      $.tag_arguments_fragment,
+      $.tag_arguments_nested,
+    )), ')'),
 
     tag_method_block_fragment: _ => /[^"'$}]+/,
 
