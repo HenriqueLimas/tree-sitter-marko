@@ -149,7 +149,6 @@ module.exports = grammar({
     ),
 
     _concise_tag_name: $ => choice(
-      $.builtin_tag_name,
       $.flow_tag_name,
       $.function_tag_name,
       $.tag_name,

@@ -199,10 +199,6 @@
         "required": true,
         "types": [
           {
-            "type": "builtin_tag_name",
-            "named": true
-          },
-          {
             "type": "flow_tag_name",
             "named": true
           },

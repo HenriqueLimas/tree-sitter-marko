@@ -1096,10 +1096,6 @@
       "members": [
         {
           "type": "SYMBOL",
-          "name": "builtin_tag_name"
-        },
-        {
-          "type": "SYMBOL",
           "name": "flow_tag_name"
         },
         {
