@@ -17,6 +17,7 @@ module.exports = grammar({
 
     _node: $ => choice(
       $.doctype,
+      $.cdata,
       $.html_comment,
       $.style_block_css,
       $.style_block_less,
@@ -31,7 +32,9 @@ module.exports = grammar({
       $.text,
     ),
 
-    doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, '>'),
+    doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, optional('>')),
+
+    cdata: _ => token(prec(2, /<!\[CDATA\[[\s\S]*?\]\]>/)),
 
     html_comment: _ => token(prec(2, /<!--([^-]|-[^-])*-->/)),
 

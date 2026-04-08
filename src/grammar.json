@@ -47,6 +47,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "cdata"
+        },
+        {
+          "type": "SYMBOL",
           "name": "html_comment"
         },
         {
@@ -111,10 +115,29 @@
           "value": "[^>]+"
         },
         {
-          "type": "STRING",
-          "value": ">"
+          "type": "CHOICE",
+          "members": [
+            {
+              "type": "STRING",
+              "value": ">"
+            },
+            {
+              "type": "BLANK"
+            }
+          ]
         }
       ]
+    },
+    "cdata": {
+      "type": "TOKEN",
+      "content": {
+        "type": "PREC",
+        "value": 2,
+        "content": {
+          "type": "PATTERN",
+          "value": "<!\\[CDATA\\[[\\s\\S]*?\\]\\]>"
+        }
+      }
     },
     "html_comment": {
       "type": "TOKEN",

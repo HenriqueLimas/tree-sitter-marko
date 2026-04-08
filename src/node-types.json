@@ -433,6 +433,10 @@
       "required": false,
       "types": [
         {
+          "type": "cdata",
+          "named": true
+        },
+        {
           "type": "concise_fence_block",
           "named": true
         },
@@ -641,6 +645,10 @@
       "multiple": true,
       "required": true,
       "types": [
+        {
+          "type": "cdata",
+          "named": true
+        },
         {
           "type": "doctype",
           "named": true
@@ -1370,6 +1378,10 @@
   {
     "type": "await",
     "named": false
+  },
+  {
+    "type": "cdata",
+    "named": true
   },
   {
     "type": "class",
