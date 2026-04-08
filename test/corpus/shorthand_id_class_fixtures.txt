@@ -1,0 +1,18 @@
+================================================================================
+Shorthand id and class in html-style close tags
+================================================================================
+
+<#foo.bar>
+</#foo.bar>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (shorthand_attribute)
+        (shorthand_attribute))
+      (end_tag
+        (shorthand_attribute)
+        (shorthand_attribute)))))
