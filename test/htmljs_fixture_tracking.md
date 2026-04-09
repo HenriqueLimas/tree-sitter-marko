@@ -3,7 +3,7 @@
 Source: `../htmljs-parser/src/__tests__/fixtures`
 
 Tracking method: exact `input.marko` snippet present in `test/corpus/*.txt`.
-Last updated: 2026-04-08
+Last updated: 2026-04-09
 
 ## Working instructions
 
@@ -13,12 +13,6 @@ Last updated: 2026-04-08
 4. NEVER change expected test output just to make tests pass; fix parser code/grammar so tests pass.
 5. Any newly added failing htmljs-target case triggers a fix phase immediately after the add phase.
 6. Do not wait for user approval to start the next phase after finishing a phase.
-
-## Deferred blocker
-
-- `attr-comma-multiline` remains intentionally in `test/corpus/pending_regressions.txt`.
-- Reason: parser still splits multiline comma attributes into separate concise tags instead of one concise tag with attributes.
-- Action: continue coverage for other fixtures and revisit this blocker in dedicated fix phases.
 
 ## Snapshot
 
@@ -39,7 +33,7 @@ Last updated: 2026-04-08
 - `attr-literal-true` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-literal-undefined` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-comma-multiline` -> `test/corpus/pending_regressions.txt` (pending)
+- `attr-comma-multiline` -> `test/corpus/pending_regressions.txt` (fixed parser handling for multiline comma attributes)
 - `attr-inconsistent-commas` -> `test/corpus/comma_attribute_fixtures.txt`
 - `comma-ends-attr-operators` -> `test/corpus/comma_attribute_fixtures.txt`
 - `attr-literal-true` -> `test/corpus/attribute_value_fixtures.txt`
@@ -69,6 +63,7 @@ Last updated: 2026-04-08
 - `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
+- `attr-comma-multiline` -> `test/corpus/pending_regressions.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`

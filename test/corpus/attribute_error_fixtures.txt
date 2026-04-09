@@ -61,8 +61,11 @@ Bound and tag-default ambiguity edge cases (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (tag_default_value
-          (tag_default_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
       (text)
       (end_tag
         (tag_name))))
@@ -70,8 +73,11 @@ Bound and tag-default ambiguity edge cases (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (ERROR
-          (UNEXPECTED 'o')))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
       (text)
       (end_tag
         (tag_name))))
@@ -81,8 +87,11 @@ Bound and tag-default ambiguity edge cases (htmljs target)
         (tag_name)
         (tag_variable
           (tag_variable_fragment))
-        (tag_default_value
-          (tag_default_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
       (text)
       (end_tag
         (tag_name))))
@@ -92,8 +101,11 @@ Bound and tag-default ambiguity edge cases (htmljs target)
         (tag_name)
         (tag_variable
           (tag_variable_fragment))
-        (ERROR
-          (UNEXPECTED 'o')))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
       (text)
       (end_tag
         (tag_name)))))

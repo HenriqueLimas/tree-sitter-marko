@@ -42,4 +42,5 @@ head
         (attribute_name)
         (quoted_attribute_value))))
   (concise_tag
-    (tag_name)))
+    (tag_name))
+  (concise_fence_line))

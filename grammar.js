@@ -3,6 +3,8 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
+  inline: $ => [],
+
   conflicts: $ => [],
 
   rules: {
@@ -83,7 +85,19 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.concise_attribute_group),
-        repeat($.builtin_concise_attribute),
+        repeat(choice($.builtin_concise_attribute, ',')),
+        optional($.concise_terminator),
+      )),
+      prec.right(1, seq(
+        field('name', $._concise_tag_name),
+        repeat($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        $._comma_separated_concise_attributes,
         optional($.concise_terminator),
       )),
       prec.right(1, seq(
@@ -113,6 +127,58 @@ module.exports = grammar({
       alias($.builtin_tag_name_attribute, $.attribute),
     ),
 
+    _comma_separated_concise_attributes: $ => seq(
+      alias($.first_comma_separated_concise_attribute, $.attribute),
+      token.immediate(','),
+      repeat(seq(alias($.comma_separated_concise_attribute, $.attribute), token.immediate(','))),
+      alias($.comma_separated_concise_attribute, $.attribute),
+    ),
+
+    first_comma_separated_concise_attribute: $ => seq(
+      alias(prec.right(seq(
+        field('name', alias($.same_line_comma_attribute_name, $.attribute_name)),
+        optional($.attribute_bound_value),
+        optional($.attribute_arguments),
+        optional($.attribute_method),
+        optional(seq('=', field('value', choice(
+          $.attribute_expression_value,
+          $.attribute_brace_value,
+          $.backtick_attribute_value,
+          $.quoted_attribute_value,
+          $.attribute_bracket_value,
+          $.attribute_paren_value,
+          $.attribute_value_fragment,
+          $.unquoted_attribute_value,
+        )))),
+      )), $.regular_attribute),
+    ),
+
+    comma_separated_concise_attribute: $ => seq(
+      alias(prec.right(seq(
+        field('name', choice(
+          $.special_attribute_name,
+          alias($.tag_name, $.attribute_name),
+          alias($.flow_tag_name, $.attribute_name),
+          alias($.function_tag_name, $.attribute_name),
+        )),
+        optional($.attribute_bound_value),
+        optional($.attribute_arguments),
+        optional($.attribute_method),
+        optional(seq('=', field('value', choice(
+          $.attribute_expression_value,
+          $.attribute_brace_value,
+          $.backtick_attribute_value,
+          $.quoted_attribute_value,
+          $.attribute_bracket_value,
+          $.attribute_paren_value,
+          $.attribute_value_fragment,
+          $.unquoted_attribute_value,
+        )))),
+      )), $.regular_attribute),
+    ),
+
+    same_line_comma_attribute_name: _ => token.immediate(/[ \t]+(?:[A-Za-z0-9_@][A-Za-z0-9_:@-]*|[+-][0-9]+)/),
+
     builtin_tag_name_attribute: $ => prec.right(seq(
       repeat($.open_tag_comment),
       field('name', alias($.tag_name, $.attribute_name)),
@@ -138,15 +204,15 @@ module.exports = grammar({
       $.element,
       $.placeholder,
       $.scriptlet_block,
-      $.scriptlet,
       alias($.concise_fence_text_with_angle, $.text),
       alias($.concise_fence_text, $.text),
+      $.scriptlet,
       $.text,
     )), '---'),
 
     concise_fence_text_with_angle: _ => token(prec(1, /[^<\-$\n][^$\n]*<[^\n]*/)),
 
-    concise_fence_text: _ => token(prec(-2, /[^\-$\n][^$\n]*/)),
+    concise_fence_text: _ => token(prec(-2, /[^\-\n][^\n]*/)),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
 
@@ -271,7 +337,7 @@ module.exports = grammar({
 
     dynamic_tag_name: $ => seq('${', optional($.javascript_fragment), '}'),
 
-    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@-]*/,
+    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_@-]*/,
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
@@ -301,7 +367,7 @@ module.exports = grammar({
       $.tag_method_block_fragment,
     )), '}'),
 
-    tag_variable_fragment: _ => /[^\s=|(){}>]+/,
+    tag_variable_fragment: _ => /[^\s:=|(){}>]+/,
 
     tag_default_fragment: _ => /[^\s>\/()\[\]{}"'`]+/,
 

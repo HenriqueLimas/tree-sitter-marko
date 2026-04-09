@@ -10,6 +10,10 @@
           {
             "type": "attribute_name",
             "named": true
+          },
+          {
+            "type": "regular_attribute",
+            "named": true
           }
         ]
       },
@@ -43,6 +47,10 @@
           },
           {
             "type": "quoted_attribute_value",
+            "named": true
+          },
+          {
+            "type": "regular_attribute",
             "named": true
           },
           {
@@ -317,6 +325,11 @@
         }
       ]
     }
+  },
+  {
+    "type": "attribute_name",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "attribute_paren_fragment",
@@ -1667,10 +1680,6 @@
   },
   {
     "type": "attribute_expression_operator",
-    "named": true
-  },
-  {
-    "type": "attribute_name",
     "named": true
   },
   {

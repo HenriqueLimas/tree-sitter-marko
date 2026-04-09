@@ -24,8 +24,7 @@ hello $ var foo = 123;
 
 (document
   (concise_fence_block
-    (text)
-    (scriptlet)))
+    (text)))
 
 ================================================================================
 Scriptlet block inside fenced block

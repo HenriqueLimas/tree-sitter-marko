@@ -219,11 +219,11 @@ a [ foo=bar ] target="_blank" [
       (attribute
         (regular_attribute
           (attribute_name)
-          (attribute_value_fragment)))))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (quoted_attribute_value))
+          (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (quoted_attribute_value)))
     (concise_attribute_group
       (attribute
         (regular_attribute
