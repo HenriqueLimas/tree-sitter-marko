@@ -15,13 +15,14 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 52
-- Exact-input missing in corpus: 266
+- Exact-input covered in corpus: 55
+- Exact-input missing in corpus: 263
 
 ## Recently covered in this phase
 
-- `attribute value EOF and missing-value errors` -> `test/corpus/attribute_error_fixtures.txt`
-- `script concise forms and script src attr` -> `test/corpus/concise_script_fixtures.txt`
+- `attr-grouped-2` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-3` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -36,6 +37,9 @@ Last updated: 2026-04-08
 - `argument-tag-nested-parens` -> `test/corpus/argument_tag_fixtures.txt`
 - `attr-value-string-concat` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-2` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-3` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
@@ -91,12 +95,9 @@ attr-complex-unary
 attr-concise-hyphens
 attr-escape-characters
 attr-escaped-dollar
-attr-grouped-2
-attr-grouped-3
 attr-grouped-4
 attr-grouped-invalid
 attr-grouped-invalid-eof
-attr-grouped-multiple
 attr-inc-and-dec
 attr-inconsistent-commas
 attr-int-and-id

@@ -31,3 +31,103 @@ a [href="http://www.ebay.com"
           (attribute_name)
           (quoted_attribute_value)))))
   (concise_fence_line))
+
+================================================================================
+Grouped concise attributes with inner and edge whitespace
+================================================================================
+
+a [ href="http://www.ebay.com"
+  target="_blank"
+  style="background-color: yellow"
+    class="foo" ]
+  -- This is the body of the a tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_fence_line))
+
+================================================================================
+Grouped concise attributes with trailing valueless attr
+================================================================================
+
+a [ href="http://www.ebay.com"
+  target="_blank"
+  style="background-color: yellow"
+    class]
+  -- This is the body of the a tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (concise_fence_line))
+
+================================================================================
+Multiple grouped concise attributes split by tag default
+================================================================================
+
+a [ foo=bar ] target="_blank" [
+  style="background-color: yellow"
+    class]
+  -- This is the body of the a tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))))
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (quoted_attribute_value))
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (concise_fence_line))
