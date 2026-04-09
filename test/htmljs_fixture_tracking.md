@@ -15,15 +15,14 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 56
-- Exact-input missing in corpus: 262
+- Exact-input covered in corpus: 58
+- Exact-input missing in corpus: 260
 
 ## Recently covered in this phase
 
-- `attr-grouped-2` -> `test/corpus/attribute_group_fixtures.txt`
-- `attr-grouped-3` -> `test/corpus/attribute_group_fixtures.txt`
-- `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
-- `comment-concise-js-block-trailing` -> `test/corpus/concise_comment_fixtures.txt`
+- `attr-grouped-4` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-invalid` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -40,6 +39,9 @@ Last updated: 2026-04-08
 - `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-2` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-3` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-4` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-invalid` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
@@ -96,9 +98,6 @@ attr-complex-unary
 attr-concise-hyphens
 attr-escape-characters
 attr-escaped-dollar
-attr-grouped-4
-attr-grouped-invalid
-attr-grouped-invalid-eof
 attr-inc-and-dec
 attr-inconsistent-commas
 attr-int-and-id
