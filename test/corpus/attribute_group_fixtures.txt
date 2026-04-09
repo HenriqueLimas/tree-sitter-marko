@@ -1,0 +1,33 @@
+================================================================================
+Grouped concise attributes with multiline body
+================================================================================
+
+a [href="http://www.ebay.com"
+  target="_blank"
+  style="background-color: yellow"
+    class="foo"]
+  -- This is the body of the a tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (concise_attribute_group
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_fence_line))

@@ -15,30 +15,33 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 49
-- Exact-input missing in corpus: 269
+- Exact-input covered in corpus: 52
+- Exact-input missing in corpus: 266
 
 ## Recently covered in this phase
 
-- `argument-attr-extra-whitespace` -> `test/corpus/attribute_methods.txt`
-- `argument-tag-extra-whitespace` -> `test/corpus/argument_tag_fixtures.txt`
-- `attr-spread` -> `test/corpus/attribute_spread_fixtures.txt`
+- `argument-attr-multiple` -> `test/corpus/attribute_methods.txt`
+- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt`
+- `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
 
 ## Known exact matches currently tracked
 
 - `argument-and-params` -> `test/corpus/core_syntax_regressions.txt`
 - `argument-attr` -> `test/corpus/attribute_methods.txt`
 - `argument-attr-extra-whitespace` -> `test/corpus/attribute_methods.txt`
+- `argument-attr-multiple` -> `test/corpus/attribute_methods.txt`
 - `argument-tag` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-complex` -> `test/corpus/marko_tags.txt`
 - `argument-tag-multiple` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-extra-whitespace` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-nested-parens` -> `test/corpus/argument_tag_fixtures.txt`
 - `attr-value-string-concat` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
 - `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
+- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt`
 - `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
 - `comments-within-open-tag` -> `test/corpus/open_tag_comment_fixtures.txt`
 - `declaration` -> `test/corpus/xml_declaration_fixtures.txt`
@@ -77,7 +80,6 @@ Last updated: 2026-04-08
 ## Backlog (remaining exact-input fixtures)
 
 ```text
-argument-attr-multiple
 attr-bound
 attr-comma-multiline
 attr-complex
@@ -87,7 +89,6 @@ attr-complex-unary
 attr-concise-hyphens
 attr-escape-characters
 attr-escaped-dollar
-attr-grouped
 attr-grouped-2
 attr-grouped-3
 attr-grouped-4

@@ -53,3 +53,30 @@ head
         (quoted_attribute_value))))
   (concise_tag
     (tag_name)))
+
+================================================================================
+Concise block comment trailing text invalid (htmljs target)
+================================================================================
+
+p
+  /*
+  This is a
+  multiline comment
+  */ This is not okay
+  -- This is the body of the p tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_comment)
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line))

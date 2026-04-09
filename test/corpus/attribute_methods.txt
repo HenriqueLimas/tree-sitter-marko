@@ -67,6 +67,30 @@ Argument attribute with expression
         (tag_name)))))
 
 ================================================================================
+Argument attribute with multiple argument groups
+================================================================================
+
+<div for(var i = 0; i < 10; i++) (nonsense!)></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (ERROR
+              (attribute_arguments
+                (attribute_arguments_fragment)))
+            (attribute_arguments
+              (attribute_arguments_fragment)))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
 Argument attribute with extra whitespace
 ================================================================================
 
