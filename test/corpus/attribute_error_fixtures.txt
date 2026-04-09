@@ -18,3 +18,82 @@ Attribute value EOF and missing-value errors (htmljs target)
     (tag_name)
     (attribute_name)
     (attribute_arguments_fragment)))
+
+================================================================================
+Bound and tag-default ambiguity edge cases (htmljs target)
+================================================================================
+
+<a x:=foo>test</a>
+<a x := foo>test</a>
+<a:=foo>test</a>
+<a := foo>test</a>
+<a/bar:=foo>test</a>
+<a/bar := foo>test</a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_bound_value
+              (attribute_value_fragment)))))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_default_value
+          (tag_default_fragment)))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (ERROR
+          (UNEXPECTED 'o')))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment))
+        (tag_default_value
+          (tag_default_fragment)))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment))
+        (ERROR
+          (UNEXPECTED 'o')))
+      (text)
+      (end_tag
+        (tag_name)))))

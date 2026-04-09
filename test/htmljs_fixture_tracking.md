@@ -15,14 +15,16 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 58
-- Exact-input missing in corpus: 260
+- Exact-input covered in corpus: 60
+- Exact-input missing in corpus: 258
 
 ## Recently covered in this phase
 
 - `attr-grouped-4` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-invalid` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
+- `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -43,6 +45,7 @@ Last updated: 2026-04-08
 - `attr-grouped-invalid` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
+- `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
@@ -89,7 +92,6 @@ Last updated: 2026-04-08
 ## Backlog (remaining exact-input fixtures)
 
 ```text
-attr-bound
 attr-comma-multiline
 attr-complex
 attr-complex-functions
@@ -132,7 +134,6 @@ attr-unenclosed-whitespace-minus
 attr-unenclosed-whitespace-multiple-attrs
 attr-unenclosed-whitespace-odd
 attr-value-missing
-attr-value-self-closed
 attr-value-single-quote-escaped
 attr-value-typeof
 attr-value-typeof-comma
@@ -343,3 +344,4 @@ whitespace-preservation
 xml-declaration-ill-formed
 ```
 - `attr-spread` -> `test/corpus/attribute_spread_fixtures.txt`
+- `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`

@@ -189,3 +189,20 @@ EOF after multiple attributes and unquoted value (htmljs target)
       (regular_attribute
         (attribute_name)
         (attribute_value_fragment)))))
+
+================================================================================
+Self-closed single-quoted attribute value
+================================================================================
+
+<var foo='bar'/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))
