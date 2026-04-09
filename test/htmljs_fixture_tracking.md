@@ -11,6 +11,7 @@ Last updated: 2026-04-08
 2. Update this tracking file on every phase.
 3. Test expectations must follow htmljs-parser output.
 4. NEVER change expected test output just to make tests pass; fix parser code/grammar so tests pass.
+5. Any newly added failing htmljs-target case triggers a fix phase immediately after the add phase.
 
 ## Snapshot
 
@@ -26,8 +27,8 @@ Last updated: 2026-04-08
 - `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
 - `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-comma-multiline` -> `test/corpus/pending_regressions.txt` (pending)
-- `attr-inconsistent-commas` -> `test/corpus/pending_regressions.txt` (pending)
-- `comma-ends-attr-operators` -> `test/corpus/pending_regressions.txt` (pending)
+- `attr-inconsistent-commas` -> `test/corpus/comma_attribute_fixtures.txt`
+- `comma-ends-attr-operators` -> `test/corpus/comma_attribute_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -345,3 +346,5 @@ xml-declaration-ill-formed
 ```
 - `attr-spread` -> `test/corpus/attribute_spread_fixtures.txt`
 - `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-inconsistent-commas` -> `test/corpus/comma_attribute_fixtures.txt`
+- `comma-ends-attr-operators` -> `test/corpus/comma_attribute_fixtures.txt`

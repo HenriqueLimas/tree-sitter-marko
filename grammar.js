@@ -3,6 +3,10 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
+  conflicts: $ => [
+    [$.concise_tag, $.concise_attribute_list],
+  ],
+
   rules: {
     document: $ => repeat($._document_node),
 
@@ -10,6 +14,7 @@ module.exports = grammar({
       $.top_level_statement,
       $.function_tag_statement,
       seq($.concise_comment, alias(token.immediate(/[ \t]+[^\n]+/), $.ERROR)),
+      $.concise_attribute_list,
       $.concise_comment,
       $.concise_tag,
       $.concise_fence_block,
@@ -81,7 +86,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.concise_attribute_group),
-        repeat($.builtin_concise_attribute),
+        repeat(choice($.builtin_concise_attribute, ',')),
         optional($.concise_terminator),
       )),
       prec.right(1, seq(
@@ -94,12 +99,26 @@ module.exports = grammar({
         optional($.tag_method),
         optional($.tag_default_value),
         optional($.concise_attribute_group),
-        repeat(alias($.concise_attribute, $.attribute)),
+        repeat(choice(alias($.concise_attribute, $.attribute), ',')),
         optional($.concise_terminator),
       )),
     ),
 
-    concise_attribute_group: $ => seq('[', repeat($.attribute), ']'),
+    concise_attribute_list: $ => prec.right(3, seq(
+      field('name', $._concise_tag_name),
+      repeat($.shorthand_attribute),
+      optional($.tag_variable),
+      optional($.tag_default_value),
+      optional($.tag_parameters),
+      optional($.tag_arguments),
+      optional($.tag_method),
+      optional($.tag_default_value),
+      repeat1(seq(alias($.concise_attribute, $.attribute), ',')),
+      optional(alias($.concise_attribute, $.attribute)),
+      optional($.concise_terminator),
+    )),
+
+    concise_attribute_group: $ => seq('[', repeat(choice($.attribute, ',')), ']'),
 
     concise_attribute: $ => choice(
       $.spread_attribute,
@@ -177,7 +196,7 @@ module.exports = grammar({
       '<',
       field('name', $.void_tag_name),
       repeat($.shorthand_attribute),
-      repeat($.attribute),
+      repeat($._attribute_entry),
       '>',
     )),
 
@@ -198,7 +217,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        repeat($.attribute),
+        repeat($._attribute_entry),
         '/>',
       ),
       seq(
@@ -210,7 +229,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        repeat($.attribute),
+        repeat($._attribute_entry),
         '/>',
       ),
     ),
@@ -226,7 +245,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        repeat($.attribute),
+        repeat($._attribute_entry),
         '>',
       ),
       seq(
@@ -238,7 +257,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        repeat($.attribute),
+        repeat($._attribute_entry),
         '>',
       ),
     ),
@@ -318,6 +337,8 @@ module.exports = grammar({
 
     attribute: $ => choice($.spread_attribute, $.regular_attribute),
 
+    _attribute_entry: $ => choice($.attribute, ','),
+
     open_tag_comment: $ => choice(
       seq('/*', /[^*]*\*+([^/*][^*]*\*+)*/, '/'),
       seq('//', /[^\n]*/),
@@ -367,7 +388,7 @@ module.exports = grammar({
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 
-    attribute_name: _ => /[A-Za-z0-9_$][A-Za-z0-9_$-]*/,
+    attribute_name: _ => /(?:[A-Za-z0-9_$][A-Za-z0-9_$-]*|[+-][0-9]+)/,
 
     attribute_bound_value: $ => seq(':=', field('value', choice(
       $.attribute_expression_value,
@@ -426,7 +447,7 @@ module.exports = grammar({
       $.attribute_method_nested_block,
     )), '}'),
 
-    attribute_value_fragment: _ => /[^\s,>"'`()\[\]{}\/]+/,
+    attribute_value_fragment: _ => /[^\s>"'`()\[\]{}\/]+/,
 
     attribute_expression_value: $ => seq(
       $.attribute_expression_atom,

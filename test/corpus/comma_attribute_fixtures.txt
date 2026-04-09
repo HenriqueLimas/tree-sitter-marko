@@ -1,0 +1,51 @@
+================================================================================
+Inconsistent comma-separated html attributes (htmljs target)
+================================================================================
+
+<test a=123 b=456, c=789></test>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Comma ends first attribute expression operator (htmljs target)
+================================================================================
+
+<div foo = 1, +2 = true></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
