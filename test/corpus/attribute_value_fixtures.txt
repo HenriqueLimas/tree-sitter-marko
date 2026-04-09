@@ -206,3 +206,140 @@ Self-closed single-quoted attribute value
         (regular_attribute
           (attribute_name)
           (quoted_attribute_value))))))
+
+================================================================================
+Attribute literal true false null undefined
+================================================================================
+
+<div data=true></div>
+<div data=false></div>
+<div data=null></div>
+<div data=undefined></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute literal numbers
+================================================================================
+
+<div data=1 data=.5 data=1.5 data=1.5e10 data=1.5e+10 data=1.5e-10 data=-1 data=-.5 data=-1.5 data=-1.5e10 data=-1.5e+10 data=-1.5e-10></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute literal single-quoted string
+================================================================================
+
+<div class='simple'></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (end_tag
+        (tag_name)))))
