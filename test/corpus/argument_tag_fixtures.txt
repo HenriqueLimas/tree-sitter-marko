@@ -96,3 +96,21 @@ Argument tag multiple groups with early error
           (tag_arguments_fragment)))
       (end_tag
         (flow_tag_name)))))
+
+================================================================================
+Argument tag with extra whitespace
+================================================================================
+
+<for (x in y)></for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (tag_arguments
+          (tag_arguments_fragment)))
+      (end_tag
+        (flow_tag_name)))))

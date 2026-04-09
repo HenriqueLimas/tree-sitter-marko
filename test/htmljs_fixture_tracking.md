@@ -15,24 +15,24 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 46
-- Exact-input missing in corpus: 272
+- Exact-input covered in corpus: 49
+- Exact-input missing in corpus: 269
 
 ## Recently covered in this phase
 
-- `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
-- `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
-- `argument-attr` -> `test/corpus/attribute_methods.txt`
-- `argument-tag` -> `test/corpus/argument_tag_fixtures.txt`
-- `argument-tag-multiple` -> `test/corpus/argument_tag_fixtures.txt`
+- `argument-attr-extra-whitespace` -> `test/corpus/attribute_methods.txt`
+- `argument-tag-extra-whitespace` -> `test/corpus/argument_tag_fixtures.txt`
+- `attr-spread` -> `test/corpus/attribute_spread_fixtures.txt`
 
 ## Known exact matches currently tracked
 
 - `argument-and-params` -> `test/corpus/core_syntax_regressions.txt`
 - `argument-attr` -> `test/corpus/attribute_methods.txt`
+- `argument-attr-extra-whitespace` -> `test/corpus/attribute_methods.txt`
 - `argument-tag` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-complex` -> `test/corpus/marko_tags.txt`
 - `argument-tag-multiple` -> `test/corpus/argument_tag_fixtures.txt`
+- `argument-tag-extra-whitespace` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-nested-parens` -> `test/corpus/argument_tag_fixtures.txt`
 - `attr-value-string-concat` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
@@ -77,9 +77,7 @@ Last updated: 2026-04-08
 ## Backlog (remaining exact-input fixtures)
 
 ```text
-argument-attr-extra-whitespace
 argument-attr-multiple
-argument-tag-extra-whitespace
 attr-bound
 attr-comma-multiline
 attr-complex
@@ -125,7 +123,6 @@ attr-operators-space-between
 attr-regex-character-classes
 attr-regexp
 attr-simple-expression
-attr-spread
 attr-unenclosed-whitespace
 attr-unenclosed-whitespace-minus
 attr-unenclosed-whitespace-multiple-attrs
@@ -342,3 +339,4 @@ whitespace-only-reset-indent
 whitespace-preservation
 xml-declaration-ill-formed
 ```
+- `attr-spread` -> `test/corpus/attribute_spread_fixtures.txt`

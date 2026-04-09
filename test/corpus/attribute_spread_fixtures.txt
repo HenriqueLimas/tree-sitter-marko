@@ -1,0 +1,73 @@
+================================================================================
+Spread attributes with interleaved regular attributes
+================================================================================
+
+<span ...a/>
+<span a ...b/>
+<span a ...b ...c/>
+<span a ...b c ...d/>
+<span a ...b c ...d e/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (spread_attribute
+          (javascript_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))

@@ -65,3 +65,25 @@ Argument attribute with expression
               (attribute_arguments_fragment)))))
       (end_tag
         (tag_name)))))
+
+================================================================================
+Argument attribute with extra whitespace
+================================================================================
+
+<div if (x > y)>
+</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_arguments
+              (attribute_arguments_fragment)))))
+      (end_tag
+        (tag_name)))))
