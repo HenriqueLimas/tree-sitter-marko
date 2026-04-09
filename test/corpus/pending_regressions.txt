@@ -1,12 +1,88 @@
 ================================================================================
-Pending regressions placeholder
+Comma-separated multiline concise attributes (htmljs target)
 ================================================================================
 
-<div/>
+a href="http://www.ebay.com",
+  target="_blank",
+  bar,
+  style="background-color: yellow",
+  class="foo"
+  -- This is the body of the a tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (quoted_attribute_value)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (quoted_attribute_value)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (quoted_attribute_value)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (quoted_attribute_value))))
+  (concise_fence_line))
+
+================================================================================
+Inconsistent comma-separated html attributes (htmljs target)
+================================================================================
+
+<test a=123 b=456, c=789></test>
 
 --------------------------------------------------------------------------------
 
 (document
   (element
-    (self_closing_element
-      (tag_name))))
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Comma ends first attribute expression operator (htmljs target)
+================================================================================
+
+<div foo = 1, +2 = true></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (unquoted_attribute_value)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (tag_name)))))

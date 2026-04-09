@@ -15,8 +15,8 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 60
-- Exact-input missing in corpus: 258
+- Exact-input covered in corpus: 63
+- Exact-input missing in corpus: 255
 
 ## Recently covered in this phase
 
@@ -25,6 +25,9 @@ Last updated: 2026-04-08
 - `attr-grouped-invalid-eof` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
 - `attr-value-self-closed` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-comma-multiline` -> `test/corpus/pending_regressions.txt` (pending)
+- `attr-inconsistent-commas` -> `test/corpus/pending_regressions.txt` (pending)
+- `comma-ends-attr-operators` -> `test/corpus/pending_regressions.txt` (pending)
 
 ## Known exact matches currently tracked
 
@@ -92,7 +95,6 @@ Last updated: 2026-04-08
 ## Backlog (remaining exact-input fixtures)
 
 ```text
-attr-comma-multiline
 attr-complex
 attr-complex-functions
 attr-complex-instanceof
@@ -101,7 +103,6 @@ attr-concise-hyphens
 attr-escape-characters
 attr-escaped-dollar
 attr-inc-and-dec
-attr-inconsistent-commas
 attr-int-and-id
 attr-literal-false
 attr-literal-null
@@ -148,7 +149,6 @@ backtick-string-placeholder-newline
 bad-tag-indent
 coma-after-open-tag
 comma-after-tag-variable
-comma-ends-attr-operators
 commas-relax
 commas-require-all-attrs-first
 commas-require-all-attrs-last
