@@ -401,68 +401,6 @@
     }
   },
   {
-    "type": "concise_attribute_list",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "flow_tag_name",
-            "named": true
-          },
-          {
-            "type": "function_tag_name",
-            "named": true
-          },
-          {
-            "type": "tag_name",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": true,
-      "types": [
-        {
-          "type": "attribute",
-          "named": true
-        },
-        {
-          "type": "concise_terminator",
-          "named": true
-        },
-        {
-          "type": "shorthand_attribute",
-          "named": true
-        },
-        {
-          "type": "tag_arguments",
-          "named": true
-        },
-        {
-          "type": "tag_default_value",
-          "named": true
-        },
-        {
-          "type": "tag_method",
-          "named": true
-        },
-        {
-          "type": "tag_parameters",
-          "named": true
-        },
-        {
-          "type": "tag_variable",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
     "type": "concise_fence_block",
     "named": true,
     "fields": {},
@@ -597,10 +535,6 @@
         },
         {
           "type": "cdata",
-          "named": true
-        },
-        {
-          "type": "concise_attribute_list",
           "named": true
         },
         {

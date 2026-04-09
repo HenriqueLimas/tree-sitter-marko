@@ -12,6 +12,7 @@ Last updated: 2026-04-08
 3. Test expectations must follow htmljs-parser output.
 4. NEVER change expected test output just to make tests pass; fix parser code/grammar so tests pass.
 5. Any newly added failing htmljs-target case triggers a fix phase immediately after the add phase.
+6. Do not wait for user approval to start the next phase after finishing a phase.
 
 ## Snapshot
 

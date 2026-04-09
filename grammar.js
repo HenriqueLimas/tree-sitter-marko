@@ -3,9 +3,7 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
-  conflicts: $ => [
-    [$.concise_tag, $.concise_attribute_list],
-  ],
+  conflicts: $ => [],
 
   rules: {
     document: $ => repeat($._document_node),
@@ -14,7 +12,6 @@ module.exports = grammar({
       $.top_level_statement,
       $.function_tag_statement,
       seq($.concise_comment, alias(token.immediate(/[ \t]+[^\n]+/), $.ERROR)),
-      $.concise_attribute_list,
       $.concise_comment,
       $.concise_tag,
       $.concise_fence_block,
@@ -86,7 +83,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.concise_attribute_group),
-        repeat(choice($.builtin_concise_attribute, ',')),
+        repeat($.builtin_concise_attribute),
         optional($.concise_terminator),
       )),
       prec.right(1, seq(
@@ -99,24 +96,10 @@ module.exports = grammar({
         optional($.tag_method),
         optional($.tag_default_value),
         optional($.concise_attribute_group),
-        repeat(choice(alias($.concise_attribute, $.attribute), ',')),
+        repeat(alias($.concise_attribute, $.attribute)),
         optional($.concise_terminator),
       )),
     ),
-
-    concise_attribute_list: $ => prec.right(3, seq(
-      field('name', $._concise_tag_name),
-      repeat($.shorthand_attribute),
-      optional($.tag_variable),
-      optional($.tag_default_value),
-      optional($.tag_parameters),
-      optional($.tag_arguments),
-      optional($.tag_method),
-      optional($.tag_default_value),
-      repeat1(seq(alias($.concise_attribute, $.attribute), ',')),
-      optional(alias($.concise_attribute, $.attribute)),
-      optional($.concise_terminator),
-    )),
 
     concise_attribute_group: $ => seq('[', repeat(choice($.attribute, ',')), ']'),
 
