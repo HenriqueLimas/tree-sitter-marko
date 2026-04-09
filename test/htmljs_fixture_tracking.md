@@ -23,8 +23,8 @@ Last updated: 2026-04-09
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 65
-- Exact-input missing in corpus: 253
+- Exact-input covered in corpus: 68
+- Exact-input missing in corpus: 250
 
 ## Recently covered in this phase
 
@@ -42,12 +42,9 @@ Last updated: 2026-04-09
 - `attr-comma-multiline` -> `test/corpus/comma_attribute_fixtures.txt` (known failing)
 - `attr-inconsistent-commas` -> `test/corpus/comma_attribute_fixtures.txt`
 - `comma-ends-attr-operators` -> `test/corpus/comma_attribute_fixtures.txt`
-- `attr-literal-true` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-literal-false` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-literal-null` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-literal-undefined` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-literal-numbers` -> `test/corpus/attribute_value_fixtures.txt`
-- `attr-literal-string-single-quotes` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-literal-string-double-quotes` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-literal-regex` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-no-value` -> `test/corpus/attribute_value_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -70,6 +67,9 @@ Last updated: 2026-04-09
 - `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-bound` -> `test/corpus/attribute_error_fixtures.txt`
 - `attr-comma-multiline` -> `test/corpus/comma_attribute_fixtures.txt`
+- `attr-literal-regex` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-literal-string-double-quotes` -> `test/corpus/attribute_value_fixtures.txt`
+- `attr-no-value` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
@@ -125,8 +125,6 @@ attr-escape-characters
 attr-escaped-dollar
 attr-inc-and-dec
 attr-int-and-id
-attr-literal-regex
-attr-literal-string-double-quotes
 attr-literal-string-single-quotes
 attr-method-shorthand
 attr-method-shorthand-with-type-parameters
@@ -135,7 +133,6 @@ attr-multi-line-comment
 attr-multi-line-string
 attr-name-with-html-chars
 attr-nested-literal-regex
-attr-no-value
 attr-non-literal
 attr-operator-whitespace-eof
 attr-operators-newline-after

@@ -343,3 +343,96 @@ Attribute literal single-quoted string
             (quoted_attribute_value))))
       (end_tag
         (tag_name)))))
+
+================================================================================
+Attribute literal double-quoted string
+================================================================================
+
+<div class="simple"></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute regex literal forms (htmljs target)
+================================================================================
+
+<div data=/foo//>
+<div data=/foo/></div>
+<div data=/flag/i></div>
+<div data=/with space/></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (ERROR
+          (attribute_name))
+        (tag_variable
+          (tag_variable_fragment)))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name)
+            (ERROR
+              (attribute_name))
+            (tag_variable
+              (tag_variable_fragment)))
+          (end_tag
+            (tag_name))))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name)
+            (ERROR
+              (attribute_name))
+            (tag_variable
+              (tag_variable_fragment)))
+          (end_tag
+            (tag_name))))
+      (element
+        (self_closing_element
+          (tag_name)
+          (ERROR
+            (attribute_name))
+          (tag_variable
+            (tag_variable_fragment))
+          (attribute
+            (regular_attribute
+              (attribute_name)))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Attribute without value in html mode
+================================================================================
+
+<a b>test</a>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name))))
+      (text)
+      (end_tag
+        (tag_name)))))
