@@ -1,0 +1,50 @@
+================================================================================
+Fixture self-closed-tag (htmljs target)
+================================================================================
+
+<a />
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name))))
+
+================================================================================
+Fixture self-closed-tag-attrs (htmljs target)
+================================================================================
+
+<a foo="bar" baz="</a>"/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))
+
+================================================================================
+Fixture self-closing-open-tag-only (htmljs target)
+================================================================================
+
+<img src="foo.png"/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (void_tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))

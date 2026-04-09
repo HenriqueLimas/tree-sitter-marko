@@ -1,0 +1,101 @@
+================================================================================
+Fixture text-after-semicolon (htmljs target)
+================================================================================
+
+span; // Hello World
+
+span; /* Hello World */
+
+span; <!-- Hello World -->
+
+span; Hello World
+    -- Bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (concise_terminator))
+  (concise_comment)
+  (concise_tag
+    (tag_name)
+    (concise_terminator))
+  (concise_comment)
+  (concise_tag
+    (tag_name)
+    (concise_terminator))
+  (html_comment)
+  (concise_tag
+    (tag_name)
+    (concise_terminator))
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name))
+  (concise_fence_line))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/text-after-semicolon/input.marko	0.04 ms	  2245 bytes/ms	(ERROR [6, 11] - [6, 17])
+
+================================================================================
+Fixture text-parse-mode-concise (htmljs target)
+================================================================================
+
+div
+    span
+        -- Hello World
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line))
+
+================================================================================
+Fixture text-parse-mode-delimited-block (htmljs target)
+================================================================================
+
+div
+    span
+        ---
+        Test
+        <b>Hello World</b>
+        ---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_fence_block
+    (text)
+    (text)))
+
+================================================================================
+Fixture text-parse-mode-html (htmljs target)
+================================================================================
+
+<div>
+    <span>Hello World</span>
+</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name))
+          (text)
+          (end_tag
+            (tag_name))))
+      (end_tag
+        (tag_name)))))

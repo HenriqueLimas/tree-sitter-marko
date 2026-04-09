@@ -1,0 +1,38 @@
+================================================================================
+Fixture xml-declaration (htmljs target)
+================================================================================
+
+<?xml version="1.0" encoding="UTF-8" ?>
+<div>Hello</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (declaration)
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture xml-declaration-ill-formed (htmljs target)
+================================================================================
+
+<?xml version="1.0" encoding="UTF-8">
+<div>Hello</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (declaration)
+  (text)
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (end_tag
+        (tag_name)))))

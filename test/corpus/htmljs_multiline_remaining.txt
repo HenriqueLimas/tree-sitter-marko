@@ -1,0 +1,182 @@
+================================================================================
+Fixture multiline-html-block (htmljs target)
+================================================================================
+
+---
+Hello <strong>Frank</strong>
+Line 2
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block
+    (text)
+    (text)))
+
+================================================================================
+Fixture multiline-html-block-empty (htmljs target)
+================================================================================
+
+---
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block))
+
+================================================================================
+Fixture multiline-html-block-missing-end (htmljs target)
+================================================================================
+
+div
+    --
+    Hello World
+    Hello Again
+
+script --
+    console.log('foo');
+    alert('bar');
+
+--
+Multi-line text
+Reached EOF
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name))
+  (concise_tag
+    (builtin_tag_name))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name)
+    (tag_arguments
+      (quoted_attribute_value))
+    (concise_terminator))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-html-block-missing-end/input.marko	0.06 ms	  2143 bytes/ms	(ERROR [3, 9] - [3, 15])
+
+================================================================================
+Fixture multiline-html-block-nested (htmljs target)
+================================================================================
+
+p
+    ---
+    Hello <strong>Frank</strong>
+    Line 2
+    ---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_block
+    (text)
+    (text)))
+
+================================================================================
+Fixture multiline-html-block-nested-empty (htmljs target)
+================================================================================
+
+p
+    ---
+    ---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_block))
+
+================================================================================
+Fixture multiline-html-block-same-line (htmljs target)
+================================================================================
+
+div --
+    Hello World
+    Hello Again
+    --
+    span --
+         Goodbye
+         --
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name))
+  (concise_fence_line))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-html-block-same-line/input.marko	0.05 ms	  1758 bytes/ms	(ERROR [2, 9] - [2, 15])
+
+================================================================================
+Fixture multiline-text-block (htmljs target)
+================================================================================
+
+---
+Line 1
+Line 2
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block
+    (text)
+    (text)))
+
+================================================================================
+Fixture multiline-text-block-bad (htmljs target)
+================================================================================
+
+--
+A
+---
+B
+--
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_line)
+  (concise_fence_block
+    (text)
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-text-block-bad/input.marko	0.03 ms	   408 bytes/ms	(MISSING "---" [4, 2] - [4, 2])
+
+================================================================================
+Fixture multiline-text-block-with-hyphens (htmljs target)
+================================================================================
+
+---
+- Line 1
+- Line 2
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block
+    (text)
+    (text)))

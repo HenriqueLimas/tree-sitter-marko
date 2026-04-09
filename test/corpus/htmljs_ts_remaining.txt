@@ -1,0 +1,471 @@
+================================================================================
+Fixture ts-function-type (htmljs target)
+================================================================================
+
+<div value=fn as (x: number) => string />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_arguments
+            (attribute_arguments_fragment))))
+      (ERROR))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-function-type/input.marko	0.06 ms	   676 bytes/ms	(ERROR [0, 0] - [0, 41])
+
+================================================================================
+Fixture ts-generic-complex (htmljs target)
+================================================================================
+
+<div value=x as Map<string, Array<Record<K, V>>> />
+<div value=x satisfies Map<string, Array<Record<K, V>>> />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (text)
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-complex/input.marko	0.14 ms	   810 bytes/ms	(ERROR [0, 0] - [1, 58])
+
+================================================================================
+Fixture ts-generic-function-type (htmljs target)
+================================================================================
+
+<div value=fn as <T>(x: T) => T />
+<div value=fn as < T >(x: T) => T />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (text)
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-function-type/input.marko	0.09 ms	   812 bytes/ms	(ERROR [0, 0] - [1, 36])
+
+================================================================================
+Fixture ts-generic-simple (htmljs target)
+================================================================================
+
+<div value=x as Array<T> />
+<div value=x as Array< T > />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (text)
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-simple/input.marko	0.08 ms	   704 bytes/ms	(ERROR [0, 0] - [1, 29])
+
+================================================================================
+Fixture ts-intersection-type (htmljs target)
+================================================================================
+
+<div value=x as A & B<T> />
+<div value=x as A & B< T > />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (ERROR)
+    (start_tag
+      (tag_name))
+    (text)
+    (ERROR
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (ERROR))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-intersection-type/input.marko	0.23 ms	   245 bytes/ms	(ERROR [0, 0] - [1, 29])
+
+================================================================================
+Fixture ts-keyof-typeof (htmljs target)
+================================================================================
+
+<div value=x as keyof typeof T />
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))
+
+================================================================================
+Fixture ts-nested-generics (htmljs target)
+================================================================================
+
+<div value=x as Promise<Array<Record<string, number>>> />
+<div value=x as Promise< Array< Record< string, number > > > />
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (text)
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-nested-generics/input.marko	0.12 ms	  1001 bytes/ms	(ERROR [0, 0] - [1, 63])
+
+================================================================================
+Fixture ts-static-const-arrow-function-return-type (htmljs target)
+================================================================================
+
+static const a = (a: number, b: number): string => {
+  if (a < b) {
+    return "foo";
+  } else {
+    return "bar";
+  }
+};
+
+static const b = (a: number, b: number): () => string => () => {
+  if (a < b) {
+    return "foo";
+  } else {
+    return "bar";
+  }
+};
+
+static const c = (a: number, b: number): string => a < b ? "foo" : "bar";
+
+static const d = (a: number, b: number): () => string => () => a < b ? "foo" : "bar";
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_block_tail))
+  (top_level_statement
+    (statement_block_tail)))
+
+================================================================================
+Fixture ts-static-type (htmljs target)
+================================================================================
+
+static type Foo = Array<
+  Bar
+>
+
+div
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (concise_tag
+    (tag_name)))
+
+================================================================================
+Fixture ts-tag-var-type-generic (htmljs target)
+================================================================================
+
+const/foo:Bar<
+  A,
+  B
+> = baz
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment)))
+  (concise_tag
+    (tag_name))
+  (text)
+  (concise_tag
+    (tag_name))
+  (text))
+
+================================================================================
+Fixture ts-type-statement (htmljs target)
+================================================================================
+
+static interface Foo<
+  A,
+  B,
+> {
+  x: 1
+}
+
+static type Bar<
+  A,
+  B,
+> = A &
+    B
+
+static declare const x: Foo<
+  1,
+  2
+>;
+
+static const x: Foo<
+  1,
+  2
+> = baz;
+
+export interface Foo {
+  bar: () => Baz;
+}
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name))
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_block_tail)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-type-statement/input.marko	0.06 ms	  3690 bytes/ms	(ERROR [4, 4] - [5, 1])
+
+================================================================================
+Fixture ts-unary-exression (htmljs target)
+================================================================================
+
+div foo=readonly bar=true
+div foo=val as readonly string[] bar=true
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute)))
+  (concise_tag
+    (tag_name)
+    (ERROR
+      (attribute
+        (attribute_name)
+        (regular_attribute)
+        (regular_attribute))
+      (attribute_name)
+      (attribute_name)
+      (tag_name))
+    (concise_attribute_group))
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-unary-exression/input.marko	0.08 ms	   883 bytes/ms	(ERROR [0, 3] - [0, 25])

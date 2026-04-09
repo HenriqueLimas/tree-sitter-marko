@@ -1,0 +1,132 @@
+================================================================================
+Fixture complex (htmljs target)
+================================================================================
+
+--
+This is top-level text
+--
+p
+    --
+    This is text that spans multiple lines.
+
+    <strong>You can throw in some HTML markup if you want!</strong>
+    --
+p
+    -----
+    If you really want to you can change the block delimiter for the following
+    reasons:
+    - Avoid accidentally ending a block
+    - To improve readability
+    -----
+i -- This text will be in italics
+b
+    -- This text will be bold
+    -- This is okay too
+app-hello
+    -- ${data.name} some html - <b>bold</b>
+
+pre
+    --
+    foo
+    --
+
+p
+    --
+    before
+    ${"placeholder"}
+    after
+    --
+
+p
+    --
+    before
+    <!--comment-->
+    after
+    --
+
+p
+    --
+    before
+    <div/>
+    after
+    --
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_line)
+  (concise_fence_line)
+  (concise_fence_line)
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (end_tag
+        (tag_name))))
+  (concise_fence_line)
+  (concise_fence_block
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (placeholder
+      (javascript_fragment))
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (placeholder
+      (javascript_fragment))
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/complex/input.marko	0.07 ms	  9776 bytes/ms	(MISSING "---" [47, 6] - [47, 6])
+
+================================================================================
+Fixture complex-attr-name (htmljs target)
+================================================================================
+
+<assign data.someArray[0].doSomething('test').hello=1+1/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (ERROR
+        (attribute_name)
+        (shorthand_attribute)
+        (ERROR))
+      (shorthand_attribute)
+      (ERROR
+        (tag_arguments
+          (quoted_attribute_value)))
+      (shorthand_attribute)
+      (tag_default_value
+        (tag_default_fragment)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/complex-attr-name/input.marko	0.06 ms	   882 bytes/ms	(ERROR [0, 8] - [0, 25])

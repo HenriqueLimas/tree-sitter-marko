@@ -1,0 +1,288 @@
+================================================================================
+Fixture mixed (htmljs target)
+================================================================================
+
+var colors=['red', 'green', 'blue']
+<div>
+    <span class="foo">
+        Hello ${data.name}!
+        </span>
+</div> <b>This is after the span</b>
+p class="foo"
+    <span>Test</span>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (ERROR
+        (attribute_expression_atom
+          (attribute_bracket_value
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_fragment))
+      (regular_attribute
+        (attribute_expression_atom
+          (quoted_attribute_value))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment)))))
+  (placeholder
+    (javascript_fragment))
+  (text)
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (tag_variable
+          (tag_variable_fragment)))
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (end_tag
+        (tag_name))))
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed/input.marko	0.10 ms	  1772 bytes/ms	(ERROR [0, 3] - [3, 13])
+
+================================================================================
+Fixture mixed-bad-indentation (htmljs target)
+================================================================================
+
+p
+    <b>Hello</b>
+        BAD
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (end_tag
+        (tag_name))))
+  (concise_tag
+    (tag_name)))
+
+================================================================================
+Fixture mixed-block-root (htmljs target)
+================================================================================
+
+---
+1
+<div>
+    2
+</div>
+3
+<div>
+    4
+</div>
+5
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_fence_block
+    (text)
+    (element
+      (normal_element
+        (start_tag
+          (tag_name))
+        (text)
+        (end_tag
+          (tag_name))))
+    (text)
+    (element
+      (normal_element
+        (start_tag
+          (tag_name))
+        (text)
+        (end_tag
+          (tag_name))))
+    (text)))
+
+================================================================================
+Fixture mixed-cdata (htmljs target)
+================================================================================
+
+p class="foo"
+    <![CDATA[Hello World]]> This is after CDATA
+div class="bar" -- <![CDATA[Hello World]]>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail))
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+
+================================================================================
+Fixture mixed-comment (htmljs target)
+================================================================================
+
+p class="foo"
+    <!--
+    A multiline HTML comment
+    should be okay
+    -->
+div class="bar" -- <!-- test -->
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail))
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+
+================================================================================
+Fixture mixed-invalid (htmljs target)
+================================================================================
+
+var colors=['red', 'green', 'blue']
+<div>
+    <span class="foo">
+        Hello ${data.name}!
+        </span>
+</div> <b>This is not
+    allowed</b>
+p class="foo"
+    <span>Test</span>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (ERROR
+        (attribute_expression_atom
+          (attribute_bracket_value
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_fragment))
+      (regular_attribute
+        (attribute_expression_atom
+          (quoted_attribute_value))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment)))))
+  (placeholder
+    (javascript_fragment))
+  (text)
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name)
+        (tag_variable
+          (tag_variable_fragment)))
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (text)
+      (end_tag
+        (tag_name))))
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed-invalid/input.marko	0.27 ms	   662 bytes/ms	(ERROR [0, 3] - [3, 13])
+
+================================================================================
+Fixture mixed-open-tag-only (htmljs target)
+================================================================================
+
+var colors=['red', 'green', 'blue']
+<img src="marko.png">
+img src="marko2.png"
+div class="foo"
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (ERROR
+        (attribute_expression_atom
+          (attribute_bracket_value
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)
+            (attribute_bracket_fragment)
+            (quoted_attribute_value)))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment))
+        (attribute_expression_fragment)
+        (attribute_expression_atom
+          (quoted_attribute_value))
+        (attribute_expression_operator)
+        (attribute_expression_atom
+          (attribute_expression_fragment)))
+      (regular_attribute)))
+  (text)
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed-open-tag-only/input.marko	0.06 ms	  1468 bytes/ms	(ERROR [0, 3] - [2, 8])

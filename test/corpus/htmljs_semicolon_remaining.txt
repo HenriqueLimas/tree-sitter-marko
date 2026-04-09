@@ -1,0 +1,25 @@
+================================================================================
+Fixture semicolon-concise (htmljs target)
+================================================================================
+
+var pageTitle = 1+2;
+var pageTitle = "hi";
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute)))
+  (concise_tag
+    (tag_name)
+    (ERROR
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (concise_terminator)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/semicolon-concise/input.marko	0.05 ms	   911 bytes/ms	(ERROR [0, 3] - [0, 20])

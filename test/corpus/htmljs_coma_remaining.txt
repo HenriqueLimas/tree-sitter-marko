@@ -1,0 +1,114 @@
+================================================================================
+Fixture coma-after-open-tag (htmljs target)
+================================================================================
+
+div, class="a", id="c"
+
+div,
+    class="a",
+    id="c"
+
+div , class="a", id="c"
+
+div ,
+    class="a",
+    id="c"
+
+div
+    ,class="a"
+    ,id="c"
+
+<div, class="a", id="c"/>
+
+<div,
+    class="a",
+    id="c"/>
+
+<div , class="a", id="c"/>
+
+<div ,
+    class="a",
+    id="c"/>
+
+<div
+    ,class="a"
+    ,id="c"/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (text)
+  (concise_tag
+    (tag_name))
+  (text)
+  (top_level_statement
+    (statement_block_tail))
+  (concise_tag
+    (tag_name))
+  (text)
+  (concise_tag
+    (tag_name))
+  (text)
+  (top_level_statement
+    (statement_block_tail))
+  (concise_tag
+    (tag_name))
+  (text)
+  (text)
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))

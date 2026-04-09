@@ -1,0 +1,73 @@
+================================================================================
+Fixture html-block-after-tag (htmljs target)
+================================================================================
+
+span -- Hello <b>test</b>
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_line))
+
+================================================================================
+Fixture html-comment-tag (htmljs target)
+================================================================================
+
+<div>
+  <!--123-->
+  <html-comment>abc</html-comment>
+  <!--[if lt IE 9]><script src="..."></script><![endif]-->
+  <html-comment>[if lt IE 9]><script src="..."></script><![endif]</html-comment>
+</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (html_comment)
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name))
+          (text)
+          (end_tag
+            (builtin_tag_name))))
+      (html_comment)
+      (element
+        (normal_element
+          (start_tag
+            (builtin_tag_name))
+          (text)
+          (element
+            (normal_element
+              (start_tag
+                (builtin_tag_name)
+                (attribute
+                  (regular_attribute
+                    (attribute_name)
+                    (quoted_attribute_value))))
+              (end_tag
+                (builtin_tag_name))))
+          (ERROR
+            (ERROR))
+          (end_tag
+            (builtin_tag_name))))
+      (end_tag
+        (tag_name)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/html-comment-tag/input.marko	0.06 ms	  3345 bytes/ms	(ERROR [4, 56] - [4, 65])
+
+================================================================================
+Fixture html-comments-ignore-placeholders (htmljs target)
+================================================================================
+
+<!-- Copyright ${date} -->
+
+--------------------------------------------------------------------------------
+
+(document
+  (html_comment))

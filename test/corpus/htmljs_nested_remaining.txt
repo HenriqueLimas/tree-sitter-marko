@@ -1,0 +1,84 @@
+================================================================================
+Fixture nested-pyramid (htmljs target)
+================================================================================
+
+a
+    b
+        c
+        c2
+    b2
+a2
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (tag_name)))
+
+================================================================================
+Fixture nested-siblings (htmljs target)
+================================================================================
+
+div class="foo"
+    span class="bar"
+    span class="baz"
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+
+================================================================================
+Fixture nested-tags (htmljs target)
+================================================================================
+
+div class="foo"
+    span class="bar"
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))
+
+================================================================================
+Fixture nested-text (htmljs target)
+================================================================================
+
+div
+    ---
+    This is
+    multi-line text
+    ---
+    span -- This is body text of span
+        -- This is also body text of span
+    -- Hello Universe
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_fence_block
+    (text)
+    (text))
+  (concise_tag
+    (tag_name))
+  (concise_fence_line)
+  (concise_fence_line)
+  (concise_fence_line))

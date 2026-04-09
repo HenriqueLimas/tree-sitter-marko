@@ -1,0 +1,182 @@
+================================================================================
+Fixture invalid-closing-tag (htmljs target)
+================================================================================
+
+<div> </span> </div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (end_tag
+        (tag_name))))
+  (ERROR
+    (start_tag
+      (builtin_tag_name)
+      (tag_variable
+        (tag_variable_fragment)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-closing-tag/input.marko	0.05 ms	   387 bytes/ms	(ERROR [0, 13] - [0, 20])
+
+================================================================================
+Fixture invalid-missing-tag-var (htmljs target)
+================================================================================
+
+<foo/, x=1/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_variable)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_value_fragment))))))
+
+================================================================================
+Fixture invalid-multiple-tag-params (htmljs target)
+================================================================================
+
+<foo|a||b|>
+  
+</foo>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (ERROR
+          (tag_parameters
+            (tag_parameters_fragment)))
+        (tag_parameters
+          (tag_parameters_fragment)))
+      (end_tag
+        (tag_name)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-multiple-tag-params/input.marko	0.04 ms	   513 bytes/ms	(ERROR [0, 4] - [0, 7])
+
+================================================================================
+Fixture invalid-multiple-tag-type-params (htmljs target)
+================================================================================
+
+<foo<A><B>/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-multiple-tag-type-params/input.marko	0.05 ms	   242 bytes/ms	(ERROR [0, 0] - [0, 12])
+
+================================================================================
+Fixture invalid-type-args-after-space (htmljs target)
+================================================================================
+
+<foo <A>>
+  hi
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (tag_name))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (text)
+      (end_tag))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-type-args-after-space/input.marko	0.06 ms	   327 bytes/ms	(ERROR [0, 0] - [0, 4])
+
+================================================================================
+Fixture invalid-type-params-after-args (htmljs target)
+================================================================================
+
+<foo(a)<A>/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (tag_arguments
+        (tag_arguments_fragment)))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-type-params-after-args/input.marko	0.05 ms	   267 bytes/ms	(ERROR [0, 0] - [0, 12])
+
+================================================================================
+Fixture invalid-type-params-after-method (htmljs target)
+================================================================================
+
+<foo(a){}<A>/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (tag_arguments
+        (tag_arguments_fragment))
+      (tag_method))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-type-params-after-method/input.marko	0.05 ms	   276 bytes/ms	(ERROR [0, 0] - [0, 14])
+
+================================================================================
+Fixture invalid-type-params-after-params (htmljs target)
+================================================================================
+
+<foo|a|<A>/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (tag_parameters
+        (tag_parameters_fragment)))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-type-params-after-params/input.marko	0.05 ms	   260 bytes/ms	(ERROR [0, 0] - [0, 12])
+
+================================================================================
+Fixture invalid-type-params-attr-arg (htmljs target)
+================================================================================
+
+<foo a<A>(b) c/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name))))
+    (start_tag
+      (tag_name))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/invalid-type-params-attr-arg/input.marko	0.06 ms	   281 bytes/ms	(ERROR [0, 0] - [0, 16])

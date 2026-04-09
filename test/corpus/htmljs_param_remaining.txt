@@ -1,0 +1,21 @@
+================================================================================
+Fixture param-tag (htmljs target)
+================================================================================
+
+<for|x, y, { destrucure=default }| of=array></for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (tag_parameters
+          (tag_parameters_fragment))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment))))
+      (end_tag
+        (flow_tag_name)))))

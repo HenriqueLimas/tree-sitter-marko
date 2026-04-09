@@ -1,0 +1,540 @@
+================================================================================
+Fixture tag-name-expression-literal-prefix (htmljs target)
+================================================================================
+
+<foo-${bar}>
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_method
+              (attribute_method_fragment)))))
+      (end_tag))))
+
+================================================================================
+Fixture tag-name-expression-literal-prefix-attrs (htmljs target)
+================================================================================
+
+<foo-${bar} hello="world">
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_method
+              (attribute_method_fragment))))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (end_tag))))
+
+================================================================================
+Fixture tag-name-expression-literal-prefix-suffix (htmljs target)
+================================================================================
+
+<foo-${bar}-baz>
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_method
+              (attribute_method_fragment))))
+        (ERROR
+          (attribute_expression_operator)
+          (ERROR)))
+      (end_tag))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-name-expression-literal-prefix-suffix/input.marko	0.05 ms	   395 bytes/ms	(ERROR [0, 11] - [0, 15])
+
+================================================================================
+Fixture tag-name-expression-literal-suffix (htmljs target)
+================================================================================
+
+<${foo}-bar>
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (dynamic_tag_name
+          (javascript_fragment))
+        (ERROR
+          (attribute_expression_operator)
+          (ERROR)))
+      (end_tag))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-name-expression-literal-suffix/input.marko	0.05 ms	   327 bytes/ms	(ERROR [0, 7] - [0, 11])
+
+================================================================================
+Fixture tag-name-expression-shorthand-id (htmljs target)
+================================================================================
+
+<${myTagName}#foo></>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (dynamic_tag_name
+          (javascript_fragment))
+        (shorthand_attribute))
+      (end_tag))))
+
+================================================================================
+Fixture tag-name-expression-simple (htmljs target)
+================================================================================
+
+<${foo}>
+</${foo}>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (dynamic_tag_name
+          (javascript_fragment)))
+      (end_tag
+        (dynamic_tag_name
+          (javascript_fragment))))))
+
+================================================================================
+Fixture tag-name-expression-simple-empty-close (htmljs target)
+================================================================================
+
+<${foo}>
+</>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (dynamic_tag_name
+          (javascript_fragment)))
+      (end_tag))))
+
+================================================================================
+Fixture tag-params-with-type-parameters (htmljs target)
+================================================================================
+
+<foo<A>|data: A|>
+  hi
+</>
+
+<foo<A> |data: A|>
+  hi
+</>
+
+<foo <A>|data: A|>
+  hi
+</>
+
+<foo <A> |data: A|>
+  hi
+</>
+
+<foo<A, B = string>|data: A & B|>
+  hi
+</>
+
+<foo<A, B = string> |data: A & B|>
+  hi
+</>
+
+<foo <A, B = string>|data: A & B|>
+  hi
+</>
+
+<foo <A, B = string> |data: A & B|>
+  hi
+</>
+
+<foo()<A> |data: A|>
+  hi
+</>
+
+<foo/x<A> |data: A|>
+  hi
+</>
+
+<foo<string><A> |data: A|>
+  hi
+</>
+
+--------------------------------------------------------------------------------
+
+(document)
+
+================================================================================
+Fixture tag-type-argument-arrow-function (htmljs target)
+================================================================================
+
+<foo<{ bar: () => void }>/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (ERROR)
+      (tag_method
+        (tag_method_block_fragment)))
+    (text)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-type-argument-arrow-function/input.marko	0.05 ms	   538 bytes/ms	(ERROR [0, 0] - [0, 27])
+
+================================================================================
+Fixture tag-var-before-concise-text (htmljs target)
+================================================================================
+
+style/style --
+  header {
+    color: green
+  }
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (builtin_tag_name)
+    (tag_variable))
+  (concise_tag
+    (builtin_tag_name))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name)))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-var-before-concise-text/input.marko	0.06 ms	   753 bytes/ms	(ERROR [2, 10] - [3, 3])
+
+================================================================================
+Fixture tag-var-declaration (htmljs target)
+================================================================================
+
+<${foo}/someVar>
+</>
+
+<let/foo/>
+<let/foo=1/>
+<let/foo = 1/>
+<let/foo + 1/>
+<let/foo:string/>
+<let/foo : string/>
+<let/foo: typeof bar extends y ? a : b x=2/>
+<let/{ x, y }/>
+
+<const/fn:any() {
+  console.log("hi");
+}/>
+
+<button/loginButton>
+  login
+</>
+<button/loginButton >
+  login
+</>
+
+<div/ref/>
+<div/ref />
+
+<div#ab.cd/ref/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (dynamic_tag_name
+          (javascript_fragment))
+        (tag_variable
+          (tag_variable_fragment)))
+      (end_tag)))
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment)))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (tag_default_value
+          (tag_default_fragment)))))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (ERROR))))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (attribute_expression_operator)
+        (ERROR))))
+  (function_tag_statement
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment)))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (attribute_name)
+        (tag_name))))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (ERROR
+              (ERROR)
+              (attribute_name)
+              (ERROR))
+            (attribute_value_fragment))))))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable)
+        (tag_method
+          (tag_method_block_fragment)))))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (ERROR
+        (tag_variable
+          (tag_variable_fragment))
+        (tag_arguments)
+        (tag_method
+          (tag_method_block_fragment)
+          (quoted_attribute_value)
+          (tag_method_block_fragment)))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment)))
+      (text)
+      (end_tag)))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment)))
+      (text)
+      (end_tag)))
+  (ERROR
+    (start_tag
+      (tag_name)
+      (tag_variable
+        (tag_variable_fragment)))
+    (element
+      (self_closing_element
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment))))
+    (start_tag
+      (tag_name)
+      (shorthand_attribute)
+      (shorthand_attribute)
+      (tag_variable
+        (tag_variable_fragment)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-var-declaration/input.marko	0.18 ms	  1777 bytes/ms	(ERROR [4, 4] - [4, 10])
+
+================================================================================
+Fixture tag-var-type-with-parens (htmljs target)
+================================================================================
+
+let/a:(B | C) = D
+
+let/a: (B | C) = D
+
+let/a : (B | C) = D
+
+let/a :(B | C) = D
+
+let/a: B & (C | D) = D
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (function_tag_name)
+    (tag_variable))
+  (concise_tag
+    (tag_name)
+    (tag_arguments
+      (tag_arguments_fragment)))
+  (text)
+  (concise_tag
+    (function_tag_name)
+    (tag_variable))
+  (concise_tag
+    (tag_name)
+    (tag_arguments
+      (tag_arguments_fragment)))
+  (text)
+  (concise_tag
+    (function_tag_name)
+    (tag_variable))
+  (concise_tag
+    (tag_name))
+  (text)
+  (concise_tag
+    (function_tag_name)
+    (tag_variable))
+  (concise_tag
+    (tag_name))
+  (text)
+  (concise_tag
+    (function_tag_name)
+    (tag_variable))
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute
+      (attribute_name)
+      (ERROR
+        (ERROR))
+      (regular_attribute
+        (attribute_arguments_fragment))
+      (regular_attribute)
+      (regular_attribute))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/tag-var-type-with-parens/input.marko	0.06 ms	  1799 bytes/ms	(ERROR [8, 6] - [8, 22])
+
+================================================================================
+Fixture tag-var-with-params (htmljs target)
+================================================================================
+
+<foo/var|param|>
+  Hello ${param}
+</foo>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment))
+        (tag_parameters
+          (tag_parameters_fragment)))
+      (text)
+      (placeholder
+        (javascript_fragment))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture tag-with-type-arguments (htmljs target)
+================================================================================
+
+<foo<A>>
+  hi
+</>
+
+<foo<A> >
+  hi
+</>
+
+<foo<A, B = string>>
+  hi
+</>
+
+<foo<A, B = string> >
+  hi
+</>
+
+<foo<A>(bar)>
+  hi
+</>
+
+<foo<A> (bar)>
+  hi
+</>
+
+<foo<A, B = string>(bar)>
+  hi
+</>
+
+<foo<A, B = string> (bar)>
+  hi
+</>
+
+
+<foo<A> (bar) {
+  
+}>
+  hi
+</>
+
+<foo <A> (bar) {
+  
+}>
+  hi
+</>
+
+<foo <A>(bar) {
+  
+}>
+  hi
+</>
+
+--------------------------------------------------------------------------------
+
+(document)

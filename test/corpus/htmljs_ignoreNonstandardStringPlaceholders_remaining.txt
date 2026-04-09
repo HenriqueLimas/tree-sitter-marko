@@ -1,0 +1,21 @@
+================================================================================
+Fixture ignoreNonstandardStringPlaceholders (htmljs target)
+================================================================================
+
+<div data-foo="Hello ${foo}"></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (end_tag
+        (tag_name)))))

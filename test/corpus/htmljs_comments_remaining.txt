@@ -1,0 +1,34 @@
+================================================================================
+Fixture comments-within-tag-body (htmljs target)
+================================================================================
+
+<div>
+     // This is a comment
+     This is some real text
+     /* But this is a comment */
+     And this is more text
+     <!-- and this is a comment -->
+     But this, this is not a http://comment.com
+     And yet this is a //comment
+     And also /* this is a comment */
+     Because a//comment must be preceded by whitespace.
+</div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (text)
+      (text)
+      (text)
+      (text)
+      (html_comment)
+      (text)
+      (text)
+      (text)
+      (text)
+      (end_tag
+        (tag_name)))))

@@ -1,0 +1,41 @@
+================================================================================
+Fixture multi-line-attrs (htmljs target)
+================================================================================
+
+<custom-tag
+  data-attr-a
+  data-attr-b
+  data-attr-c
+  data-attr-d
+  data-attr-e
+  preserve-attr-a
+  not-preserve-attr-a
+/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))

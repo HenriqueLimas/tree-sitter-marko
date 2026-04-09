@@ -1,0 +1,40 @@
+================================================================================
+Fixture root-el (htmljs target)
+================================================================================
+
+var colors=['red', 'green', 'blue']
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute
+      (quoted_attribute_value)
+      (attribute_bracket_fragment)
+      (quoted_attribute_value)
+      (attribute_bracket_fragment)
+      (quoted_attribute_value))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/root-el/input.marko	0.03 ms	  1002 bytes/ms	(ERROR [0, 3] - [0, 35])
+
+================================================================================
+Fixture root-els (htmljs target)
+================================================================================
+
+div class="foo"
+span class="bar"
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail))
+  (concise_tag
+    (tag_name))
+  (top_level_statement
+    (statement_block_tail)))

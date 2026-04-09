@@ -1,0 +1,62 @@
+================================================================================
+Fixture backtick-string-eof (htmljs target)
+================================================================================
+
+<hello message=`Hello
+    ${foo}!></hello>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (tag_name)
+    (attribute_name)
+    (placeholder
+      (javascript_fragment))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/backtick-string-eof/input.marko	0.04 ms	  1194 bytes/ms	(ERROR [0, 0] - [1, 20])
+
+================================================================================
+Fixture backtick-string-nested-with-space (htmljs target)
+================================================================================
+
+<hello message=`${`hi ${name}`}!`></hello>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (backtick_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture backtick-string-placeholder-newline (htmljs target)
+================================================================================
+
+<hello message=`${
+    foo
+}!`></hello>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (backtick_attribute_value
+              (placeholder
+                (javascript_fragment))))))
+      (end_tag
+        (tag_name)))))

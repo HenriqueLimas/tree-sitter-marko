@@ -1,0 +1,17 @@
+================================================================================
+Fixture unclosed-tag-eof (htmljs target)
+================================================================================
+
+<div>
+  <span/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name))
+    (element
+      (self_closing_element
+        (tag_name)))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/unclosed-tag-eof/input.marko	0.04 ms	   356 bytes/ms	(ERROR [0, 0] - [1, 9])

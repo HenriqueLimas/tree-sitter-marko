@@ -1,0 +1,23 @@
+================================================================================
+Fixture bad-tag-indent (htmljs target)
+================================================================================
+
+     // I am indented, and that is OK, but the following is not
+    var colors=['red', 'green', 'blue']
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_comment)
+  (concise_tag
+    (tag_name))
+  (ERROR
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute
+      (quoted_attribute_value)
+      (attribute_bracket_fragment)
+      (quoted_attribute_value)
+      (attribute_bracket_fragment)
+      (quoted_attribute_value))))
+/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/bad-tag-indent/input.marko	0.04 ms	  2577 bytes/ms	(ERROR [1, 7] - [1, 39])

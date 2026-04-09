@@ -1,0 +1,84 @@
+================================================================================
+Fixture commas-relax (htmljs target)
+================================================================================
+
+static const x = {
+  hello: true
+};
+
+import mod, { b as bar } from "./bar"
+export interface Input
+  extends Pick<StarRatingInput, "value" | "a11y-text">,
+    Link,
+    BaseInput {
+  reviewCount: number;
+}
+
+export interface Input {
+  foo: string;
+}
+$ const bar = "bar"
+
+--------------------------------------------------------------------------------
+
+(document
+  (top_level_statement
+    (statement_block_tail))
+  (text)
+  (top_level_statement
+    (statement_line_tail))
+  (top_level_statement
+    (statement_block_tail))
+  (top_level_statement
+    (statement_block_tail))
+  (scriptlet))
+
+================================================================================
+Fixture commas-require-all-attrs-first (htmljs target)
+================================================================================
+
+<foo a="1", b="2" c="3" />
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))
+
+================================================================================
+Fixture commas-require-all-attrs-last (htmljs target)
+================================================================================
+
+<foo a="1" b="2", c="3" />
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value))))))
