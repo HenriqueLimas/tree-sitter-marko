@@ -20,9 +20,8 @@ Last updated: 2026-04-08
 
 ## Recently covered in this phase
 
-- `argument-attr-multiple` -> `test/corpus/attribute_methods.txt`
-- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt`
-- `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
+- `attribute value EOF and missing-value errors` -> `test/corpus/attribute_error_fixtures.txt`
+- `script concise forms and script src attr` -> `test/corpus/concise_script_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -41,7 +40,7 @@ Last updated: 2026-04-08
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
 - `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
-- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt`
+- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt` (still pending)
 - `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
 - `comments-within-open-tag` -> `test/corpus/open_tag_comment_fixtures.txt`
 - `declaration` -> `test/corpus/xml_declaration_fixtures.txt`
@@ -61,7 +60,7 @@ Last updated: 2026-04-08
 - `placeholder-empty` -> `test/corpus/placeholder_edge_fixtures.txt`
 - `placeholder-no-escape` -> `test/corpus/placeholder_edge_fixtures.txt`
 - `script-concise` -> `test/corpus/concise_script_fixtures.txt`
-- `script-empty-concise` -> `test/corpus/pending_regressions.txt`
+- `script-empty-concise` -> `test/corpus/concise_script_fixtures.txt`
 - `scriptlet-block-html` -> `test/corpus/scriptlet_fixtures.txt`
 - `scriptlet-line-html` -> `test/corpus/scriptlet_fixtures.txt`
 - `scriptlet-line-no-middle-html` -> `test/corpus/scriptlet_fixtures.txt`
@@ -72,10 +71,13 @@ Last updated: 2026-04-08
 - `tag-name-expression-literal-prefix-attrs` -> `test/corpus/marko_tags.txt`
 - `text-after-tag` -> `test/corpus/core_syntax_regressions.txt`
 - `text-parse-mode-delimited-block` -> `test/corpus/concise_mode.txt`
+- `attr-grouped` -> `test/corpus/attribute_group_fixtures.txt`
+- `argument-attr-multiple` -> `test/corpus/attribute_methods.txt`
 - `unclosed-tag-eof` -> `test/corpus/eof_open_tag_fixtures.txt`
 - `void-tag-self-closed` -> `test/corpus/void_tag_fixtures.txt`
 - `whitespace-around-equals` -> `test/corpus/core_syntax_regressions.txt`
 - `xml-declaration` -> `test/corpus/xml_declaration_fixtures.txt`
+- `attr-value-missing` -> `test/corpus/attribute_error_fixtures.txt`
 
 ## Backlog (remaining exact-input fixtures)
 

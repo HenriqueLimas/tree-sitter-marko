@@ -1,0 +1,20 @@
+================================================================================
+Attribute value EOF and missing-value errors (htmljs target)
+================================================================================
+
+<span class=>
+<div if(a==b
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)))
+      (ERROR))
+    (tag_name)
+    (attribute_name)
+    (attribute_arguments_fragment)))

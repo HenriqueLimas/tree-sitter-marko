@@ -21,3 +21,25 @@ div
   (concise_fence_line)
   (concise_tag
     (tag_name)))
+
+================================================================================
+Script concise forms and script src attr (htmljs target)
+================================================================================
+
+head
+    script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"
+    lasso-head
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_tag
+    (builtin_tag_name)
+    (builtin_concise_attribute
+      (attribute
+        (attribute_name)
+        (quoted_attribute_value))))
+  (concise_tag
+    (tag_name)))
