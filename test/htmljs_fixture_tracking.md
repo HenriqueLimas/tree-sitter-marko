@@ -15,14 +15,15 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 55
-- Exact-input missing in corpus: 263
+- Exact-input covered in corpus: 56
+- Exact-input missing in corpus: 262
 
 ## Recently covered in this phase
 
 - `attr-grouped-2` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-3` -> `test/corpus/attribute_group_fixtures.txt`
 - `attr-grouped-multiple` -> `test/corpus/attribute_group_fixtures.txt`
+- `comment-concise-js-block-trailing` -> `test/corpus/concise_comment_fixtures.txt`
 
 ## Known exact matches currently tracked
 
@@ -44,7 +45,7 @@ Last updated: 2026-04-08
 - `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
 - `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
-- `comment-concise-js-block-trailing` -> `test/corpus/pending_regressions.txt` (still pending)
+- `comment-concise-js-block-trailing` -> `test/corpus/concise_comment_fixtures.txt`
 - `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
 - `comments-within-open-tag` -> `test/corpus/open_tag_comment_fixtures.txt`
 - `declaration` -> `test/corpus/xml_declaration_fixtures.txt`
@@ -151,7 +152,6 @@ comma-ends-attr-operators
 commas-relax
 commas-require-all-attrs-first
 commas-require-all-attrs-last
-comment-concise-js-block-trailing
 comments-within-tag-body
 complex
 complex-attr-name

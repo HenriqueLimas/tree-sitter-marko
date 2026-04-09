@@ -1,19 +1,12 @@
 ================================================================================
-Concise block comment trailing text invalid (htmljs target)
+Pending regressions placeholder
 ================================================================================
 
-p
-  /*
-  This is a
-  multiline comment
-  */ This is not okay
-  -- This is the body of the p tag
+<div/>
 
 --------------------------------------------------------------------------------
 
 (document
-  (concise_tag
-    (tag_name))
-  (concise_comment)
-  (ERROR)
-  (concise_fence_line))
+  (element
+    (self_closing_element
+      (tag_name))))

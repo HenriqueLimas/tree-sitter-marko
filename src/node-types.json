@@ -530,6 +530,10 @@
       "required": false,
       "types": [
         {
+          "type": "ERROR",
+          "named": true
+        },
+        {
           "type": "cdata",
           "named": true
         },
@@ -1620,6 +1624,10 @@
   {
     "type": "?>",
     "named": false
+  },
+  {
+    "type": "ERROR",
+    "named": true
   },
   {
     "type": "[",

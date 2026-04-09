@@ -21,6 +21,27 @@
           "name": "function_tag_statement"
         },
         {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "concise_comment"
+            },
+            {
+              "type": "ALIAS",
+              "content": {
+                "type": "IMMEDIATE_TOKEN",
+                "content": {
+                  "type": "PATTERN",
+                  "value": "[ \\t]+[^\\n]+"
+                }
+              },
+              "named": true,
+              "value": "ERROR"
+            }
+          ]
+        },
+        {
           "type": "SYMBOL",
           "name": "concise_comment"
         },

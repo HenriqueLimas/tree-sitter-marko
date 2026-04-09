@@ -9,6 +9,7 @@ module.exports = grammar({
     _document_node: $ => choice(
       $.top_level_statement,
       $.function_tag_statement,
+      seq($.concise_comment, alias(token.immediate(/[ \t]+[^\n]+/), $.ERROR)),
       $.concise_comment,
       $.concise_tag,
       $.concise_fence_block,
