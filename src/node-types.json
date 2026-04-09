@@ -1482,13 +1482,9 @@
     "named": true,
     "fields": {},
     "children": {
-      "multiple": true,
+      "multiple": false,
       "required": false,
       "types": [
-        {
-          "type": "tag_variable",
-          "named": true
-        },
         {
           "type": "tag_variable_fragment",
           "named": true

@@ -196,22 +196,6 @@ module.exports = grammar({
       repeat($.open_tag_comment),
     )),
 
-    implicit_html_bound_attribute: $ => alias(prec.right(seq(
-      field('name', alias(':', $.attribute_name)),
-      alias($.implicit_html_attribute_bound_value, $.attribute_bound_value),
-    )), $.regular_attribute),
-
-    implicit_html_attribute_bound_value: $ => seq('=', field('value', choice(
-      $.attribute_expression_value,
-      $.attribute_brace_value,
-      $.backtick_attribute_value,
-      $.quoted_attribute_value,
-      $.attribute_bracket_value,
-      $.attribute_paren_value,
-      $.attribute_value_fragment,
-      $.unquoted_attribute_value,
-    ))),
-
     concise_terminator: _ => ';',
 
     concise_fence_block: $ => seq('---', repeat(choice(
@@ -274,26 +258,24 @@ module.exports = grammar({
         '<',
         field('name', choice($._tag_name, $.void_tag_name)),
         repeat($.shorthand_attribute),
-        optional(alias($.html_tag_variable, $.tag_variable)),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_variable),
+        optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
         optional($.tag_method),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_default_value),
         repeat($._attribute_entry),
         '/>',
       ),
       seq(
         '<',
         repeat1($.shorthand_attribute),
-        optional(alias($.html_tag_variable, $.tag_variable)),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_variable),
+        optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
         optional($.tag_method),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_default_value),
         repeat($._attribute_entry),
         '/>',
       ),
@@ -304,26 +286,24 @@ module.exports = grammar({
         '<',
         field('name', $._tag_name),
         repeat($.shorthand_attribute),
-        optional(alias($.html_tag_variable, $.tag_variable)),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_variable),
+        optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
         optional($.tag_method),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_default_value),
         repeat($._attribute_entry),
         '>',
       ),
       seq(
         '<',
         repeat1($.shorthand_attribute),
-        optional(alias($.html_tag_variable, $.tag_variable)),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_variable),
+        optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
         optional($.tag_method),
-        optional(alias($.html_tag_default_value, $.tag_default_value)),
+        optional($.tag_default_value),
         repeat($._attribute_entry),
         '>',
       ),
@@ -359,20 +339,7 @@ module.exports = grammar({
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
-    html_tag_variable: $ => alias(seq('/', optional($.html_tag_variable_fragment)), $.tag_variable),
-
     tag_default_value: $ => seq(token.immediate(choice(':=', '=')), choice(
-      $.quoted_attribute_value,
-      $.attribute_bracket_value,
-      $.attribute_paren_value,
-      $.attribute_brace_value,
-      $.backtick_attribute_value,
-      $.attribute_expression_value,
-      $.tag_default_fragment,
-      $.unquoted_attribute_value,
-    )),
-
-    html_tag_default_value: $ => seq(token.immediate('='), choice(
       $.quoted_attribute_value,
       $.attribute_bracket_value,
       $.attribute_paren_value,
@@ -399,8 +366,6 @@ module.exports = grammar({
     )), '}'),
 
     tag_variable_fragment: _ => /[^\s=|(){}>]+/,
-
-    html_tag_variable_fragment: _ => /[^\s:=|(){}>]+/,
 
     tag_default_fragment: _ => /[^\s>\/()\[\]{}"'`]+/,
 
