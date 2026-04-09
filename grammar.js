@@ -196,6 +196,11 @@ module.exports = grammar({
       repeat($.open_tag_comment),
     )),
 
+    implicit_html_bound_attribute: $ => alias(prec.right(seq(
+      field('name', alias(':', $.attribute_name)),
+      $.attribute_bound_value,
+    )), $.regular_attribute),
+
     concise_terminator: _ => ';',
 
     concise_fence_block: $ => seq('---', repeat(choice(
@@ -264,6 +269,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         '/>',
       ),
@@ -276,6 +282,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         '/>',
       ),
@@ -292,6 +299,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         '>',
       ),
@@ -304,6 +312,7 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         '>',
       ),

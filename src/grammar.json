@@ -1466,6 +1466,37 @@
         ]
       }
     },
+    "implicit_html_bound_attribute": {
+      "type": "ALIAS",
+      "content": {
+        "type": "PREC_RIGHT",
+        "value": 0,
+        "content": {
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "FIELD",
+              "name": "name",
+              "content": {
+                "type": "ALIAS",
+                "content": {
+                  "type": "STRING",
+                  "value": ":"
+                },
+                "named": true,
+                "value": "attribute_name"
+              }
+            },
+            {
+              "type": "SYMBOL",
+              "name": "attribute_bound_value"
+            }
+          ]
+        }
+      },
+      "named": true,
+      "value": "regular_attribute"
+    },
     "concise_terminator": {
       "type": "STRING",
       "value": ";"
@@ -1874,6 +1905,23 @@
               ]
             },
             {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "implicit_html_bound_attribute"
+                  },
+                  "named": true,
+                  "value": "attribute"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
@@ -1966,6 +2014,23 @@
                 {
                   "type": "SYMBOL",
                   "name": "tag_default_value"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "implicit_html_bound_attribute"
+                  },
+                  "named": true,
+                  "value": "attribute"
                 },
                 {
                   "type": "BLANK"
@@ -2085,6 +2150,23 @@
               ]
             },
             {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "implicit_html_bound_attribute"
+                  },
+                  "named": true,
+                  "value": "attribute"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
               "type": "REPEAT",
               "content": {
                 "type": "SYMBOL",
@@ -2177,6 +2259,23 @@
                 {
                   "type": "SYMBOL",
                   "name": "tag_default_value"
+                },
+                {
+                  "type": "BLANK"
+                }
+              ]
+            },
+            {
+              "type": "CHOICE",
+              "members": [
+                {
+                  "type": "ALIAS",
+                  "content": {
+                    "type": "SYMBOL",
+                    "name": "implicit_html_bound_attribute"
+                  },
+                  "named": true,
+                  "value": "attribute"
                 },
                 {
                   "type": "BLANK"
