@@ -1,5 +1,5 @@
 ================================================================================
-Double hyphen concise text forms (htmljs target)
+Double hyphen line in script concise text (htmljs target)
 ================================================================================
 
 <!DOCTYPE html>
@@ -7,22 +7,6 @@ html [lang="en"]
   body
     h1 -- Title
     script -- var a = 'marko';
-
-<!DOCTYPE html>
-html [lang="en"]
-  body
-    h1 -- Title
-    script
-      ---
-      var a = 'marko';
-      ---
-
-<!DOCTYPE html>
-html [lang="en"]
-  body
-    h1 -- Title
-    script
-      -- var a = 'marko';
 
 --------------------------------------------------------------------------------
 
@@ -41,7 +25,24 @@ html [lang="en"]
     (tag_name))
   (concise_fence_line)
   (ERROR)
-  (concise_fence_line)
+  (concise_fence_line))
+
+================================================================================
+Double hyphen block under script concise tag (htmljs target)
+================================================================================
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      ---
+      var a = 'marko';
+      ---
+
+--------------------------------------------------------------------------------
+
+(document
   (doctype)
   (concise_tag
     (tag_name)
@@ -57,7 +58,22 @@ html [lang="en"]
   (concise_fence_line)
   (ERROR)
   (concise_fence_block
-    (text))
+    (text)))
+
+================================================================================
+Double hyphen line under script concise tag (htmljs target)
+================================================================================
+
+<!DOCTYPE html>
+html [lang="en"]
+  body
+    h1 -- Title
+    script
+      -- var a = 'marko';
+
+--------------------------------------------------------------------------------
+
+(document
   (doctype)
   (concise_tag
     (tag_name)
