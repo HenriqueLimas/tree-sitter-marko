@@ -15,44 +15,71 @@ Last updated: 2026-04-08
 ## Snapshot
 
 - Total fixtures scanned: 318
-- Exact-input covered in corpus: 13
-- Exact-input missing in corpus: 305
+- Exact-input covered in corpus: 46
+- Exact-input missing in corpus: 272
 
-## Recently covered in this pass
+## Recently covered in this phase
 
-- `declaration` -> `test/corpus/xml_declaration_fixtures.txt`
-- `placeholder-no-escape` -> `test/corpus/placeholder_edge_fixtures.txt`
-- `scriptlet-terminated-by-semi-colon` -> `test/corpus/scriptlet_fixtures.txt`
-- `shorthand-div-id` -> `test/corpus/shorthand_id_class_fixtures.txt`
+- `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
+- `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
+- `argument-attr` -> `test/corpus/attribute_methods.txt`
+- `argument-tag` -> `test/corpus/argument_tag_fixtures.txt`
+- `argument-tag-multiple` -> `test/corpus/argument_tag_fixtures.txt`
 
 ## Known exact matches currently tracked
 
+- `argument-and-params` -> `test/corpus/core_syntax_regressions.txt`
+- `argument-attr` -> `test/corpus/attribute_methods.txt`
+- `argument-tag` -> `test/corpus/argument_tag_fixtures.txt`
+- `argument-tag-complex` -> `test/corpus/marko_tags.txt`
+- `argument-tag-multiple` -> `test/corpus/argument_tag_fixtures.txt`
 - `argument-tag-nested-parens` -> `test/corpus/argument_tag_fixtures.txt`
+- `attr-value-string-concat` -> `test/corpus/attribute_value_fixtures.txt`
 - `attr-with-parens-and-double-quoted-strings` -> `test/corpus/attribute_value_fixtures.txt`
+- `backtick-string` -> `test/corpus/attribute_value_fixtures.txt`
 - `cdata` -> `test/corpus/cdata_and_doctype_fixtures.txt`
+- `comment-concise-js-block` -> `test/corpus/concise_comment_fixtures.txt`
+- `comment-concise-js-line` -> `test/corpus/concise_comment_fixtures.txt`
 - `comments-within-open-tag` -> `test/corpus/open_tag_comment_fixtures.txt`
+- `declaration` -> `test/corpus/xml_declaration_fixtures.txt`
+- `double-hyphen-block` -> `test/corpus/double_hyphen_fixtures.txt`
 - `double-hyphen-line` -> `test/corpus/double_hyphen_fixtures.txt`
+- `double-hyphen-line-start` -> `test/corpus/double_hyphen_fixtures.txt`
+- `eof-attr-name` -> `test/corpus/eof_open_tag_fixtures.txt`
+- `eof-attr-value` -> `test/corpus/eof_open_tag_fixtures.txt`
+- `eof-doctype` -> `test/corpus/cdata_and_doctype_fixtures.txt`
 - `eof-tag-start` -> `test/corpus/eof_open_tag_fixtures.txt`
+- `empty-closing-tag2` -> `test/corpus/comments_and_edges.txt`
+- `html-comments` -> `test/corpus/comments_and_edges.txt`
+- `invalid-multiple-tag-params` -> `test/corpus/core_syntax_regressions.txt`
 - `open-tag-only` -> `test/corpus/void_tag_fixtures.txt`
+- `open-tag-only-with-body` -> `test/corpus/void_tag_fixtures.txt`
+- `placeholder-attr-invalid` -> `test/corpus/placeholder_edge_fixtures.txt`
 - `placeholder-empty` -> `test/corpus/placeholder_edge_fixtures.txt`
+- `placeholder-no-escape` -> `test/corpus/placeholder_edge_fixtures.txt`
 - `script-concise` -> `test/corpus/concise_script_fixtures.txt`
+- `script-empty-concise` -> `test/corpus/pending_regressions.txt`
+- `scriptlet-block-html` -> `test/corpus/scriptlet_fixtures.txt`
 - `scriptlet-line-html` -> `test/corpus/scriptlet_fixtures.txt`
+- `scriptlet-line-no-middle-html` -> `test/corpus/scriptlet_fixtures.txt`
+- `scriptlet-terminated-by-semi-colon` -> `test/corpus/scriptlet_fixtures.txt`
 - `shorthand-closing-html2` -> `test/corpus/shorthand_fixtures.txt`
+- `shorthand-div-id` -> `test/corpus/shorthand_id_class_fixtures.txt`
 - `shorthand-id-class-html` -> `test/corpus/shorthand_id_class_fixtures.txt`
+- `tag-name-expression-literal-prefix-attrs` -> `test/corpus/marko_tags.txt`
+- `text-after-tag` -> `test/corpus/core_syntax_regressions.txt`
+- `text-parse-mode-delimited-block` -> `test/corpus/concise_mode.txt`
+- `unclosed-tag-eof` -> `test/corpus/eof_open_tag_fixtures.txt`
+- `void-tag-self-closed` -> `test/corpus/void_tag_fixtures.txt`
 - `whitespace-around-equals` -> `test/corpus/core_syntax_regressions.txt`
+- `xml-declaration` -> `test/corpus/xml_declaration_fixtures.txt`
 
 ## Backlog (remaining exact-input fixtures)
 
 ```text
-argument-and-params
-argument-attr
 argument-attr-extra-whitespace
 argument-attr-multiple
-argument-tag
-argument-tag-attr
-argument-tag-complex
 argument-tag-extra-whitespace
-argument-tag-multiple
 attr-bound
 attr-comma-multiline
 attr-complex
@@ -88,9 +115,7 @@ attr-multi-line-string
 attr-name-with-html-chars
 attr-nested-literal-regex
 attr-no-value
-attr-no-value-self-closed
 attr-non-literal
-attr-object-expressions
 attr-operator-whitespace-eof
 attr-operators-newline-after
 attr-operators-newline-before
@@ -108,31 +133,24 @@ attr-unenclosed-whitespace-odd
 attr-value-missing
 attr-value-self-closed
 attr-value-single-quote-escaped
-attr-value-string-concat
 attr-value-typeof
 attr-value-typeof-comma
 attr-value-typeof-no-space-prefix
 attr-value-void
-attr-with-parens-and-single-quoted-strings
 attr-with-right-angle-bracket
 attr-with-right-angle-bracket-parens
 attr-without-delimiters
-backtick-string
 backtick-string-eof
 backtick-string-nested-with-space
 backtick-string-placeholder-newline
 bad-tag-indent
-cdata-2
-cdata-pos
 coma-after-open-tag
 comma-after-tag-variable
 comma-ends-attr-operators
 commas-relax
 commas-require-all-attrs-first
 commas-require-all-attrs-last
-comment-concise-js-block
 comment-concise-js-block-trailing
-comment-concise-js-line
 comments-within-tag-body
 complex
 complex-attr-name
@@ -144,22 +162,15 @@ concise-line-whitespace-ending
 concise-multiline-content
 css-calc
 css-grid
-declaration
 default-attr
 default-attr-comma
 default-attr-no-space
-double-hyphen-block
-double-hyphen-line-start
 dtd
 empty-closing-tag
-empty-closing-tag2
 eof-attr-argument
-eof-attr-name
-eof-attr-value
 eof-attr-value-js-comment-comment
 eof-attr-value-js-comment-comment-concise
 eof-attr-value-string
-eof-doctype
 eof-placeholder-body-escaped
 eof-placeholder-body-non-escaped
 eof-placeholder-concise
@@ -171,7 +182,6 @@ eof-style
 eof-xml-declaration
 html-block-after-tag
 html-comment-tag
-html-comments
 html-comments-ignore-placeholders
 ignoreNonstandardStringPlaceholders
 ignorePlaceholders-attr-double-escaped-dollar-placeholder
@@ -179,7 +189,6 @@ ignorePlaceholders-attr-escaped-dollar-placeholder
 ignorePlaceholders-attr-placeholder
 invalid-closing-tag
 invalid-missing-tag-var
-invalid-multiple-tag-params
 invalid-multiple-tag-type-params
 invalid-type-args-after-space
 invalid-type-params-after-args
@@ -208,16 +217,12 @@ nested-pyramid
 nested-siblings
 nested-tags
 nested-text
-open-tag-only-with-body
 open-tag-only-with-body-concise
 param-tag
 parsed-text-placeholder-in-template-literal-string
 parsed-text-style-tag
-placeholder-attr-invalid
 placeholder-attr-string-value
-placeholder-attr-string-value-mixed-quotes
 placeholder-attr-string-value-parens
-placeholder-attr-within-placeholder
 placeholder-attr-within-string-complex
 placeholder-attr-within-string-simple
 placeholder-attr-wrapped
@@ -226,7 +231,6 @@ placeholder-body-multi-line-js-comment
 placeholder-body-single-line-js-comment
 placeholder-body-text
 placeholder-escape
-placeholder-no-escape
 placeholder-tag-name-concise
 placeholder-tag-name-html
 placeholder-unnamed-attr
@@ -244,7 +248,6 @@ root-el
 root-els
 script
 script-concise-invalid-nested-tag
-script-empty-concise
 script-escaped-placeholder
 script-self-closed
 script-single-line-comment
@@ -252,7 +255,6 @@ script-tag-entities
 script-with-strings
 scriptlet-block
 scriptlet-block-division
-scriptlet-block-html
 scriptlet-block-invalid-comment
 scriptlet-block-multiline-comment
 scriptlet-block-nested
@@ -267,12 +269,10 @@ scriptlet-line-continue
 scriptlet-line-continue-chain
 scriptlet-line-multiline-comments
 scriptlet-line-no-middle
-scriptlet-line-no-middle-html
 scriptlet-line-regex-open-bracket
 scriptlet-line-regex-open-curly
 scriptlet-line-template-literal
 scriptlet-line-trailing-line-comment
-scriptlet-terminated-by-semi-colon
 self-closed-tag
 self-closed-tag-attrs
 self-closing-open-tag-only
@@ -282,8 +282,6 @@ shorthand-class-dynamic-literal-prefix
 shorthand-class-dynamic-literal-suffix
 shorthand-class-self-closed
 shorthand-closing-html
-shorthand-closing-html3
-shorthand-div-id
 shorthand-div-id-class
 shorthand-div-id-class-multiple
 shorthand-id
@@ -305,7 +303,6 @@ stray-forward-slash-within-open-tag
 stray-special-chars
 strip-bom
 tag-name-expression-literal-prefix
-tag-name-expression-literal-prefix-attrs
 tag-name-expression-literal-prefix-suffix
 tag-name-expression-literal-suffix
 tag-name-expression-shorthand-id
@@ -319,9 +316,7 @@ tag-var-type-with-parens
 tag-var-with-params
 tag-with-type-arguments
 text-after-semicolon
-text-after-tag
 text-parse-mode-concise
-text-parse-mode-delimited-block
 text-parse-mode-html
 textarea
 ts-function-type
@@ -337,16 +332,13 @@ ts-tag-var-type-generic
 ts-type-statement
 ts-unary-exression
 unary-as-member-expression
-unclosed-tag-eof
 var
 var-new-Date
-void-tag-self-closed
 whitespace-empty-lines
 whitespace-empty-lines-indent
 whitespace-newline
 whitespace-newline-indent
 whitespace-only-reset-indent
 whitespace-preservation
-xml-declaration
 xml-declaration-ill-formed
 ```

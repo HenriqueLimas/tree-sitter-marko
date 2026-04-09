@@ -22,6 +22,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "concise_comment"
+        },
+        {
+          "type": "SYMBOL",
           "name": "concise_tag"
         },
         {
@@ -1068,6 +1072,22 @@
           "value": "[^\\n]+"
         }
       ]
+    },
+    "concise_comment": {
+      "type": "TOKEN",
+      "content": {
+        "type": "CHOICE",
+        "members": [
+          {
+            "type": "PATTERN",
+            "value": "\\/\\/[^\\n]*"
+          },
+          {
+            "type": "PATTERN",
+            "value": "\\/\\*[\\s\\S]*?\\*\\/"
+          }
+        ]
+      }
     },
     "function_tag_statement": {
       "type": "PREC",

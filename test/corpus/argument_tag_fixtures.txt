@@ -45,3 +45,54 @@ Flow tag arguments with quoted parens
           (tag_arguments_fragment)))
       (end_tag
         (flow_tag_name)))))
+
+================================================================================
+Argument tags with self-closing variants
+================================================================================
+
+<for(x in y)></for>
+<ab('c')/>
+<a('b')/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (tag_arguments
+          (tag_arguments_fragment)))
+      (end_tag
+        (flow_tag_name))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_arguments
+        (quoted_attribute_value))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_arguments
+        (quoted_attribute_value)))))
+
+================================================================================
+Argument tag multiple groups with early error
+================================================================================
+
+<for(var i = 0; i < 10; i++) (nonsense!)></for>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (flow_tag_name)
+        (ERROR
+          (tag_arguments
+            (tag_arguments_fragment)))
+        (tag_arguments
+          (tag_arguments_fragment)))
+      (end_tag
+        (flow_tag_name)))))

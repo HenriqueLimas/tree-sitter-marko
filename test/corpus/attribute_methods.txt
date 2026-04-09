@@ -44,3 +44,24 @@ Complex attribute args and methods
             (attribute_method_nested_block
               (attribute_method_fragment))
             (attribute_method_fragment)))))))
+
+================================================================================
+Argument attribute with expression
+================================================================================
+
+<div if(x > y)></div>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_arguments
+              (attribute_arguments_fragment)))))
+      (end_tag
+        (tag_name)))))

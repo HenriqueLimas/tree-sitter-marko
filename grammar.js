@@ -9,6 +9,7 @@ module.exports = grammar({
     _document_node: $ => choice(
       $.top_level_statement,
       $.function_tag_statement,
+      $.concise_comment,
       $.concise_tag,
       $.concise_fence_block,
       $.concise_fence_line,
@@ -145,6 +146,11 @@ module.exports = grammar({
     concise_fence_text: _ => token(prec(-2, /[^\-$\n][^$\n]*/)),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
+
+    concise_comment: _ => token(choice(
+      /\/\/[^\n]*/,
+      /\/\*[\s\S]*?\*\//,
+    )),
 
     function_tag_statement: $ => prec(2, seq(
       '<',

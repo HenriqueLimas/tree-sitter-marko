@@ -534,6 +534,10 @@
           "named": true
         },
         {
+          "type": "concise_comment",
+          "named": true
+        },
+        {
           "type": "concise_fence_block",
           "named": true
         },
@@ -1688,6 +1692,10 @@
   {
     "type": "col",
     "named": false
+  },
+  {
+    "type": "concise_comment",
+    "named": true
   },
   {
     "type": "concise_terminator",

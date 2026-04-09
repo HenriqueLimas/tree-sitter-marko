@@ -1,0 +1,34 @@
+================================================================================
+Concise line comment before fence text
+================================================================================
+
+div
+  // This is a single line comment
+  -- This is the body of the div tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_comment)
+  (concise_fence_line))
+
+================================================================================
+Concise block comment before fence text
+================================================================================
+
+p
+  /*
+  This is a
+  multiline comment
+  */
+  -- This is the body of the p tag
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name))
+  (concise_comment)
+  (concise_fence_line))
