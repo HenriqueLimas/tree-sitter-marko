@@ -1,0 +1,23 @@
+================================================================================
+Script concise fenced body and line continuation
+================================================================================
+
+script
+    ---
+    This is text
+    within the </script> block
+    ---
+    -- This should be okay too
+div
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (builtin_tag_name))
+  (concise_fence_block
+    (text)
+    (text))
+  (concise_fence_line)
+  (concise_tag
+    (tag_name)))

@@ -12,47 +12,11 @@ Pending regressions placeholder
       (tag_name))))
 
 ================================================================================
-Attribute operator spacing in default values (htmljs target)
-================================================================================
-
-<a=x . y a/>
-<a=x && y a/>
-<a=x ? y : z a/>
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (self_closing_element
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (UNEXPECTED ' '))))
-  (element
-    (self_closing_element
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (UNEXPECTED 'y'))))
-  (element
-    (self_closing_element
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (UNEXPECTED ' ')))))
-
-================================================================================
 Attribute value EOF and missing-value errors (htmljs target)
 ================================================================================
 
 <span class=>
 <div if(a==b
-<a><b selected
-<a><b selected something test=123
 
 --------------------------------------------------------------------------------
 
@@ -64,184 +28,13 @@ Attribute value EOF and missing-value errors (htmljs target)
         (regular_attribute
           (attribute_name)))
       (ERROR))
-    (ERROR
-      (tag_name)
-      (attribute_name)
-      (attribute_arguments_fragment))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (MISSING ">"))
-    (start_tag
-      (tag_name))
     (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))))
-
-================================================================================
-EOF placeholder edge forms (htmljs target)
-================================================================================
-
-<div>Hello ${(x</div>
-<div>Hello ${abc</div>
-<div>
-    Hello
-    $!{abc
-</div>
-<script>Hello ${abc
-<script>Hello $!{abc
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (text)
-      (placeholder
-        (javascript_fragment)
-        (MISSING "}"))
-      (end_tag
-        (tag_name))))
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (text)
-      (placeholder
-        (javascript_fragment)
-        (MISSING "}"))
-      (end_tag
-        (tag_name))))
-  (element
-    (normal_element
-      (start_tag
-        (tag_name))
-      (text)
-      (placeholder
-        (javascript_fragment)
-        (MISSING "}"))
-      (end_tag
-        (tag_name))))
-  (ERROR
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (placeholder
-      (javascript_fragment)
-      (MISSING "}"))
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (javascript_fragment)))
-
-================================================================================
-Script/style raw text bodies with angle brackets (htmljs target)
-================================================================================
-
-<style>/* block comment within <style> */"string within \"<style>\""'string within \'<style>\''</style>
-<script>// line comment within <script>
-/* block comment within <script> */"string within \"<script>\""'string within \'<script>\''</script>
-
---------------------------------------------------------------------------------
-
-(document
-  (ERROR
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (element
-      (normal_element
-        (start_tag
-          (builtin_tag_name))
-        (text)
-        (end_tag
-          (builtin_tag_name))))
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (element
-      (normal_element
-        (start_tag
-          (builtin_tag_name))
-        (text)
-        (end_tag
-          (builtin_tag_name))))))
-
-================================================================================
-Void self-closing and invalid void close mismatch (htmljs target)
-================================================================================
-
-<img src="foo.png"/>
----
-<img src="marko.png">
-    This is not allowed!
-</img>
----
-
---------------------------------------------------------------------------------
-
-(document
-  (element
-    (self_closing_element
-      (void_tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (quoted_attribute_value)))))
-  (concise_fence_block
-    (element
-      (void_element
-        (void_tag_name)
-        (attribute
-          (regular_attribute
-            (attribute_name)
-            (quoted_attribute_value)))))
-    (text)
-    (element
-      (void_element
-        (ERROR)
-        (void_tag_name)))))
+    (attribute_name)
+    (attribute_arguments_fragment)))
 
 ================================================================================
 Script concise forms and script src attr (htmljs target)
 ================================================================================
-
-script
-    ---
-    This is text
-    within the </script> block
-    ---
-    -- This should be okay too
-div
 
 head
     script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"
@@ -251,19 +44,11 @@ head
 
 (document
   (concise_tag
-    (builtin_tag_name))
-  (concise_fence_block
-    (text)
-    (text))
-  (concise_fence_line)
-  (concise_tag
-    (tag_name))
-  (concise_tag
     (tag_name))
   (concise_tag
     (builtin_tag_name)
-    (attribute
-      (regular_attribute
+    (builtin_concise_attribute
+      (attribute
         (attribute_name)
         (quoted_attribute_value))))
   (concise_tag

@@ -16,3 +16,16 @@ Shorthand id and class in html-style close tags
       (end_tag
         (shorthand_attribute)
         (shorthand_attribute)))))
+
+================================================================================
+Concise shorthand div id
+================================================================================
+
+div#foo
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)))

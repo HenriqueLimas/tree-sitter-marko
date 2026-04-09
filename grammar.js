@@ -70,21 +70,63 @@ module.exports = grammar({
 
     script_block_content: _ => /[^}]*/,
 
-    concise_tag: $ => seq(
-      field('name', $._concise_tag_name),
-      repeat($.shorthand_attribute),
-      optional($.tag_variable),
-      optional($.tag_default_value),
-      optional($.tag_parameters),
-      optional($.tag_arguments),
-      optional($.tag_method),
-      optional($.tag_default_value),
-      optional($.concise_attribute_group),
-      repeat($.attribute),
-      optional($.concise_terminator),
+    concise_tag: $ => choice(
+      prec.right(2, seq(
+        field('name', $.builtin_tag_name),
+        repeat($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.concise_attribute_group),
+        repeat($.builtin_concise_attribute),
+        optional($.concise_terminator),
+      )),
+      prec.right(1, seq(
+        field('name', $._concise_tag_name),
+        repeat($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        optional($.concise_attribute_group),
+        repeat(alias($.concise_attribute, $.attribute)),
+        optional($.concise_terminator),
+      )),
     ),
 
     concise_attribute_group: $ => seq('[', repeat($.attribute), ']'),
+
+    concise_attribute: $ => choice(
+      $.spread_attribute,
+      $.regular_attribute_no_comments,
+    ),
+
+    builtin_concise_attribute: $ => choice(
+      $.attribute,
+      alias($.builtin_tag_name_attribute, $.attribute),
+    ),
+
+    builtin_tag_name_attribute: $ => prec.right(seq(
+      repeat($.open_tag_comment),
+      field('name', alias($.tag_name, $.attribute_name)),
+      optional($.attribute_bound_value),
+      optional($.attribute_arguments),
+      optional($.attribute_method),
+      optional(seq('=', field('value', choice(
+        $.attribute_expression_value,
+        $.attribute_brace_value,
+        $.backtick_attribute_value,
+        $.quoted_attribute_value,
+        $.attribute_bracket_value,
+        $.attribute_paren_value,
+        $.attribute_value_fragment,
+        $.unquoted_attribute_value,
+      )))),
+      repeat($.open_tag_comment),
+    )),
 
     concise_terminator: _ => ';',
 
@@ -93,8 +135,14 @@ module.exports = grammar({
       $.placeholder,
       $.scriptlet_block,
       $.scriptlet,
+      alias($.concise_fence_text_with_angle, $.text),
+      alias($.concise_fence_text, $.text),
       $.text,
     )), '---'),
+
+    concise_fence_text_with_angle: _ => token(prec(1, /[^<\-$\n][^$\n]*<[^\n]*/)),
+
+    concise_fence_text: _ => token(prec(-2, /[^\-$\n][^$\n]*/)),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
 
@@ -218,7 +266,7 @@ module.exports = grammar({
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
-    tag_default_value: $ => seq(choice(':=', '='), choice(
+    tag_default_value: $ => seq(token.immediate(choice(':=', '=')), choice(
       $.quoted_attribute_value,
       $.attribute_bracket_value,
       $.attribute_paren_value,
@@ -292,6 +340,23 @@ module.exports = grammar({
       )))),
       repeat($.open_tag_comment),
     )),
+
+    regular_attribute_no_comments: $ => alias(prec.right(seq(
+      field('name', choice($.special_attribute_name, $.attribute_name)),
+      optional($.attribute_bound_value),
+      optional($.attribute_arguments),
+      optional($.attribute_method),
+      optional(seq('=', field('value', choice(
+        $.attribute_expression_value,
+        $.attribute_brace_value,
+        $.backtick_attribute_value,
+        $.quoted_attribute_value,
+        $.attribute_bracket_value,
+        $.attribute_paren_value,
+        $.attribute_value_fragment,
+        $.unquoted_attribute_value,
+      )))),
+    )), $.regular_attribute),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 

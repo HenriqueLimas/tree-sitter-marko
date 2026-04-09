@@ -38,3 +38,38 @@ Open html void tags without explicit closing slash
       (text)
       (end_tag
         (tag_name)))))
+
+================================================================================
+Void self-closing and invalid void close mismatch (htmljs target)
+================================================================================
+
+<img src="foo.png"/>
+---
+<img src="marko.png">
+    This is not allowed!
+</img>
+---
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (void_tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (quoted_attribute_value)))))
+  (concise_fence_block
+    (element
+      (void_element
+        (void_tag_name)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value)))))
+    (text)
+    (element
+      (void_element
+        (ERROR)
+        (void_tag_name)))))

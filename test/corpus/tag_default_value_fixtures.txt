@@ -1,0 +1,33 @@
+================================================================================
+Attribute operator spacing in default values (htmljs target)
+================================================================================
+
+<a=x . y a/>
+<a=x && y a/>
+<a=x ? y : z a/>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (ERROR
+        (UNEXPECTED ' '))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (ERROR
+        (attribute_expression_operator)
+        (UNEXPECTED 'y'))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (ERROR
+        (UNEXPECTED ' ')))))

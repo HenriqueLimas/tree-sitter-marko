@@ -165,3 +165,27 @@ Quoted attribute containing placeholder expression with mixed quotes
       (text)
       (end_tag
         (tag_name)))))
+
+================================================================================
+EOF after multiple attributes and unquoted value (htmljs target)
+================================================================================
+
+<a><b selected something test=123
+
+--------------------------------------------------------------------------------
+
+(document
+  (ERROR
+    (start_tag
+      (tag_name))
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))))
