@@ -71,12 +71,5 @@ p
   (concise_tag
     (tag_name))
   (concise_comment)
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
-  (concise_tag
-    (tag_name))
+  (ERROR)
   (concise_fence_line))
