@@ -214,10 +214,14 @@ module.exports = grammar({
       repeat($.open_tag_comment),
     )),
 
-    implicit_html_bound_attribute: $ => alias(prec.right(seq(
-      field('name', alias(':', $.attribute_name)),
+    // Matches ':=value' when it appears as a no-name bound attribute
+    // (e.g. <a:=foo>, <a:= foo>, <a/bar:=foo>).  The htmljs-parser emits an
+    // attrName="" with attrValue:bound for these.  Used via
+    // alias($.implicit_html_bound_attribute, $.regular_attribute) in attribute
+    // so the tree looks like (attribute (regular_attribute (attribute_bound_value ...))).
+    implicit_html_bound_attribute: $ => prec.right(seq(
       $.attribute_bound_value,
-    )), $.regular_attribute),
+    )),
 
     concise_terminator: _ => ';',
 
@@ -247,11 +251,11 @@ module.exports = grammar({
       field('name', $.function_tag_name),
       repeat($.shorthand_attribute),
       optional($.tag_variable),
-      optional($.tag_default_value),
+      optional(alias($.function_tag_default_value, $.tag_default_value)),
       optional($.tag_parameters),
       optional($.tag_arguments),
       optional($.tag_method),
-      optional($.tag_default_value),
+      optional(alias($.function_tag_default_value, $.tag_default_value)),
       repeat($.attribute),
       '>',
     ),
@@ -287,7 +291,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         '/>',
@@ -301,7 +304,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         '/>',
@@ -319,7 +321,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         '>',
@@ -333,7 +334,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         '>',
@@ -356,7 +356,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         $._gt_after_implicit,
@@ -370,7 +369,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         $._gt_after_implicit,
@@ -391,7 +389,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         $._implicit_close,
@@ -405,7 +402,6 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
         optional($.tag_variable),
         $._implicit_close,
@@ -441,11 +437,26 @@ module.exports = grammar({
 
     dynamic_tag_name: $ => seq('${', optional($.javascript_fragment), '}'),
 
-    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_:@-]*/,
+    tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_@-]*/,
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
 
-    tag_default_value: $ => seq(token.immediate(choice(':=', '=')), choice(
+    tag_default_value: $ => seq(token.immediate('='), choice(
+      $.quoted_attribute_value,
+      $.attribute_bracket_value,
+      $.attribute_paren_value,
+      $.attribute_brace_value,
+      $.backtick_attribute_value,
+      $.attribute_expression_value,
+      $.tag_default_fragment,
+      $.unquoted_attribute_value,
+    )),
+
+    // Like tag_default_value but also accepts ':=' for function-tag bindings
+    // (e.g. <let/open:=input.open>). Regular start_tag / self_closing_element
+    // use the '='-only tag_default_value so that ':=' is handled by
+    // implicit_html_bound_attribute instead.
+    function_tag_default_value: $ => seq(token.immediate(choice(':=', '=')), choice(
       $.quoted_attribute_value,
       $.attribute_bracket_value,
       $.attribute_paren_value,
@@ -488,7 +499,13 @@ module.exports = grammar({
 
     tag_method_block_fragment: _ => /[^"'$}]+/,
 
-    attribute: $ => choice($.spread_attribute, $.regular_attribute),
+    attribute: $ => choice(
+      $.spread_attribute,
+      $.regular_attribute,
+      // ':=value' with no attribute name (empty-name bound attribute).
+      // Produces (attribute (regular_attribute (attribute_bound_value ...))).
+      alias($.implicit_html_bound_attribute, $.regular_attribute),
+    ),
 
     _attribute_entry: $ => choice($.attribute, ','),
 

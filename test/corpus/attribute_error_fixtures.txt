@@ -63,7 +63,6 @@ Bound and tag-default ambiguity edge cases (htmljs target)
         (tag_name)
         (attribute
           (regular_attribute
-            (attribute_name)
             (attribute_bound_value
               (attribute_value_fragment)))))
       (text)
@@ -75,21 +74,6 @@ Bound and tag-default ambiguity edge cases (htmljs target)
         (tag_name)
         (attribute
           (regular_attribute
-            (attribute_name)
-            (attribute_bound_value
-              (attribute_value_fragment)))))
-      (text)
-      (end_tag
-        (tag_name))))
-  (element
-    (normal_element
-      (start_tag
-        (tag_name)
-        (tag_variable
-          (tag_variable_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)
             (attribute_bound_value
               (attribute_value_fragment)))))
       (text)
@@ -101,9 +85,19 @@ Bound and tag-default ambiguity edge cases (htmljs target)
         (tag_name)
         (tag_variable
           (tag_variable_fragment))
+        (tag_default_value
+          (tag_default_fragment)))
+      (text)
+      (end_tag
+        (tag_name))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (tag_variable
+          (tag_variable_fragment))
         (attribute
           (regular_attribute
-            (attribute_name)
             (attribute_bound_value
               (attribute_value_fragment)))))
       (text)
