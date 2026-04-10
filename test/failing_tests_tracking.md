@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 105 failing / 240 passing / 345 total
+**Status as of 2026-04-09:** 103 failing / 242 passing / 345 total
 
 ---
 
@@ -125,7 +125,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 
 | # | Test | Status |
 |---|------|--------|
-| 19 | `Fixture attr-simple-expression (htmljs target)` | FAIL |
+| 19 | `Fixture attr-simple-expression (htmljs target)` | PASS |
 | 20 | `Fixture attr-complex (htmljs target)` | FAIL |
 | 21 | `Fixture attr-complex-functions (htmljs target)` | FAIL |
 | 22 | `Fixture attr-complex-instanceof (htmljs target)` | FAIL |
@@ -152,7 +152,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 38 | `Fixture attr-unenclosed-whitespace (htmljs target)` | FAIL |
 | 39 | `Fixture attr-unenclosed-whitespace-minus (htmljs target)` | FAIL |
 | 40 | `Fixture attr-unenclosed-whitespace-multiple-attrs (htmljs target)` | FAIL |
-| 41 | `Fixture attr-unenclosed-whitespace-odd (htmljs target)` | FAIL |
+| 41 | `Fixture attr-unenclosed-whitespace-odd (htmljs target)` | PASS |
 | 42 | `Fixture attr-without-delimiters (htmljs target)` | FAIL |
 
 ### Group 4 — Attribute regex / regex character classes
@@ -230,7 +230,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 76 | `Multiple grouped concise attributes split by tag default` | FAIL |
 | 77 | `Bound and tag-default ambiguity edge cases (htmljs target)` | FAIL |
 | 78 | `Comma-separated multiline concise attributes (htmljs target)` | FAIL |
-| 79 | `Fixture comma-after-tag-variable (htmljs target)` | FAIL |
+| 79 | `Fixture comma-after-tag-variable (htmljs target)` | PASS |
 
 ### Group 12 — Placeholder edge cases
 
@@ -353,3 +353,4 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 1 (function_tag_statement GLR fix: allows self_closing_element to win when /> present) | 9603618 |
 | 2026-04-09 | 1 (concise_fence_text: allow $<char> in text so 'hello $ var' is one text, not text+scriptlet) | e7b1cc2 |
 | 2026-04-09 | 3 (BOM fix: add U+FEFF as grammar extra — fixes strip-bom, css-calc, css-grid) | 8f6f364 |
+| 2026-04-09 | 2 (tag_variable after attribute list — fixes attr-simple-expression, comma-after-tag-variable, attr-unenclosed-whitespace-odd) | da187dd |
