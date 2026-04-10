@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 103 failing / 242 passing / 345 total
+**Status as of 2026-04-09:** 100 failing / 245 passing / 345 total
 
 ---
 
@@ -194,7 +194,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 
 | # | Test | Status |
 |---|------|--------|
-| 58 | `Fixture shorthand-mixed (htmljs target)` | FAIL |
+| 58 | `Fixture shorthand-mixed (htmljs target)` | PASS |
 | 59 | `Fixture shorthand-id-dup (htmljs target)` | FAIL |
 
 ### Group 9 — Mixed (html+concise) mode errors
@@ -354,3 +354,5 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 1 (concise_fence_text: allow $<char> in text so 'hello $ var' is one text, not text+scriptlet) | e7b1cc2 |
 | 2026-04-09 | 3 (BOM fix: add U+FEFF as grammar extra — fixes strip-bom, css-calc, css-grid) | 8f6f364 |
 | 2026-04-09 | 2 (tag_variable after attribute list — fixes attr-simple-expression, comma-after-tag-variable, attr-unenclosed-whitespace-odd) | da187dd |
+| 2026-04-09 | 1 (fragment+quoted pair as attribute value — fixes attr-without-delimiters) | eeda574 |
+| 2026-04-09 | 1 (end_tag: allow tag_name + shorthands — fixes shorthand-mixed) | b4b5d0c |
