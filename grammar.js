@@ -274,6 +274,7 @@ module.exports = grammar({
         optional($.tag_default_value),
         optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
+        optional($.tag_variable),
         '/>',
       ),
       seq(
@@ -287,6 +288,7 @@ module.exports = grammar({
         optional($.tag_default_value),
         optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
+        optional($.tag_variable),
         '/>',
       ),
     ),
@@ -304,6 +306,7 @@ module.exports = grammar({
         optional($.tag_default_value),
         optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
+        optional($.tag_variable),
         '>',
       ),
       seq(
@@ -317,6 +320,7 @@ module.exports = grammar({
         optional($.tag_default_value),
         optional(alias($.implicit_html_bound_attribute, $.attribute)),
         repeat($._attribute_entry),
+        optional($.tag_variable),
         '>',
       ),
     ),
