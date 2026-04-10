@@ -325,7 +325,10 @@ module.exports = grammar({
       ),
     ),
 
-    end_tag: $ => seq('</', optional(field('name', choice($._tag_name, repeat1($.shorthand_attribute)))), '>'),
+    end_tag: $ => seq('</', optional(field('name', choice(
+      seq($._tag_name, repeat($.shorthand_attribute)),
+      repeat1($.shorthand_attribute),
+    ))), '>'),
 
     _tag_name: $ => choice(
       $.builtin_tag_name,
