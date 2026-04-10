@@ -426,6 +426,7 @@ module.exports = grammar({
         $.quoted_attribute_value,
         $.attribute_bracket_value,
         $.attribute_paren_value,
+        seq($.attribute_value_fragment, $.quoted_attribute_value),
         $.attribute_value_fragment,
         $.unquoted_attribute_value,
       )))),

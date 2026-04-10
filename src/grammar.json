@@ -3038,6 +3038,19 @@
                           "name": "attribute_paren_value"
                         },
                         {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "attribute_value_fragment"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "quoted_attribute_value"
+                            }
+                          ]
+                        },
+                        {
                           "type": "SYMBOL",
                           "name": "attribute_value_fragment"
                         },
