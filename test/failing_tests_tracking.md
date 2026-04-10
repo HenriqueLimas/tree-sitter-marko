@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 96 failing / 249 passing / 345 total (session end)
+**Status as of 2026-04-09:** 96 failing / 249 passing / 345 total (session end, 4 tests fixed this session)
 
 ---
 
@@ -358,3 +358,4 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 1 (end_tag: allow tag_name + shorthands — fixes shorthand-mixed) | b4b5d0c |
 | 2026-04-09 | 1 (regular_attribute: add seq(attr_value_fragment, attr_paren_value) — fixes attr-complex) | 88bc7ea |
 | 2026-04-09 | 3 (external scanner + open_element/start_tag_doc — fixes ts-generic-simple, ts-generic-complex, ts-nested-generics) | 3d6073c |
+|            | NOTE: ts-generic-function-type needs space-skipping `_implicit_close_ws` + `open_element_with_attr` (repeat1 or _mark_attr_start), but careful — MISSING token recovery can satisfy repeat1 causing regressions; needs further investigation |  |
