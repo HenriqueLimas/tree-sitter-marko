@@ -603,6 +603,10 @@
           "named": true
         },
         {
+          "type": "start_tag",
+          "named": true
+        },
+        {
           "type": "style_block_css",
           "named": true
         },

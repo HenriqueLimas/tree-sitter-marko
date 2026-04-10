@@ -3,6 +3,14 @@ module.exports = grammar({
 
   extras: $ => [/\s/, /\uFEFF/],
 
+  // External scanner (src/scanner.c) provides two zero/one-character tokens:
+  //   _implicit_close:    zero-width, emitted before '<' — ends open_element
+  //   _gt_after_implicit: consumes '>' but ONLY after _implicit_close fired.
+  //                       Used by start_tag_doc so that normal_element's
+  //                       start_tag (which uses the plain '>') cannot match
+  //                       the same position, preventing spurious MISSING nodes.
+  externals: $ => [$._implicit_close, $._gt_after_implicit],
+
   conflicts: $ => [
     [$.function_tag_statement, $.self_closing_element],
     [$.function_tag_statement, $._tag_name],
@@ -20,6 +28,13 @@ module.exports = grammar({
       $.concise_fence_block,
       $.concise_fence_line,
       $._node,
+      // After an open_element, subsequent '<tag>' patterns use start_tag_doc
+      // (which requires _gt_after_implicit instead of '>').  This prevents
+      // normal_element from competing (it uses the plain '>') and avoids
+      // spurious MISSING end_tag / ERROR wrappers.
+      prec(-1, alias($.start_tag_doc, $.start_tag)),
+      // open_element: a start_tag that closes implicitly before '<'.
+      prec(-2, alias($.open_element, $.start_tag)),
     ),
 
     _node: $ => choice(
@@ -324,6 +339,78 @@ module.exports = grammar({
         '>',
       ),
     ),
+
+    // start_tag_doc: like start_tag but uses _gt_after_implicit (external)
+    // instead of '>'.  That token is only produced by the scanner when a
+    // preceding _implicit_close was emitted, so this rule can ONLY match
+    // after an open_element.  normal_element's start_tag uses the plain '>'
+    // and therefore cannot compete here — it fails cleanly, avoiding ERROR.
+    start_tag_doc: $ => choice(
+      seq(
+        '<',
+        field('name', $._tag_name),
+        repeat($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
+        repeat($._attribute_entry),
+        optional($.tag_variable),
+        $._gt_after_implicit,
+      ),
+      seq(
+        '<',
+        repeat1($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
+        repeat($._attribute_entry),
+        optional($.tag_variable),
+        $._gt_after_implicit,
+      ),
+    ),
+
+    // open_element: like start_tag but closes with _implicit_close (zero-width
+    // token produced before '<') instead of '>'.
+    // prec.right(2) ensures attributes are shifted greedily before reducing.
+    open_element: $ => prec.right(2, choice(
+      seq(
+        '<',
+        field('name', $._tag_name),
+        repeat($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
+        repeat($._attribute_entry),
+        optional($.tag_variable),
+        $._implicit_close,
+      ),
+      seq(
+        '<',
+        repeat1($.shorthand_attribute),
+        optional($.tag_variable),
+        optional($.tag_default_value),
+        optional($.tag_parameters),
+        optional($.tag_arguments),
+        optional($.tag_method),
+        optional($.tag_default_value),
+        optional(alias($.implicit_html_bound_attribute, $.attribute)),
+        repeat($._attribute_entry),
+        optional($.tag_variable),
+        $._implicit_close,
+      ),
+    )),
 
     end_tag: $ => seq('</', optional(field('name', choice(
       seq($._tag_name, repeat($.shorthand_attribute)),
