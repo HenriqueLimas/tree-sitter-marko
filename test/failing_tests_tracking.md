@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 100 failing / 245 passing / 345 total (session end)
+**Status as of 2026-04-09:** 99 failing / 246 passing / 345 total (session end)
 
 ---
 
@@ -126,7 +126,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | # | Test | Status |
 |---|------|--------|
 | 19 | `Fixture attr-simple-expression (htmljs target)` | PASS |
-| 20 | `Fixture attr-complex (htmljs target)` | FAIL |
+| 20 | `Fixture attr-complex (htmljs target)` | PASS |
 | 21 | `Fixture attr-complex-functions (htmljs target)` | FAIL |
 | 22 | `Fixture attr-complex-instanceof (htmljs target)` | FAIL |
 | 23 | `Fixture attr-complex-unary (htmljs target)` | FAIL |
@@ -356,3 +356,4 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 2 (tag_variable after attribute list — fixes attr-simple-expression, comma-after-tag-variable, attr-unenclosed-whitespace-odd) | da187dd |
 | 2026-04-09 | 1 (fragment+quoted pair as attribute value — fixes attr-without-delimiters) | eeda574 |
 | 2026-04-09 | 1 (end_tag: allow tag_name + shorthands — fixes shorthand-mixed) | b4b5d0c |
+| 2026-04-09 | 1 (regular_attribute: add seq(attr_value_fragment, attr_paren_value) — fixes attr-complex) | 88bc7ea |
