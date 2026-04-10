@@ -153,7 +153,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 39 | `Fixture attr-unenclosed-whitespace-minus (htmljs target)` | FAIL |
 | 40 | `Fixture attr-unenclosed-whitespace-multiple-attrs (htmljs target)` | FAIL |
 | 41 | `Fixture attr-unenclosed-whitespace-odd (htmljs target)` | PASS |
-| 42 | `Fixture attr-without-delimiters (htmljs target)` | FAIL |
+| 42 | `Fixture attr-without-delimiters (htmljs target)` | PASS |
 
 ### Group 4 — Attribute regex / regex character classes
 
