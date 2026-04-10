@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 99 failing / 246 passing / 345 total (session end)
+**Status as of 2026-04-09:** 96 failing / 249 passing / 345 total (session end)
 
 ---
 
@@ -100,12 +100,12 @@ These all fail because `<` inside a type argument position is interpreted as ano
 
 | # | Test | Status |
 |---|------|--------|
-| 1 | `Fixture ts-generic-simple (htmljs target)` | FAIL |
-| 2 | `Fixture ts-generic-complex (htmljs target)` | FAIL |
+| 1 | `Fixture ts-generic-simple (htmljs target)` | PASS |
+| 2 | `Fixture ts-generic-complex (htmljs target)` | PASS |
 | 3 | `Fixture ts-generic-function-type (htmljs target)` | FAIL |
 | 4 | `Fixture ts-function-type (htmljs target)` | FAIL |
 | 5 | `Fixture ts-intersection-type (htmljs target)` | FAIL |
-| 6 | `Fixture ts-nested-generics (htmljs target)` | FAIL |
+| 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
 | 7 | `Fixture ts-type-statement (htmljs target)` | FAIL |
 | 8 | `Fixture ts-unary-exression (htmljs target)` | FAIL |
 | 9 | `Fixture tag-with-type-arguments (htmljs target)` | FAIL |
@@ -357,3 +357,4 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 1 (fragment+quoted pair as attribute value — fixes attr-without-delimiters) | eeda574 |
 | 2026-04-09 | 1 (end_tag: allow tag_name + shorthands — fixes shorthand-mixed) | b4b5d0c |
 | 2026-04-09 | 1 (regular_attribute: add seq(attr_value_fragment, attr_paren_value) — fixes attr-complex) | 88bc7ea |
+| 2026-04-09 | 3 (external scanner + open_element/start_tag_doc — fixes ts-generic-simple, ts-generic-complex, ts-nested-generics) | 3d6073c |
