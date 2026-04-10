@@ -74,18 +74,50 @@ bool tree_sitter_marko_external_scanner_scan(
     }
   }
 
-  /* IMPLICIT_CLOSE: zero-width, emitted ONLY when '<' is the VERY NEXT
-   * character (no whitespace skipping).  This ensures we fire only when
-   * another HTML tag begins immediately (e.g. Array<T>), not when there is
-   * a space before '<' (e.g. `<foo <A>` is invalid and must stay ERROR).
-   * We intentionally do NOT check for EOF here — a tag at EOF should error
-   * out via normal recovery, not produce a silent implicit close. */
+  /* IMPLICIT_CLOSE: zero-width token that ends an open_element.
+   *
+   * Case 1 — Next char is '<' (no whitespace skip):
+   *   Fires for constructs like Array<T> where the type-arg '<' immediately
+   *   follows the attribute text.  Whitespace before '<' is intentionally NOT
+   *   skipped so that `<foo <A>` (a space before '<') stays an ERROR.
+   *   Sets after_implicit=true so the following start_tag_doc can use
+   *   GT_AFTER_IMPLICIT instead of the plain '>'.
+   *
+   * Case 2 — Next non-whitespace chars are '=>' (TS function return type):
+   *   Fires for constructs like `as (x: T) => ReturnType` where the `=>`
+   *   signals a TypeScript arrow-function type.  The zero-width token lands
+   *   BEFORE any leading whitespace, so `=> ReturnType />` is left as
+   *   document-level text rather than producing an ERROR.
+   *   Sets after_implicit=false (no GT_AFTER_IMPLICIT needed here — the
+   *   content after this point is plain text, not a start_tag_doc).
+   *
+   * We do not check for EOF — a tag at EOF errors out via normal recovery. */
   if (valid_symbols[IMPLICIT_CLOSE]) {
+    /* Mark end FIRST so the token is always zero-width from this position. */
+    lexer->mark_end(lexer);
+
     if (lexer->lookahead == '<') {
-      lexer->mark_end(lexer); /* zero-width: do not advance past '<' */
       s->after_implicit = true;
       lexer->result_symbol = IMPLICIT_CLOSE;
       return true;
+    }
+
+    /* Skip ONE OR MORE whitespace chars, then look for '=>'.
+     * Requiring actual whitespace before '=>' ensures we don't fire for
+     * `class=>` (attribute with `=` immediately before `>` tag-close) but
+     * DO fire for `as (x: T) => ReturnType` (space before `=>`). */
+    bool skipped_ws = false;
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+      lexer->advance(lexer, false);
+      skipped_ws = true;
+    }
+    if (skipped_ws && lexer->lookahead == '=') {
+      lexer->advance(lexer, false);
+      if (lexer->lookahead == '>') {
+        s->after_implicit = false; /* no GT_AFTER_IMPLICIT needed */
+        lexer->result_symbol = IMPLICIT_CLOSE;
+        return true;
+      }
     }
   }
 
