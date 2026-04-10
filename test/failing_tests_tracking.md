@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 109 failing / 236 passing / 345 total
+**Status as of 2026-04-09:** 105 failing / 240 passing / 345 total
 
 ---
 
@@ -213,7 +213,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 64 | `Fixture statement-concise-only (htmljs target)` | FAIL |
 | 65 | `Fixture statement-root-only (htmljs target)` | FAIL |
 | 66 | `Fixture semicolon-concise (htmljs target)` | FAIL |
-| 67 | `Scriptlet after text inside fenced block` | FAIL |
+| 67 | `Scriptlet after text inside fenced block` | PASS |
 | 68 | `Fixture scriptlet-block-nested (htmljs target)` | FAIL |
 | 69 | `Fixture scriptlet-block-invalid-comment (htmljs target)` | FAIL |
 | 70 | `Fixture scriptlet-line-continue (htmljs target)` | FAIL |
@@ -274,13 +274,13 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 |---|------|--------|
 | 101 | `Fixture complex (htmljs target)` | FAIL |
 | 102 | `Fixture complex-attr-name (htmljs target)` | FAIL |
-| 103 | `Fixture css-calc (htmljs target)` | FAIL |
-| 104 | `Fixture css-grid (htmljs target)` | FAIL |
+| 103 | `Fixture css-calc (htmljs target)` | PASS |
+| 104 | `Fixture css-grid (htmljs target)` | PASS |
 | 105 | `Fixture default-attr (htmljs target)` | FAIL |
 | 106 | `Fixture html-comment-tag (htmljs target)` | FAIL |
 | 107 | `Fixture stray-forward-slash-within-open-tag (htmljs target)` | FAIL |
 | 108 | `Fixture stray-special-chars (htmljs target)` | FAIL |
-| 109 | `Fixture strip-bom (htmljs target)` | FAIL |
+| 109 | `Fixture strip-bom (htmljs target)` | PASS |
 | 110 | `Fixture unary-as-member-expression (htmljs target)` | FAIL |
 
 ---
@@ -350,4 +350,6 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 
 | Date | Tests fixed | Commit |
 |------|-------------|--------|
-| 2026-04-09 | 1 (function_tag_statement GLR fix: allows self_closing_element to win over function_tag_statement when /> present) | 9603618 |
+| 2026-04-09 | 1 (function_tag_statement GLR fix: allows self_closing_element to win when /> present) | 9603618 |
+| 2026-04-09 | 1 (concise_fence_text: allow $<char> in text so 'hello $ var' is one text, not text+scriptlet) | e7b1cc2 |
+| 2026-04-09 | 3 (BOM fix: add U+FEFF as grammar extra — fixes strip-bom, css-calc, css-grid) | 8f6f364 |
