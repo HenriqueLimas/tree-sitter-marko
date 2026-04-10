@@ -3,7 +3,10 @@ module.exports = grammar({
 
   extras: $ => [/\s/],
 
-  conflicts: $ => [],
+  conflicts: $ => [
+    [$.function_tag_statement, $.self_closing_element],
+    [$.function_tag_statement, $._tag_name],
+  ],
 
   rules: {
     document: $ => repeat($._document_node),
@@ -224,7 +227,7 @@ module.exports = grammar({
       /\/\*[\s\S]*?\*\//,
     )),
 
-    function_tag_statement: $ => prec(2, seq(
+    function_tag_statement: $ => seq(
       '<',
       field('name', $.function_tag_name),
       repeat($.shorthand_attribute),
@@ -236,7 +239,7 @@ module.exports = grammar({
       optional($.tag_default_value),
       repeat($.attribute),
       '>',
-    )),
+    ),
 
     element: $ => choice(
       $.self_closing_element,
