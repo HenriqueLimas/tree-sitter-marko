@@ -30,3 +30,308 @@ Shorthand opening tag with empty close
       (start_tag
         (shorthand_attribute))
       (end_tag))))
+
+================================================================================
+Fixture shorthand-class-dynamic (htmljs target)
+================================================================================
+
+span.${data.foo}
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)
+    (tag_method
+      (tag_method_block_fragment))))
+
+================================================================================
+Fixture shorthand-class-dynamic-literal-prefix (htmljs target)
+================================================================================
+
+.bar${data.foo}
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (placeholder
+    (javascript_fragment)))
+
+================================================================================
+Fixture shorthand-class-dynamic-literal-suffix (htmljs target)
+================================================================================
+
+.${data.foo}-bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (placeholder
+    (javascript_fragment))
+  (text))
+
+================================================================================
+Fixture shorthand-class-self-closed (htmljs target)
+================================================================================
+
+<span>
+    <div.color/>
+</span>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (self_closing_element
+          (tag_name)
+          (shorthand_attribute)))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture shorthand-closing-html (htmljs target)
+================================================================================
+
+<li>
+    <a.nav-link class=(id === currentPage && 'active') href=href>
+        ${title}
+    </a>
+</li>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (normal_element
+          (start_tag
+            (tag_name)
+            (shorthand_attribute)
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (attribute_paren_value
+                  (attribute_paren_fragment)
+                  (quoted_attribute_value))))
+            (attribute
+              (regular_attribute
+                (attribute_name)
+                (attribute_value_fragment))))
+          (placeholder
+            (javascript_fragment))
+          (end_tag
+            (tag_name))))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture shorthand-div-id-class (htmljs target)
+================================================================================
+
+div#foo.bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)
+    (shorthand_attribute)))
+
+================================================================================
+Fixture shorthand-div-id-class-multiple (htmljs target)
+================================================================================
+
+div#foo.bar.baz
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)
+    (shorthand_attribute)
+    (shorthand_attribute)))
+
+================================================================================
+Fixture shorthand-id (htmljs target)
+================================================================================
+
+#foo
+
+--------------------------------------------------------------------------------
+
+(document
+  (text))
+
+================================================================================
+Fixture shorthand-id-class (htmljs target)
+================================================================================
+
+#foo.bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (text))
+
+================================================================================
+Fixture shorthand-id-dup (htmljs target)
+================================================================================
+
+#foo#bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (ERROR))
+
+================================================================================
+Fixture shorthand-id-dynamic (htmljs target)
+================================================================================
+
+span#${data.foo}
+
+--------------------------------------------------------------------------------
+
+(document
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)
+    (tag_method
+      (tag_method_block_fragment))))
+
+================================================================================
+Fixture shorthand-id-dynamic-literal-prefix (htmljs target)
+================================================================================
+
+#bar${data.foo}
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (placeholder
+    (javascript_fragment)))
+
+================================================================================
+Fixture shorthand-id-dynamic-literal-suffix (htmljs target)
+================================================================================
+
+#${data.foo}-bar
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (placeholder
+    (javascript_fragment))
+  (text))
+
+================================================================================
+Fixture shorthand-id-self-closed (htmljs target)
+================================================================================
+
+<span>
+    <div#foo/>
+</span>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (tag_name))
+      (element
+        (self_closing_element
+          (tag_name)
+          (shorthand_attribute)))
+      (end_tag
+        (tag_name)))))
+
+================================================================================
+Fixture shorthand-mixed (htmljs target)
+================================================================================
+
+<#foo>Hello</>
+<#foo.bar name="Frank"></>
+<.bar.baz></.bar.baz>
+<div.foo></>
+<span.foo></span.foo>
+
+--------------------------------------------------------------------------------
+
+(document
+  (element
+    (normal_element
+      (start_tag
+        (shorthand_attribute))
+      (text)
+      (end_tag)))
+  (element
+    (normal_element
+      (start_tag
+        (shorthand_attribute)
+        (shorthand_attribute)
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (quoted_attribute_value))))
+      (end_tag)))
+  (element
+    (normal_element
+      (start_tag
+        (shorthand_attribute)
+        (shorthand_attribute))
+      (end_tag
+        (shorthand_attribute)
+        (shorthand_attribute))))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (shorthand_attribute))
+      (end_tag)))
+  (element
+    (normal_element
+      (start_tag
+        (tag_name)
+        (shorthand_attribute))
+      (end_tag
+        (tag_name)
+        (shorthand_attribute)))))
+
+================================================================================
+Fixture shorthand-mixed-concise (htmljs target)
+================================================================================
+
+#foo -- Hello
+#foo.bar name="Frank"
+.bar.baz
+div.foo
+span.foo
+
+--------------------------------------------------------------------------------
+
+(document
+  (text)
+  (text)
+  (text)
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute))
+  (concise_tag
+    (tag_name)
+    (shorthand_attribute)))

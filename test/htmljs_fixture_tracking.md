@@ -28,7 +28,7 @@ Last updated: 2026-04-09
 
 ## Recently covered in this phase
 
-- Bulk import complete: all remaining fixture `input.marko` cases were ported into dedicated `test/corpus/htmljs_*_remaining.txt` files grouped by fixture prefix.
+- Bulk import complete: all remaining fixture `input.marko` cases were ported into dedicated `test/corpus/*_fixtures.txt` files grouped by fixture prefix.
 - Status: no missing fixture inputs remain.
 
 - `attr-grouped-4` -> `test/corpus/attribute_group_fixtures.txt`
