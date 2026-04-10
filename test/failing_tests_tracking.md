@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-10:** 96 failing / 249 passing / 345 total (no tests fixed — investigated ts-generic-function-type)
+**Status as of 2026-04-10:** 95 failing / 250 passing / 345 total (ts-function-type fixed)
 
 ---
 
@@ -103,7 +103,7 @@ These all fail because `<` inside a type argument position is interpreted as ano
 | 1 | `Fixture ts-generic-simple (htmljs target)` | PASS |
 | 2 | `Fixture ts-generic-complex (htmljs target)` | PASS |
 | 3 | `Fixture ts-generic-function-type (htmljs target)` | FAIL (deep investigation 2026-04-10 — see notes below) |
-| 4 | `Fixture ts-function-type (htmljs target)` | FAIL |
+| 4 | `Fixture ts-function-type (htmljs target)` | PASS |
 | 5 | `Fixture ts-intersection-type (htmljs target)` | FAIL |
 | 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
 | 7 | `Fixture ts-type-statement (htmljs target)` | FAIL |
@@ -360,6 +360,7 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-09 | 3 (external scanner + open_element/start_tag_doc — fixes ts-generic-simple, ts-generic-complex, ts-nested-generics) | 3d6073c |
 |            | NOTE: ts-generic-function-type needs space-skipping `_implicit_close_ws` + `open_element_with_attr` (repeat1 or _mark_attr_start), but careful — MISSING token recovery can satisfy repeat1 causing regressions; needs further investigation |  |
 | 2026-04-10 | 0 — deep investigation into ts-generic-function-type; no tests fixed this session. See investigation notes below. | — |
+| 2026-04-10 | 1 — ts-function-type PASS: extend `_implicit_close` in scanner.c to also fire at ` =>` (space + arrow). The TS function return type `(x: T) => ReturnType` after `attribute_arguments` leaves the rest as document-level text. Guard: require whitespace before `=>` so `class=>` (attribute missing value) stays ERROR. | 8375ef4 |
 
 ---
 
