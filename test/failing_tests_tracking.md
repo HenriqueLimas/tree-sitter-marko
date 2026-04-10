@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-10:** 95 failing / 250 passing / 345 total (ts-function-type fixed)
+**Status as of 2026-04-10:** 93 failing / 252 passing / 345 total (bound-attr + attr-operator-spacing fixed)
 
 ---
 
@@ -143,7 +143,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 34 | `Fixture attr-value-void (htmljs target)` | FAIL |
 | 35 | `Fixture attr-value-single-quote-escaped (htmljs target)` | FAIL |
 | 36 | `Fixture attr-inc-and-dec (htmljs target)` | FAIL |
-| 37 | `Attribute operator spacing in default values (htmljs target)` | FAIL |
+| 37 | `Attribute operator spacing in default values (htmljs target)` | PASS |
 
 ### Group 3 — Unenclosed attribute whitespace
 
@@ -228,7 +228,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | # | Test | Status |
 |---|------|--------|
 | 76 | `Multiple grouped concise attributes split by tag default` | FAIL |
-| 77 | `Bound and tag-default ambiguity edge cases (htmljs target)` | FAIL |
+| 77 | `Bound and tag-default ambiguity edge cases (htmljs target)` | PASS |
 | 78 | `Comma-separated multiline concise attributes (htmljs target)` | FAIL |
 | 79 | `Fixture comma-after-tag-variable (htmljs target)` | PASS |
 
@@ -361,6 +361,7 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 |            | NOTE: ts-generic-function-type needs space-skipping `_implicit_close_ws` + `open_element_with_attr` (repeat1 or _mark_attr_start), but careful — MISSING token recovery can satisfy repeat1 causing regressions; needs further investigation |  |
 | 2026-04-10 | 0 — deep investigation into ts-generic-function-type; no tests fixed this session. See investigation notes below. | — |
 | 2026-04-10 | 1 — ts-function-type PASS: extend `_implicit_close` in scanner.c to also fire at ` =>` (space + arrow). The TS function return type `(x: T) => ReturnType` after `attribute_arguments` leaves the rest as document-level text. Guard: require whitespace before `=>` so `class=>` (attribute missing value) stays ERROR. | 8375ef4 |
+| 2026-04-10 | 2 — Bound and tag-default ambiguity PASS + Attribute operator spacing PASS (side effect): Remove `:` from `tag_name` regex; change `tag_default_value` to only match `=` (not `:=`) in HTML-mode; add `function_tag_default_value` (`:=` + `=`) for `function_tag_statement`; change `implicit_html_bound_attribute` to `prec.right(seq(attribute_bound_value))` and add to `attribute` choices. Lines 3,4,6 of bound test now produce `attribute_bound_value` without `attribute_name` (htmljs-parser: attrName is empty). Line 5 `<a/bar:=foo>` still has `tag_default_value` because `tag_variable_fragment` greedily consumes `bar:` (regex limitation — fixing would need external scanner). | cf9a7e7 |
 
 ---
 
