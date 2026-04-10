@@ -9,7 +9,7 @@
 4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
 5. Never use `--update` to auto-accept wrong output.
 
-**Status as of 2026-04-09:** 100 failing / 245 passing / 345 total
+**Status as of 2026-04-09:** 100 failing / 245 passing / 345 total (session end)
 
 ---
 
