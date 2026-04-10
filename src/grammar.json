@@ -3738,6 +3738,10 @@
     {
       "type": "PATTERN",
       "value": "\\s"
+    },
+    {
+      "type": "PATTERN",
+      "value": "\\uFEFF"
     }
   ],
   "conflicts": [

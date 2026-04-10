@@ -1,7 +1,7 @@
 module.exports = grammar({
   name: 'marko',
 
-  extras: $ => [/\s/],
+  extras: $ => [/\s/, /\uFEFF/],
 
   conflicts: $ => [
     [$.function_tag_statement, $.self_closing_element],
