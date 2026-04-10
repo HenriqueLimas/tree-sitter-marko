@@ -218,7 +218,7 @@ module.exports = grammar({
 
     concise_fence_text_with_angle: _ => token(prec(1, /[^<\-$\n][^$\n]*<[^\n]*/)),
 
-    concise_fence_text: _ => token(prec(-2, /[^\-$\n][^$\n]*/)),
+    concise_fence_text: _ => token(prec(0, /[^<\-$\n]([^\n$]|\$[^{\n])*/)),
 
     concise_fence_line: $ => seq('--', /[^\n]+/),
 
