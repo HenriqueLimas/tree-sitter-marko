@@ -3063,6 +3063,19 @@
                           ]
                         },
                         {
+                          "type": "SEQ",
+                          "members": [
+                            {
+                              "type": "SYMBOL",
+                              "name": "attribute_value_fragment"
+                            },
+                            {
+                              "type": "SYMBOL",
+                              "name": "attribute_paren_value"
+                            }
+                          ]
+                        },
+                        {
                           "type": "SYMBOL",
                           "name": "attribute_value_fragment"
                         },
