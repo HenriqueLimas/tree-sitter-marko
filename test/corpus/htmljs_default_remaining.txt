@@ -9,11 +9,7 @@ Fixture default-attr (htmljs target)
 (document
   (element
     (self_closing_element
-      (tag_name)
-      (ERROR
-        (ERROR)
-        (ERROR)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/default-attr/input.marko	0.04 ms	   389 bytes/ms	(ERROR [0, 3] - [0, 15])
+      (tag_name))))
 
 ================================================================================
 Fixture default-attr-comma (htmljs target)

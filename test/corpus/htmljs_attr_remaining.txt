@@ -21,8 +21,7 @@ Fixture attr-complex (htmljs target)
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (attribute_value_fragment))
+            (attribute_value_fragment)
             (attribute_paren_value
               (attribute_paren_fragment)
               (attribute_paren_value
@@ -31,7 +30,6 @@ Fixture attr-complex (htmljs target)
       (text)
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-complex/input.marko	0.07 ms	   754 bytes/ms	(ERROR [0, 18] - [0, 20])
 
 ================================================================================
 Fixture attr-complex-functions (htmljs target)
@@ -78,73 +76,61 @@ tag a = 'foo' instanceof
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value)))
-      (regular_attribute))
-    (attribute_name))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (regular_attribute))
+  (attribute_name)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_fragment))
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (attribute_expression_fragment)
+    (regular_attribute)
+    (regular_attribute))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_fragment))
-      (regular_attribute
-        (attribute_value_fragment))))
+  (attribute
+    (attribute_name)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (attribute_expression_fragment)
+    (regular_attribute
+      (attribute_value_fragment)))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_fragment))
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (attribute_expression_fragment)
+    (regular_attribute)
+    (regular_attribute))
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)
-      (attribute_expression_fragment))
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute)
+    (attribute_expression_fragment)
     (concise_terminator))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value)))
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (regular_attribute))
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)
-      (attribute_expression_fragment))
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute)
+    (attribute_expression_fragment)
     (concise_terminator))
   (concise_tag
     (tag_name)
@@ -152,8 +138,7 @@ tag a = 'foo' instanceof
       (attribute_name)
       (regular_attribute)
       (regular_attribute))
-    (ERROR
-      (attribute_expression_fragment))
+    (attribute_expression_fragment)
     (attribute
       (regular_attribute_no_comments
         (regular_attribute))))
@@ -182,23 +167,19 @@ tag a = 'foo' instanceof
           (attribute_name)))))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value)))
-      (regular_attribute))
-    (attribute_name))
-  (concise_tag
-    (tag_name))
-  (ERROR
+  (attribute
     (attribute_name)
     (regular_attribute)
-    (regular_attribute)
-    (attribute_expression_fragment)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-complex-instanceof/input.marko	0.21 ms	  1829 bytes/ms	(ERROR [0, 3] - [0, 31])
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (regular_attribute))
+  (attribute_name)
+  (concise_tag
+    (tag_name))
+  (attribute_name)
+  (regular_attribute)
+  (regular_attribute)
+  (attribute_expression_fragment))
 
 ================================================================================
 Fixture attr-complex-unary (htmljs target)
@@ -227,20 +208,18 @@ tag a = test+class b {}
 (document
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute
-        (attribute_name)
-        (regular_attribute)
-        (regular_attribute))
-      (tag_name))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (tag_name)
     (tag_method))
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute
-        (attribute_name)
-        (regular_attribute)
-        (regular_attribute)))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
     (tag_method))
   (text)
   (element
@@ -250,8 +229,7 @@ tag a = test+class b {}
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (attribute_value_fragment))
+            (attribute_value_fragment)
             (attribute_brace_value))))
       (end_tag
         (tag_name))))
@@ -261,51 +239,44 @@ tag a = test+class b {}
       (attribute
         (regular_attribute
           (attribute_name)
-          (ERROR
-            (attribute_value_fragment))
+          (attribute_value_fragment)
           (attribute_brace_value)))))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute_name))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute_name))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute_name))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute_name))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute
-        (attribute_name)
-        (regular_attribute)
-        (regular_attribute))
-      (tag_name))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (tag_name)
     (tag_method)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-complex-unary/input.marko	0.15 ms	  1284 bytes/ms	(ERROR [0, 3] - [0, 15])
 
 ================================================================================
 Fixture attr-concise-hyphens (htmljs target)
@@ -320,11 +291,10 @@ a [b=c -- y]
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (concise_fence_line)
   (concise_tag
     (tag_name)
@@ -334,7 +304,6 @@ a [b=c -- y]
           (attribute_name)
           (attribute_value_fragment)))))
   (concise_fence_line))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-concise-hyphens/input.marko	0.06 ms	   422 bytes/ms	(ERROR [0, 1] - [0, 5])
 
 ================================================================================
 Fixture attr-escape-characters (htmljs target)
@@ -392,27 +361,24 @@ a foo=++a bar=--b
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-inc-and-dec/input.marko	0.06 ms	   571 bytes/ms	(ERROR [0, 1] - [0, 17])
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute)))
 
 ================================================================================
 Fixture attr-int-and-id (htmljs target)
@@ -524,63 +490,63 @@ Fixture attr-method-shorthand (htmljs target)
 
 <foo onclick(event){}/>
 
-<foo onclick(event){ 
-  console.log("hello"); 
+<foo onclick(event){
+  console.log("hello");
   event.preventDefault();
 }/>
 
-<foo onclick(event) { 
-  console.log("hello"); 
+<foo onclick(event) {
+  console.log("hello");
   event.preventDefault();
 }/>
 
-<foo onclick (event) { 
-  console.log("hello"); 
+<foo onclick (event) {
+  console.log("hello");
   event.preventDefault();
 }/>
 
-<foo(event){ 
-  console.log("hello"); 
+<foo(event){
+  console.log("hello");
   event.preventDefault();
 }/>
 
-<foo(event) { 
-  console.log("hello"); 
+<foo(event) {
+  console.log("hello");
   event.preventDefault();
 }/>
 
-<foo (event) { 
-  console.log("hello"); 
+<foo (event) {
+  console.log("hello");
   event.preventDefault();
 }/>
 
-foo onclick(event){ 
-  console.log("hello"); 
+foo onclick(event){
+  console.log("hello");
   event.preventDefault();
 }
 
-foo onclick(event) { 
-  console.log("hello"); 
+foo onclick(event) {
+  console.log("hello");
   event.preventDefault();
 }
 
-foo onclick (event) { 
-  console.log("hello"); 
+foo onclick (event) {
+  console.log("hello");
   event.preventDefault();
 }
 
-foo(event){ 
-  console.log("hello"); 
+foo(event){
+  console.log("hello");
   event.preventDefault();
 }
 
-foo(event) { 
-  console.log("hello"); 
+foo(event) {
+  console.log("hello");
   event.preventDefault();
 }
 
-foo (event) { 
-  console.log("hello"); 
+foo (event) {
+  console.log("hello");
   event.preventDefault();
 }
 
@@ -663,37 +629,34 @@ foo (event) {
         (tag_method_block_fragment))))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_arguments_fragment))
-      (regular_attribute
-        (attribute_method_fragment)
-        (quoted_attribute_value)
-        (attribute_method_fragment))))
+  (attribute
+    (attribute_name)
+    (regular_attribute
+      (attribute_arguments_fragment))
+    (regular_attribute
+      (attribute_method_fragment)
+      (quoted_attribute_value)
+      (attribute_method_fragment)))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_arguments_fragment))
-      (regular_attribute
-        (attribute_method_fragment)
-        (quoted_attribute_value)
-        (attribute_method_fragment))))
+  (attribute
+    (attribute_name)
+    (regular_attribute
+      (attribute_arguments_fragment))
+    (regular_attribute
+      (attribute_method_fragment)
+      (quoted_attribute_value)
+      (attribute_method_fragment)))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_arguments_fragment))
-      (regular_attribute
-        (attribute_method_fragment)
-        (quoted_attribute_value)
-        (attribute_method_fragment))))
+  (attribute
+    (attribute_name)
+    (regular_attribute
+      (attribute_arguments_fragment))
+    (regular_attribute
+      (attribute_method_fragment)
+      (quoted_attribute_value)
+      (attribute_method_fragment)))
   (concise_tag
     (tag_name)
     (tag_arguments
@@ -728,7 +691,6 @@ foo (event) {
             (attribute_arguments_fragment))
           (attribute_method
             (attribute_method_fragment)))))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-method-shorthand/input.marko	0.10 ms	  8771 bytes/ms	(ERROR [32, 3] - [35, 1])
 
 ================================================================================
 Fixture attr-method-shorthand-with-type-parameters (htmljs target)
@@ -831,13 +793,11 @@ Fixture attr-multi-line-comment (htmljs target)
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (attribute_value_fragment))
+            (attribute_value_fragment)
             (quoted_attribute_value))))
       (text)
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-multi-line-comment/input.marko	0.05 ms	   820 bytes/ms	(ERROR [0, 25] - [0, 27])
 
 ================================================================================
 Fixture attr-multi-line-string (htmljs target)
@@ -878,7 +838,8 @@ tagname <span>hello frank</span>
         (tag_name))
       (text)
       (end_tag
-        (tag_name)))))
+        (tag_name))))
+  (ERROR))
 
 ================================================================================
 Fixture attr-nested-literal-regex (htmljs target)
@@ -938,33 +899,28 @@ span test='123'"abc"
         (tag_name))))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name)
-    (regular_attribute)
-    (ERROR
-      (attribute_expression_atom
-        (quoted_attribute_value)))
-    (regular_attribute)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-non-literal/input.marko	0.06 ms	  1369 bytes/ms	(ERROR [1, 4] - [1, 20])
+  (attribute_name)
+  (regular_attribute)
+  (attribute_expression_atom
+    (quoted_attribute_value))
+  (regular_attribute))
 
 ================================================================================
 Fixture attr-operator-whitespace-eof (htmljs target)
 ================================================================================
 
-tag a = 'foo' instanceof   
+tag a = 'foo' instanceof
 
 --------------------------------------------------------------------------------
 
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name)
-    (regular_attribute)
-    (regular_attribute)
-    (attribute_expression_fragment))
+  (attribute_name)
+  (regular_attribute)
+  (regular_attribute)
+  (attribute_expression_fragment)
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-operator-whitespace-eof/input.marko	0.05 ms	   524 bytes/ms	(ERROR [0, 3] - [0, 24])
 
 ================================================================================
 Fixture attr-operators-newline-after (htmljs target)
@@ -1343,9 +1299,8 @@ a/>
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (tag_default_value
-          (tag_default_fragment)))
+      (tag_default_value
+        (tag_default_fragment))
       (shorthand_attribute)
       (attribute
         (regular_attribute
@@ -1354,23 +1309,18 @@ a/>
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR))))
+        (tag_default_fragment))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (tag_default_value
-          (tag_default_fragment)))
+      (tag_default_value
+        (tag_default_fragment))
       (tag_variable
         (tag_variable_fragment))
       (attribute
@@ -1381,52 +1331,39 @@ a/>
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+        (tag_default_fragment))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR))))
-  (element
-    (self_closing_element
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR))))
-  (ERROR
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment))
-    (tag_parameters_fragment))
+        (tag_default_fragment))))
+  (tag_name)
+  (tag_default_value
+    (tag_default_fragment))
+  (tag_parameters_fragment)
   (element
     (self_closing_element
       (tag_name)
@@ -1445,18 +1382,13 @@ a/>
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
-      (ERROR
-        (tag_name)
-        (tag_default_value
-          (tag_default_fragment))
-        (ERROR
-          (ERROR))
-        (attribute_name))
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (attribute_name)
       (tag_name)
       (attribute
         (regular_attribute
@@ -1466,41 +1398,31 @@ a/>
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (normal_element
       (start_tag
@@ -1514,23 +1436,17 @@ a/>
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR)
-        (ERROR))))
+        (tag_default_fragment))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
-  (ERROR
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment))
-    (tag_parameters_fragment))
+      (attribute_expression_operator)))
+  (tag_name)
+  (tag_default_value
+    (tag_default_fragment))
+  (tag_parameters_fragment)
   (element
     (self_closing_element
       (tag_name)
@@ -1547,18 +1463,12 @@ a/>
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR)
-        (ERROR))))
+        (tag_default_fragment))))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment))
-      (ERROR
-        (ERROR)
-        (ERROR))))
+        (tag_default_fragment))))
   (element
     (normal_element
       (start_tag
@@ -1582,15 +1492,12 @@ a/>
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (tag_default_value
-          (tag_default_fragment)))
+      (tag_default_value
+        (tag_default_fragment))
       (tag_variable)
       (tag_default_value
         (tag_default_fragment))
@@ -1602,54 +1509,42 @@ a/>
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)
+      (attribute_expression_operator)
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)
+      (attribute_expression_operator)
+      (attribute_expression_operator)))
   (element
     (normal_element
       (start_tag
@@ -1688,98 +1583,90 @@ a/>
       (attribute
         (regular_attribute
           (attribute_name)))))
-  (ERROR
-    (start_tag
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR))
-    (text)
-    (start_tag
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR))
-    (text)
-    (start_tag
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment))
-      (ERROR))
-    (text)
-    (element
-      (self_closing_element
-        (tag_name)
-        (tag_default_value
-          (attribute_paren_value
-            (attribute_paren_fragment)))
-        (tag_method
-          (tag_method_block_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)))))
-    (start_tag
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (element
+    (self_closing_element
       (tag_name)
       (tag_default_value
         (attribute_paren_value
           (attribute_paren_fragment)))
-      (ERROR))
-    (text)
-    (element
-      (self_closing_element
-        (tag_name)
-        (tag_default_value
-          (tag_default_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)
-            (ERROR)
-            (attribute_brace_value
-              (attribute_brace_fragment)
-              (quoted_attribute_value)
-              (attribute_brace_fragment))))
-        (attribute
-          (regular_attribute
-            (attribute_name)))))
-    (element
-      (self_closing_element
-        (tag_name)
-        (tag_default_value
-          (tag_default_fragment))
-        (tag_arguments
-          (tag_arguments_fragment))
-        (tag_method
-          (tag_method_block_fragment)
-          (quoted_attribute_value)
-          (tag_method_block_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)))))
-    (start_tag
+      (tag_method
+        (tag_method_block_fragment))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (attribute_paren_value
+        (attribute_paren_fragment))))
+  (text)
+  (element
+    (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR))
-    (text)
-    (text)
-    (element
-      (self_closing_element
-        (tag_name)
-        (tag_default_value
-          (tag_default_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)
-            (attribute_arguments
-              (attribute_arguments_fragment))
-            (attribute_method
-              (attribute_method_fragment)
-              (quoted_attribute_value)
-              (attribute_method_fragment))))
-        (attribute
-          (regular_attribute
-            (attribute_name)))))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-operators-newline-before/input.marko	0.56 ms	  1717 bytes/ms	(ERROR [5, 2] - [5, 4])
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_brace_value
+            (attribute_brace_fragment)
+            (quoted_attribute_value)
+            (attribute_brace_fragment))))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (tag_arguments
+        (tag_arguments_fragment))
+      (tag_method
+        (tag_method_block_fragment)
+        (quoted_attribute_value)
+        (tag_method_block_fragment))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (text)
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_arguments
+            (attribute_arguments_fragment))
+          (attribute_method
+            (attribute_method_fragment)
+            (quoted_attribute_value)
+            (attribute_method_fragment))))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))
 
 ================================================================================
 Fixture attr-operators-space-after (htmljs target)
@@ -1884,134 +1771,20 @@ a=(x ) {y } a
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (text)
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
@@ -2021,44 +1794,134 @@ a=(x ) {y } a
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
+  (concise_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
@@ -2073,9 +1936,8 @@ a=(x ) {y } a
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
@@ -2085,30 +1947,26 @@ a=(x ) {y } a
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment)))
-  (ERROR
-    (attribute_name)
-    (attribute_name))
+  (attribute_name)
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
@@ -2140,16 +1998,14 @@ a=(x ) {y } a
       (tag_default_fragment))
     (tag_arguments
       (tag_arguments_fragment)))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment))
     (tag_method
       (tag_method_block_fragment)))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (concise_tag
     (tag_name)
     (tag_default_value
@@ -2172,8 +2028,7 @@ a=(x ) {y } a
         (attribute_paren_fragment)))
     (tag_method
       (tag_method_block_fragment)))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (element
     (self_closing_element
       (tag_name)
@@ -2210,9 +2065,8 @@ a=(x ) {y } a
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (tag_default_value
-          (tag_default_fragment)))
+      (tag_default_value
+        (tag_default_fragment))
       (tag_variable
         (tag_variable_fragment))
       (attribute
@@ -2319,13 +2173,11 @@ a=(x ) {y } a
           (attribute_name)))))
   (element
     (self_closing_element
-      (ERROR
-        (tag_name)
-        (tag_default_value
-          (tag_default_fragment))
-        (ERROR
-          (attribute_name))
-        (attribute_name))
+      (tag_name)
+      (tag_default_value
+        (tag_default_fragment))
+      (attribute_name)
+      (attribute_name)
       (tag_name)
       (attribute
         (regular_attribute
@@ -2492,9 +2344,8 @@ a=(x ) {y } a
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (tag_default_value
-          (tag_default_fragment)))
+      (tag_default_value
+        (tag_default_fragment))
       (tag_variable)
       (tag_default_value
         (tag_default_fragment))
@@ -2550,18 +2401,14 @@ a=(x ) {y } a
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)))
   (element
     (self_closing_element
       (tag_name)
       (tag_default_value
         (tag_default_fragment))
-      (ERROR
-        (attribute_expression_operator)
-        (attribute_expression_operator)
-        (ERROR))))
+      (attribute_expression_operator)
+      (attribute_expression_operator)))
   (element
     (normal_element
       (start_tag
@@ -2609,34 +2456,32 @@ a=(x ) {y } a
       (attribute
         (regular_attribute
           (attribute_name)))))
-  (ERROR
-    (start_tag
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (start_tag
+    (tag_name)
+    (tag_default_value
+      (tag_default_fragment)))
+  (text)
+  (element
+    (self_closing_element
       (tag_name)
       (tag_default_value
-        (tag_default_fragment)))
-    (text)
-    (start_tag
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment)))
-    (text)
-    (start_tag
-      (tag_name)
-      (tag_default_value
-        (tag_default_fragment)))
-    (text)
-    (element
-      (self_closing_element
-        (tag_name)
-        (tag_default_value
-          (attribute_paren_value
-            (attribute_paren_fragment)))
-        (tag_method
-          (tag_method_block_fragment))
-        (attribute
-          (regular_attribute
-            (attribute_name)))))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-operators-space-after/input.marko	0.58 ms	  1859 bytes/ms	(ERROR [0, 4] - [0, 8])
+        (attribute_paren_value
+          (attribute_paren_fragment)))
+      (tag_method
+        (tag_method_block_fragment))
+      (attribute
+        (regular_attribute
+          (attribute_name))))))
 
 ================================================================================
 Fixture attr-operators-space-before (htmljs target)
@@ -2896,7 +2741,6 @@ Fixture attr-regex-character-classes (htmljs target)
       (attribute
         (regular_attribute
           (attribute_name)
-          (ERROR)
           (attribute_bracket_value
             (attribute_bracket_fragment))))))
   (element
@@ -2911,7 +2755,6 @@ Fixture attr-regex-character-classes (htmljs target)
           (attribute
             (regular_attribute
               (attribute_name)
-              (ERROR)
               (attribute_bracket_value
                 (attribute_bracket_fragment))))))
       (end_tag
@@ -2922,7 +2765,6 @@ Fixture attr-regex-character-classes (htmljs target)
       (attribute
         (regular_attribute
           (attribute_name)
-          (ERROR)
           (attribute_bracket_value
             (attribute_bracket_fragment))))))
   (element
@@ -2934,8 +2776,7 @@ Fixture attr-regex-character-classes (htmljs target)
       (element
         (self_closing_element
           (tag_name)
-          (ERROR
-            (attribute_name))
+          (attribute_name)
           (tag_variable
             (tag_variable_fragment))))
       (end_tag
@@ -2946,15 +2787,12 @@ Fixture attr-regex-character-classes (htmljs target)
       (attribute
         (regular_attribute
           (attribute_name)
-          (ERROR)
           (attribute_bracket_value
             (attribute_bracket_fragment))))))
-  (ERROR
-    (start_tag
-      (builtin_tag_name)
-      (tag_variable
-        (tag_variable_fragment)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-regex-character-classes/input.marko	0.15 ms	   986 bytes/ms	(ERROR [0, 13] - [0, 14])
+  (start_tag
+    (builtin_tag_name)
+    (tag_variable
+      (tag_variable_fragment))))
 
 ================================================================================
 Fixture attr-regexp (htmljs target)
@@ -2965,17 +2803,14 @@ Fixture attr-regexp (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (void_tag_name)
-    (ERROR
-      (attribute_name))
-    (tag_variable
-      (tag_variable_fragment))
-    (attribute_name)
-    (attribute_expression_atom
-      (quoted_attribute_value))
-    (attribute_expression_operator)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-regexp/input.marko	0.06 ms	   660 bytes/ms	(ERROR [0, 0] - [0, 41])
+  (void_tag_name)
+  (attribute_name)
+  (tag_variable
+    (tag_variable_fragment))
+  (attribute_name)
+  (attribute_expression_atom
+    (quoted_attribute_value))
+  (attribute_expression_operator))
 
 ================================================================================
 Fixture attr-simple-expression (htmljs target)
@@ -2990,17 +2825,15 @@ Fixture attr-simple-expression (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (ERROR
-          (attribute
-            (regular_attribute
-              (attribute_name)
-              (attribute_value_fragment))))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
         (tag_variable
           (tag_variable_fragment)))
       (text)
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-simple-expression/input.marko	0.05 ms	   319 bytes/ms	(ERROR [0, 3] - [0, 6])
 
 ================================================================================
 Fixture attr-unenclosed-whitespace (htmljs target)
@@ -3015,21 +2848,16 @@ Fixture attr-unenclosed-whitespace (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (ERROR
-          (attribute
-            (regular_attribute
-              (attribute_name)
-              (ERROR
-                (attribute_value_fragment)
-                (attribute_expression_operator)
-                (ERROR)
-                (ERROR))
-              (attribute_value_fragment))))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)
+            (attribute_expression_operator)
+            (attribute_value_fragment)))
         (tag_variable
           (tag_variable_fragment)))
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-unenclosed-whitespace/input.marko	0.06 ms	   584 bytes/ms	(ERROR [0, 5] - [0, 25])
 
 ================================================================================
 Fixture attr-unenclosed-whitespace-minus (htmljs target)
@@ -3042,13 +2870,11 @@ var foo = 5 - data
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-unenclosed-whitespace-minus/input.marko	0.03 ms	   582 bytes/ms	(ERROR [0, 3] - [0, 11])
 
 ================================================================================
 Fixture attr-unenclosed-whitespace-multiple-attrs (htmljs target)
@@ -3067,10 +2893,8 @@ Fixture attr-unenclosed-whitespace-multiple-attrs (htmljs target)
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (attribute_value_fragment)
-              (attribute_expression_operator)
-              (ERROR))
+            (attribute_value_fragment)
+            (attribute_expression_operator)
             (attribute_value_fragment))))
       (end_tag
         (tag_name))))
@@ -3086,12 +2910,9 @@ Fixture attr-unenclosed-whitespace-multiple-attrs (htmljs target)
           (regular_attribute
             (attribute_name)
             (attribute_value_fragment)))
-        (ERROR
-          (attribute_expression_operator)
-          (ERROR)))
+        (attribute_expression_operator))
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-unenclosed-whitespace-multiple-attrs/input.marko	0.16 ms	   431 bytes/ms	(ERROR [0, 8] - [0, 21])
 
 ================================================================================
 Fixture attr-unenclosed-whitespace-odd (htmljs target)
@@ -3106,23 +2927,21 @@ Fixture attr-unenclosed-whitespace-odd (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (ERROR
-          (attribute
-            (regular_attribute
-              (attribute_name)
-              (attribute_value_fragment)))
-          (attribute
-            (regular_attribute
-              (attribute_name)))
-          (attribute
-            (regular_attribute
-              (attribute_name)
-              (attribute_value_fragment))))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
+        (attribute
+          (regular_attribute
+            (attribute_name)))
+        (attribute
+          (regular_attribute
+            (attribute_name)
+            (attribute_value_fragment)))
         (tag_variable
           (tag_variable_fragment)))
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-unenclosed-whitespace-odd/input.marko	0.06 ms	   565 bytes/ms	(ERROR [0, 5] - [0, 24])
 
 ================================================================================
 Fixture attr-value-missing (htmljs target)
@@ -3136,7 +2955,6 @@ Fixture attr-value-missing (htmljs target)
   (ERROR
     (tag_name)
     (attribute_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-missing/input.marko	0.06 ms	   219 bytes/ms	(ERROR [0, 0] - [0, 13])
 
 ================================================================================
 Fixture attr-value-single-quote-escaped (htmljs target)
@@ -3149,12 +2967,10 @@ var decade = '1960\'s'
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name)
-    (regular_attribute)
-    (regular_attribute)
-    (attribute_expression_fragment)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-single-quote-escaped/input.marko	0.04 ms	   551 bytes/ms	(ERROR [0, 3] - [0, 22])
+  (attribute_name)
+  (regular_attribute)
+  (regular_attribute)
+  (attribute_expression_fragment))
 
 ================================================================================
 Fixture attr-value-typeof (htmljs target)
@@ -3167,13 +2983,11 @@ var test = typeof 'foo' === 'string'
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-typeof/input.marko	0.04 ms	   971 bytes/ms	(ERROR [0, 3] - [0, 17])
 
 ================================================================================
 Fixture attr-value-typeof-comma (htmljs target)
@@ -3186,13 +3000,11 @@ var foo = typeof 'foo',bar=typeof 'bar'
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-typeof-comma/input.marko	0.03 ms	  1273 bytes/ms	(ERROR [0, 3] - [0, 16])
 
 ================================================================================
 Fixture attr-value-typeof-no-space-prefix (htmljs target)
@@ -3205,13 +3017,11 @@ var isString=typeof 'hello' === 'string'
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-typeof-no-space-prefix/input.marko	0.03 ms	  1340 bytes/ms	(ERROR [0, 3] - [0, 19])
 
 ================================================================================
 Fixture attr-value-void (htmljs target)
@@ -3224,13 +3034,11 @@ var foo=void false
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
-    (tag_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-value-void/input.marko	0.04 ms	   530 bytes/ms	(ERROR [0, 3] - [0, 18])
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (tag_name))
 
 ================================================================================
 Fixture attr-with-right-angle-bracket (htmljs target)
@@ -3291,9 +3099,7 @@ Fixture attr-without-delimiters (htmljs target)
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (attribute_value_fragment))
+            (attribute_value_fragment)
             (quoted_attribute_value))))
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/attr-without-delimiters/input.marko	0.04 ms	   467 bytes/ms	(ERROR [0, 8] - [0, 11])

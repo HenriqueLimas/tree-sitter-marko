@@ -161,7 +161,8 @@ Fixture shorthand-id-dup (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (text))
+  (text)
+  (ERROR))
 
 ================================================================================
 Fixture shorthand-id-dynamic (htmljs target)
@@ -277,9 +278,7 @@ Fixture shorthand-mixed (htmljs target)
         (shorthand_attribute))
       (end_tag
         (tag_name)
-        (ERROR
-          (shorthand_attribute))))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/shorthand-mixed/input.marko	0.05 ms	  2111 bytes/ms	(ERROR [4, 16] - [4, 20])
+        (shorthand_attribute)))))
 
 ================================================================================
 Fixture shorthand-mixed-concise (htmljs target)

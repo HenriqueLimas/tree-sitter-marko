@@ -40,21 +40,19 @@ Fixture parsed-text-style-tag (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (start_tag
-      (builtin_tag_name))
-    (text)
-    (element
-      (normal_element
-        (start_tag
-          (builtin_tag_name))
-        (text)
-        (end_tag
-          (builtin_tag_name))))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/parsed-text-style-tag/input.marko	0.06 ms	  1717 bytes/ms	(ERROR [0, 0] - [0, 103])
+  (start_tag
+    (builtin_tag_name))
+  (text)
+  (start_tag
+    (builtin_tag_name))
+  (text)
+  (start_tag
+    (builtin_tag_name))
+  (text)
+  (element
+    (normal_element
+      (start_tag
+        (builtin_tag_name))
+      (text)
+      (end_tag
+        (builtin_tag_name)))))

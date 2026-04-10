@@ -7,21 +7,18 @@ Fixture ts-function-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_arguments
-            (attribute_arguments_fragment))))
-      (ERROR))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-function-type/input.marko	0.06 ms	   676 bytes/ms	(ERROR [0, 0] - [0, 41])
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_arguments
+          (attribute_arguments_fragment)))))
+  (text))
 
 ================================================================================
 Fixture ts-generic-complex (htmljs target)
@@ -33,58 +30,56 @@ Fixture ts-generic-complex (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (text)
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-complex/input.marko	0.14 ms	   810 bytes/ms	(ERROR [0, 0] - [1, 58])
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (text)
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (text))
 
 ================================================================================
 Fixture ts-generic-function-type (htmljs target)
@@ -96,32 +91,30 @@ Fixture ts-generic-function-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (text)
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-function-type/input.marko	0.09 ms	   812 bytes/ms	(ERROR [0, 0] - [1, 36])
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (text)
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (text))
 
 ================================================================================
 Fixture ts-generic-simple (htmljs target)
@@ -133,38 +126,36 @@ Fixture ts-generic-simple (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (text)
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-generic-simple/input.marko	0.08 ms	   704 bytes/ms	(ERROR [0, 0] - [1, 29])
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (text)
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (text))
 
 ================================================================================
 Fixture ts-intersection-type (htmljs target)
@@ -176,39 +167,34 @@ Fixture ts-intersection-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (ERROR)
-    (start_tag
-      (tag_name))
-    (text)
-    (ERROR
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (ERROR))
-    (start_tag
-      (tag_name))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-intersection-type/input.marko	0.23 ms	   245 bytes/ms	(ERROR [0, 0] - [1, 29])
+  (tag_name)
+  (attribute
+    (regular_attribute
+      (attribute_name)
+      (attribute_value_fragment)))
+  (attribute
+    (regular_attribute
+      (attribute_name)))
+  (attribute
+    (regular_attribute
+      (attribute_name)))
+  (start_tag
+    (tag_name))
+  (text)
+  (tag_name)
+  (attribute
+    (regular_attribute
+      (attribute_name)
+      (attribute_value_fragment)))
+  (attribute
+    (regular_attribute
+      (attribute_name)))
+  (attribute
+    (regular_attribute
+      (attribute_name)))
+  (start_tag
+    (tag_name))
+  (text))
 
 ================================================================================
 Fixture ts-keyof-typeof (htmljs target)
@@ -249,52 +235,50 @@ Fixture ts-nested-generics (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (text)
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name))
-    (start_tag
-      (tag_name)
-      (attribute
-        (regular_attribute
-          (attribute_name))))
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-nested-generics/input.marko	0.12 ms	  1001 bytes/ms	(ERROR [0, 0] - [1, 63])
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (text)
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name))))
+  (text))
 
 ================================================================================
 Fixture ts-static-const-arrow-function-return-type (htmljs target)
@@ -415,8 +399,7 @@ export interface Foo {
   (text)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (top_level_statement
     (statement_block_tail))
   (text)
@@ -430,7 +413,6 @@ export interface Foo {
   (text)
   (top_level_statement
     (statement_block_tail)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-type-statement/input.marko	0.06 ms	  3690 bytes/ms	(ERROR [4, 4] - [5, 1])
 
 ================================================================================
 Fixture ts-unary-exression (htmljs target)
@@ -444,28 +426,25 @@ div foo=val as readonly string[] bar=true
 (document
   (concise_tag
     (tag_name))
-  (ERROR
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (concise_tag
+    (tag_name)
     (attribute
       (attribute_name)
       (regular_attribute)
       (regular_attribute))
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute)))
-  (concise_tag
+    (attribute_name)
+    (attribute_name)
     (tag_name)
-    (ERROR
-      (attribute
-        (attribute_name)
-        (regular_attribute)
-        (regular_attribute))
-      (attribute_name)
-      (attribute_name)
-      (tag_name))
     (concise_attribute_group))
   (concise_tag
     (tag_name)
     (tag_default_value
       (tag_default_fragment))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/ts-unary-exression/input.marko	0.08 ms	   883 bytes/ms	(ERROR [0, 3] - [0, 25])

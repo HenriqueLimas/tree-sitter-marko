@@ -40,7 +40,8 @@ $ {
 
 (document
   (scriptlet_block
-    (scriptlet_block_content)))
+    (scriptlet_block_content))
+  (ERROR))
 
 ================================================================================
 Fixture scriptlet-block-multiline-comment (htmljs target)
@@ -86,24 +87,22 @@ $ {
   (text)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_arguments_fragment))
-      (regular_attribute
+  (attribute
+    (attribute_name)
+    (regular_attribute
+      (attribute_arguments_fragment))
+    (regular_attribute
+      (attribute_method_fragment)
+      (attribute_method_nested_block
         (attribute_method_fragment)
-        (attribute_method_nested_block
-          (attribute_method_fragment)
-          (quoted_attribute_value)
-          (attribute_method_fragment))
-        (attribute_method_fragment))))
+        (quoted_attribute_value)
+        (attribute_method_fragment))
+      (attribute_method_fragment)))
   (concise_tag
     (tag_name)
     (tag_arguments)
     (concise_terminator))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/scriptlet-block-nested/input.marko	0.06 ms	  3220 bytes/ms	(ERROR [6, 12] - [12, 5])
 
 ================================================================================
 Fixture scriptlet-block-regex (htmljs target)
@@ -158,7 +157,7 @@ $ { hello() };
 
 $ { hello() }  ;
 
-$ { hello() };  
+$ { hello() };
 
 --------------------------------------------------------------------------------
 
@@ -245,11 +244,9 @@ $ var foo = () => {
   (scriptlet)
   (concise_tag
     (flow_tag_name)
-    (ERROR
-      (attribute_name))
+    (attribute_name)
     (concise_terminator))
   (text))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/scriptlet-line-continue/input.marko	0.04 ms	  1060 bytes/ms	(ERROR [1, 10] - [1, 14])
 
 ================================================================================
 Fixture scriptlet-line-continue-chain (htmljs target)

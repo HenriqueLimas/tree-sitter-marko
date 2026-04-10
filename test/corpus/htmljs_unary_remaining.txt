@@ -10,32 +10,29 @@ div a=input.class Test extends Other { hello() {} }
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
+  (attribute
     (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
+  (attribute_name)
+  (attribute
     (attribute_name)
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_method_fragment)
-        (attribute_method_nested_block)
-        (attribute_method_fragment))))
+    (regular_attribute
+      (attribute_method_fragment)
+      (attribute_method_nested_block)
+      (attribute_method_fragment)))
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (regular_attribute))
+  (attribute
     (attribute_name)
+    (regular_attribute)
+    (regular_attribute))
+  (attribute_name)
+  (attribute_name)
+  (attribute
     (attribute_name)
-    (attribute
-      (attribute_name)
-      (regular_attribute
-        (attribute_method_fragment)
-        (attribute_method_nested_block)
-        (attribute_method_fragment)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/unary-as-member-expression/input.marko	0.08 ms	  1147 bytes/ms	(ERROR [0, 3] - [0, 45])
+    (regular_attribute
+      (attribute_method_fragment)
+      (attribute_method_nested_block)
+      (attribute_method_fragment))))

@@ -16,34 +16,32 @@ p class="foo"
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (attribute_bracket_value
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_fragment))
-      (regular_attribute
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment)))))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (attribute_expression_atom
+      (attribute_bracket_value
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_fragment)
+    (regular_attribute
+      (attribute_expression_atom
+        (quoted_attribute_value))
+      (attribute_expression_operator)
+      (attribute_expression_atom
+        (attribute_expression_fragment))))
   (placeholder
     (javascript_fragment))
   (text)
@@ -66,7 +64,6 @@ p class="foo"
     (tag_name))
   (top_level_statement
     (statement_block_tail)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed/input.marko	0.10 ms	  1772 bytes/ms	(ERROR [0, 3] - [3, 13])
 
 ================================================================================
 Fixture mixed-bad-indentation (htmljs target)
@@ -89,7 +86,8 @@ p
       (end_tag
         (tag_name))))
   (concise_tag
-    (tag_name)))
+    (tag_name))
+  (ERROR))
 
 ================================================================================
 Fixture mixed-block-root (htmljs target)
@@ -191,34 +189,32 @@ p class="foo"
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (attribute_bracket_value
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_fragment))
-      (regular_attribute
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment)))))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (attribute_expression_atom
+      (attribute_bracket_value
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_fragment)
+    (regular_attribute
+      (attribute_expression_atom
+        (quoted_attribute_value))
+      (attribute_expression_operator)
+      (attribute_expression_atom
+        (attribute_expression_fragment))))
   (placeholder
     (javascript_fragment))
   (text)
@@ -242,7 +238,6 @@ p class="foo"
     (tag_name))
   (top_level_statement
     (statement_block_tail)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed-invalid/input.marko	0.27 ms	   662 bytes/ms	(ERROR [0, 3] - [3, 13])
 
 ================================================================================
 Fixture mixed-open-tag-only (htmljs target)
@@ -258,31 +253,28 @@ div class="foo"
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (attribute_bracket_value
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)
-            (attribute_bracket_fragment)
-            (quoted_attribute_value)))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment))
-        (attribute_expression_fragment)
-        (attribute_expression_atom
-          (quoted_attribute_value))
-        (attribute_expression_operator)
-        (attribute_expression_atom
-          (attribute_expression_fragment)))
-      (regular_attribute)))
+  (attribute
+    (attribute_name)
+    (regular_attribute)
+    (attribute_expression_atom
+      (attribute_bracket_value
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)
+        (attribute_bracket_fragment)
+        (quoted_attribute_value)))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (attribute_expression_fragment)
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (attribute_expression_operator)
+    (attribute_expression_atom
+      (attribute_expression_fragment))
+    (regular_attribute))
   (text)
   (concise_tag
     (tag_name))
   (top_level_statement
     (statement_block_tail)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/mixed-open-tag-only/input.marko	0.06 ms	  1468 bytes/ms	(ERROR [0, 3] - [2, 8])

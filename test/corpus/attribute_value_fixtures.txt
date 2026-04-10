@@ -380,16 +380,14 @@ Attribute regex literal forms (htmljs target)
     (normal_element
       (start_tag
         (tag_name)
-        (ERROR
-          (attribute_name))
+        (attribute_name)
         (tag_variable
           (tag_variable_fragment)))
       (element
         (normal_element
           (start_tag
             (tag_name)
-            (ERROR
-              (attribute_name))
+            (attribute_name)
             (tag_variable
               (tag_variable_fragment)))
           (end_tag
@@ -398,8 +396,7 @@ Attribute regex literal forms (htmljs target)
         (normal_element
           (start_tag
             (tag_name)
-            (ERROR
-              (attribute_name))
+            (attribute_name)
             (tag_variable
               (tag_variable_fragment)))
           (end_tag
@@ -407,8 +404,7 @@ Attribute regex literal forms (htmljs target)
       (element
         (self_closing_element
           (tag_name)
-          (ERROR
-            (attribute_name))
+          (attribute_name)
           (tag_variable
             (tag_variable_fragment))
           (attribute

@@ -13,25 +13,18 @@ html lang="en"
 (document
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute
-      (attribute_name)
-      (regular_attribute)
-      (ERROR
-        (attribute_expression_atom
-          (quoted_attribute_value)))
-      (regular_attribute))
+  (attribute
     (attribute_name)
-    (ERROR
-      (attribute_expression_atom
-        (quoted_attribute_value))
-      (attribute_expression_operator)
-      (ERROR)
-      (ERROR)
-      (ERROR))
     (regular_attribute)
-    (regular_attribute)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/var/input.marko	0.17 ms	   546 bytes/ms	(ERROR [0, 3] - [4, 14])
+    (attribute_expression_atom
+      (quoted_attribute_value))
+    (regular_attribute))
+  (attribute_name)
+  (attribute_expression_atom
+    (quoted_attribute_value))
+  (attribute_expression_operator)
+  (regular_attribute)
+  (regular_attribute))
 
 ================================================================================
 Fixture var-new-Date (htmljs target)
@@ -44,12 +37,10 @@ var foo = new Date(2000,0,1)
 (document
   (concise_tag
     (tag_name)
-    (ERROR
-      (attribute
-        (attribute_name)
-        (regular_attribute)
-        (regular_attribute))
-      (tag_name))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (tag_name)
     (tag_arguments
       (tag_arguments_fragment))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/var-new-Date/input.marko	0.04 ms	   723 bytes/ms	(ERROR [0, 3] - [0, 18])

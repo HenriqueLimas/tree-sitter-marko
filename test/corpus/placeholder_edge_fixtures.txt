@@ -9,7 +9,8 @@ Empty placeholder expression in dynamic tag
 (document
   (element
     (self_closing_element
-      (dynamic_tag_name))))
+      (dynamic_tag_name)))
+  (MISSING "}"))
 
 ================================================================================
 Invalid placeholder expression in quoted attribute

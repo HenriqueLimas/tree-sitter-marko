@@ -11,7 +11,6 @@ Fixture eof-attr-argument (htmljs target)
     (tag_name)
     (attribute_name)
     (attribute_arguments_fragment)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-attr-argument/input.marko	0.03 ms	   473 bytes/ms	(ERROR [0, 0] - [0, 12])
 
 ================================================================================
 Fixture eof-attr-value-js-comment-comment (htmljs target)
@@ -33,7 +32,6 @@ Fixture eof-attr-value-js-comment-comment (htmljs target)
       (regular_attribute
         (attribute_name)))
     (attribute_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-attr-value-js-comment-comment/input.marko	0.04 ms	   697 bytes/ms	(ERROR [0, 0] - [0, 32])
 
 ================================================================================
 Fixture eof-attr-value-js-comment-comment-concise (htmljs target)
@@ -50,7 +48,6 @@ b selected something test=/*
     (attribute_name)
     (attribute_name)
     (attribute_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-attr-value-js-comment-comment-concise/input.marko	0.06 ms	   505 bytes/ms	(ERROR [0, 1] - [0, 28])
 
 ================================================================================
 Fixture eof-attr-value-string (htmljs target)
@@ -64,7 +61,6 @@ Fixture eof-attr-value-string (htmljs target)
   (ERROR
     (tag_name)
     (attribute_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-attr-value-string/input.marko	0.03 ms	   297 bytes/ms	(ERROR [0, 0] - [0, 9])
 
 ================================================================================
 Fixture eof-placeholder-body-escaped (htmljs target)
@@ -83,8 +79,8 @@ Fixture eof-placeholder-body-escaped (htmljs target)
       (placeholder
         (javascript_fragment))
       (end_tag
-        (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-placeholder-body-escaped/input.marko	0.04 ms	   519 bytes/ms	(MISSING "}" [0, 16] - [0, 16])
+        (tag_name))))
+  (MISSING "}"))
 
 ================================================================================
 Fixture eof-placeholder-body-non-escaped (htmljs target)
@@ -106,8 +102,8 @@ Fixture eof-placeholder-body-non-escaped (htmljs target)
       (placeholder
         (javascript_fragment))
       (end_tag
-        (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-placeholder-body-non-escaped/input.marko	0.03 ms	  1029 bytes/ms	(MISSING "}" [2, 10] - [2, 10])
+        (tag_name))))
+  (MISSING "}"))
 
 ================================================================================
 Fixture eof-placeholder-concise (htmljs target)
@@ -121,7 +117,8 @@ div
 (document
   (concise_tag
     (tag_name))
-  (concise_fence_line))
+  (concise_fence_line)
+  (MISSING "}"))
 
 ================================================================================
 Fixture eof-placeholder-script-body-escaped (htmljs target)
@@ -137,7 +134,6 @@ Fixture eof-placeholder-script-body-escaped (htmljs target)
       (builtin_tag_name))
     (text)
     (javascript_fragment)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-placeholder-script-body-escaped/input.marko	0.03 ms	   694 bytes/ms	(ERROR [0, 0] - [0, 19])
 
 ================================================================================
 Fixture eof-placeholder-script-body-non-escaped (htmljs target)
@@ -153,7 +149,6 @@ Fixture eof-placeholder-script-body-non-escaped (htmljs target)
       (builtin_tag_name))
     (text)
     (javascript_fragment)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-placeholder-script-body-non-escaped/input.marko	0.07 ms	   279 bytes/ms	(ERROR [0, 0] - [0, 20])
 
 ================================================================================
 Fixture eof-placeholder-string (htmljs target)
@@ -172,8 +167,8 @@ Fixture eof-placeholder-string (htmljs target)
       (placeholder
         (javascript_fragment))
       (end_tag
-        (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-placeholder-string/input.marko	0.03 ms	   682 bytes/ms	(MISSING "}" [0, 15] - [0, 15])
+        (tag_name))))
+  (MISSING "}"))
 
 ================================================================================
 Fixture eof-script-body (htmljs target)
@@ -205,7 +200,6 @@ Fixture eof-script-body (htmljs target)
     (start_tag
       (builtin_tag_name))
     (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-script-body/input.marko	0.09 ms	  1431 bytes/ms	(ERROR [0, 0] - [1, 91])
 
 ================================================================================
 Fixture eof-style (htmljs target)
@@ -233,7 +227,6 @@ Fixture eof-style (htmljs target)
     (start_tag
       (builtin_tag_name))
     (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/eof-style/input.marko	0.05 ms	  1991 bytes/ms	(ERROR [0, 0] - [0, 99])
 
 ================================================================================
 Fixture eof-xml-declaration (htmljs target)
@@ -244,4 +237,5 @@ Fixture eof-xml-declaration (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (declaration))
+  (declaration)
+  (MISSING "?>"))

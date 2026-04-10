@@ -51,8 +51,7 @@ Reached EOF
   (concise_fence_line)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (concise_tag
     (builtin_tag_name))
   (concise_fence_line)
@@ -64,9 +63,7 @@ Reached EOF
   (concise_fence_line)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-html-block-missing-end/input.marko	0.06 ms	  2143 bytes/ms	(ERROR [3, 9] - [3, 15])
+  (attribute_name))
 
 ================================================================================
 Fixture multiline-html-block-nested (htmljs target)
@@ -122,13 +119,11 @@ div --
   (concise_fence_line)
   (concise_tag
     (tag_name))
-  (ERROR
-    (attribute_name))
+  (attribute_name)
   (concise_fence_line)
   (concise_tag
     (tag_name))
   (concise_fence_line))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-html-block-same-line/input.marko	0.05 ms	  1758 bytes/ms	(ERROR [2, 9] - [2, 15])
 
 ================================================================================
 Fixture multiline-text-block (htmljs target)
@@ -162,8 +157,8 @@ B
   (concise_fence_line)
   (concise_fence_block
     (text)
-    (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/multiline-text-block-bad/input.marko	0.03 ms	   408 bytes/ms	(MISSING "---" [4, 2] - [4, 2])
+    (text))
+  (ERROR))
 
 ================================================================================
 Fixture multiline-text-block-with-hyphens (htmljs target)

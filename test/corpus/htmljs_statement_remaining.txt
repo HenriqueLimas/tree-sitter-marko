@@ -16,7 +16,8 @@ Fixture statement-concise-only (htmljs target)
       (attribute
         (regular_attribute
           (attribute_name)
-          (attribute_value_fragment))))))
+          (attribute_value_fragment)))))
+  (ERROR))
 
 ================================================================================
 Fixture statement-root-only (htmljs target)
@@ -31,4 +32,5 @@ div
   (concise_tag
     (tag_name))
   (top_level_statement
-    (statement_block_tail)))
+    (statement_block_tail))
+  (ERROR))

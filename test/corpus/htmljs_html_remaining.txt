@@ -53,13 +53,10 @@ Fixture html-comment-tag (htmljs target)
                     (quoted_attribute_value))))
               (end_tag
                 (builtin_tag_name))))
-          (ERROR
-            (ERROR))
           (end_tag
             (builtin_tag_name))))
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/html-comment-tag/input.marko	0.06 ms	  3345 bytes/ms	(ERROR [4, 56] - [4, 65])
 
 ================================================================================
 Fixture html-comments-ignore-placeholders (htmljs target)

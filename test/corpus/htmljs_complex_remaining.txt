@@ -104,7 +104,6 @@ p
     (text)
     (text)
     (text)))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/complex/input.marko	0.07 ms	  9776 bytes/ms	(MISSING "---" [47, 6] - [47, 6])
 
 ================================================================================
 Fixture complex-attr-name (htmljs target)
@@ -118,15 +117,11 @@ Fixture complex-attr-name (htmljs target)
   (element
     (self_closing_element
       (tag_name)
-      (ERROR
-        (attribute_name)
-        (shorthand_attribute)
-        (ERROR))
+      (attribute_name)
       (shorthand_attribute)
-      (ERROR
-        (tag_arguments
-          (quoted_attribute_value)))
+      (shorthand_attribute)
+      (tag_arguments
+        (quoted_attribute_value))
       (shorthand_attribute)
       (tag_default_value
         (tag_default_fragment)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/complex-attr-name/input.marko	0.06 ms	   882 bytes/ms	(ERROR [0, 8] - [0, 25])

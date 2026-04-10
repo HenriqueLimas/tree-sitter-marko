@@ -145,8 +145,7 @@ Fixture placeholder-backslash (htmljs target)
         (attribute
           (regular_attribute
             (attribute_name)
-            (ERROR
-              (javascript_fragment))
+            (javascript_fragment)
             (quoted_attribute_value
               (placeholder
                 (javascript_fragment)))))
@@ -203,10 +202,8 @@ Fixture placeholder-backslash (htmljs target)
       (start_tag
         (tag_name))
       (text)
-      (ERROR)
       (end_tag
         (tag_name)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/placeholder-backslash/input.marko	0.07 ms	  2437 bytes/ms	(ERROR [0, 6] - [0, 18])
 
 ================================================================================
 Fixture placeholder-body-multi-line-js-comment (htmljs target)
@@ -366,22 +363,17 @@ Fixture placeholder-unnamed-attr-escaped (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (ERROR
-        (attribute_name)
-        (ERROR
-          (quoted_attribute_value)
-          (ERROR))
-        (attribute_expression_atom
-          (placeholder
-            (javascript_fragment)))
-        (attribute_expression_operator)
-        (attribute_expression_operator))
-      (tag_variable
-        (tag_variable_fragment)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/placeholder-unnamed-attr-escaped/input.marko	0.08 ms	   518 bytes/ms	(ERROR [0, 0] - [0, 41])
+  (start_tag
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value)
+    (attribute_expression_atom
+      (placeholder
+        (javascript_fragment)))
+    (attribute_expression_operator)
+    (attribute_expression_operator)
+    (tag_variable
+      (tag_variable_fragment))))
 
 ================================================================================
 Fixture placeholder-unnamed-attr-escaped-escaped (htmljs target)
@@ -392,22 +384,17 @@ Fixture placeholder-unnamed-attr-escaped-escaped (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (ERROR
-    (start_tag
-      (tag_name)
-      (ERROR
-        (attribute_name)
-        (ERROR
-          (quoted_attribute_value)
-          (ERROR))
-        (attribute_expression_atom
-          (placeholder
-            (javascript_fragment)))
-        (attribute_expression_operator)
-        (attribute_expression_operator))
-      (tag_variable
-        (tag_variable_fragment)))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/placeholder-unnamed-attr-escaped-escaped/input.marko	0.09 ms	   481 bytes/ms	(ERROR [0, 0] - [0, 42])
+  (start_tag
+    (tag_name)
+    (attribute_name)
+    (quoted_attribute_value)
+    (attribute_expression_atom
+      (placeholder
+        (javascript_fragment)))
+    (attribute_expression_operator)
+    (attribute_expression_operator)
+    (tag_variable
+      (tag_variable_fragment))))
 
 ================================================================================
 Fixture placeholder-unnamed-attr-last (htmljs target)
