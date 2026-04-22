@@ -194,8 +194,7 @@ Fixture shorthand-id-dup (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (text)
-  (ERROR))
+  (text))
 
 ================================================================================
 Fixture shorthand-id-dynamic (htmljs target)

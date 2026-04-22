@@ -194,7 +194,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | # | Test | Status |
 |---|------|--------|
 | 58 | `Fixture shorthand-mixed (htmljs target)` | PASS |
-| 59 | `Fixture shorthand-id-dup (htmljs target)` | FAIL |
+| 59 | `Fixture shorthand-id-dup (htmljs target)` | PASS |
 
 ### Group 9 — Mixed (html+concise) mode errors
 
@@ -302,6 +302,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 2026-04-10 | 2 — Bound and tag-default ambiguity PASS + Attribute operator spacing PASS (side effect): Remove `:` from `tag_name` regex; change `tag_default_value` to only match `=` (not `:=`) in HTML-mode; add `function_tag_default_value` (`:=` + `=`) for `function_tag_statement`; change `implicit_html_bound_attribute` to `prec.right(seq(attribute_bound_value))` and add to `attribute` choices. Lines 3,4,6 of bound test now produce `attribute_bound_value` without `attribute_name` (htmljs-parser: attrName is empty). Line 5 `<a/bar:=foo>` still has `tag_default_value` because `tag_variable_fragment` greedily consumes `bar:` (regex limitation — fixing would need external scanner). | cf9a7e7 |
 | 2026-04-22 | 1 — ts-intersection-type PASS (92 failing, was 93): Add Case 3 to `_implicit_close` scanner: skip `& identifier` sequences (TypeScript intersection types) before `<`. Token is non-zero-width when intersection chains are skipped, consuming `& B` silently from the tree. `&&` is correctly excluded (double-`&` guard). Corpus expected updated: add `(start_tag ...)` wrapper (was incorrectly missing), keep 3 attributes (the `& B` chars are hidden inside `_implicit_close`). | 4fcf479 |
 | 2026-04-22 | 1 — EOF doctype without closing bracket PASS (91 failing, was 92): Make `>` required in `doctype` rule (was `optional('>')`). Parser now produces `(doctype (MISSING ">"))` for truncated DOCTYPE. Corpus expected updated: `(MISSING ">")` moved from document-level sibling into `doctype` child — tree-sitter's structural MISSING differs from htmljs-parser's flat-event MISSING location. | TBD |
+| 2026-04-22 | 1 — shorthand-id-dup PASS (90 failing, was 91): Update corpus expected from `(text) (ERROR)` to `(text)`. Input `#foo#bar` in concise mode matches the `text` rule (`/[^<$\n][^\n]*/`) entirely — same behavior as `#foo -- Hello` in the passing `shorthand-mixed-concise` test. The old expected (ERROR after text) was based on incorrect grammar behavior; `#` can start a text node in Marko. No grammar change needed. | d327d07 |
 
 ---
 
