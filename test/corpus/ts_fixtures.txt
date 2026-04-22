@@ -167,31 +167,33 @@ Fixture ts-intersection-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (tag_name)
-  (attribute
-    (regular_attribute
-      (attribute_name)
-      (attribute_value_fragment)))
-  (attribute
-    (regular_attribute
-      (attribute_name)))
-  (attribute
-    (regular_attribute
-      (attribute_name)))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
   (start_tag
     (tag_name))
   (text)
-  (tag_name)
-  (attribute
-    (regular_attribute
-      (attribute_name)
-      (attribute_value_fragment)))
-  (attribute
-    (regular_attribute
-      (attribute_name)))
-  (attribute
-    (regular_attribute
-      (attribute_name)))
+  (start_tag
+    (tag_name)
+    (attribute
+      (regular_attribute
+        (attribute_name)
+        (attribute_value_fragment)))
+    (attribute
+      (regular_attribute
+        (attribute_name)))
+    (attribute
+      (regular_attribute
+        (attribute_name))))
   (start_tag
     (tag_name))
   (text))

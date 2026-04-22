@@ -4,12 +4,11 @@
 
 **Rules:**
 1. Fix the grammar/parser; only update a test expectation when a node name is renamed or a new node is introduced upstream.
-2. Commit after every test (or coherent group of tests) fixed.
-3. Update this file — flip `FAIL` → `PASS` — after each commit.
-4. Pick the next test that is the most architecturally important (fixes root causes first, not leaf symptoms).
-5. Never use `--update` to auto-accept wrong output.
-
-**Status as of 2026-04-10:** 93 failing / 252 passing / 345 total (bound-attr + attr-operator-spacing fixed)
+2. Update this file — flip `FAIL` → `PASS` when the test passes, and logs insights and issues found and decisions made.
+3. Commit after every test (or coherent group of tests) fixed.
+4. Never use `--update` to auto-accept wrong output.
+5. Solve one group of test at time, after commit, your job is DONE and you can call the day!
+6. Don't take the easy solution, make sure to think through a solution and don't take shortcuts!
 
 ---
 
@@ -104,7 +103,7 @@ These all fail because `<` inside a type argument position is interpreted as ano
 | 2 | `Fixture ts-generic-complex (htmljs target)` | PASS |
 | 3 | `Fixture ts-generic-function-type (htmljs target)` | FAIL (deep investigation 2026-04-10 — see notes below) |
 | 4 | `Fixture ts-function-type (htmljs target)` | PASS |
-| 5 | `Fixture ts-intersection-type (htmljs target)` | FAIL |
+| 5 | `Fixture ts-intersection-type (htmljs target)` | PASS |
 | 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
 | 7 | `Fixture ts-type-statement (htmljs target)` | FAIL |
 | 8 | `Fixture ts-unary-exression (htmljs target)` | FAIL |
@@ -285,67 +284,6 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 
 ---
 
-## Initial Claude prompt (paste this at the start of a new session)
-
-```
-We are fixing failing tree-sitter tests for the marko-tmbundle grammar.
-Working directory: tree-sitter-marko/
-
-Reference files:
-- test/failing_tests_tracking.md — 110 failing tests grouped by root cause, fix in priority order.
-- ../marko-prettier/src/index.ts — critical design reference for how Marko constructs
-  map to JavaScript/TypeScript expressions.
-
-Rules (non-negotiable):
-- Run `tree-sitter test --overview-only` to confirm current failure count before starting.
-- Fix grammar.js (or C scanner if needed) so the parser produces the correct tree.
-- NEVER run `tree-sitter test --update` to auto-accept wrong output.
-- Only update a test expectation when a node name changed upstream or a new node was introduced.
-- Commit after each fixed test or coherent group: `git add -p && git commit`.
-- After each commit, update test/failing_tests_tracking.md (flip FAIL → PASS).
-- Then immediately pick and start the next highest-priority failing test without waiting.
-
-Design reference — marko-prettier strategy (../marko-prettier/src/index.ts):
-marko-prettier resolves the same parsing ambiguities by wrapping Marko sub-expressions
-in JS/TS scaffolding before handing them to the Babel/TS parser. Use this as a guide
-for what each Marko construct must look like to a JS/TS parser:
-  - Attribute method `onClick() {}`  →  `function${value}` (strip "function" after formatting)
-  - Tag variable `/{ x }: T`        →  `var ${code}=_` (strip "=_" after)
-  - Tag type args `<T, U>`          →  `_<${code}>` (strip "_" after)
-  - Tag params `|x, y|`             →  `function _(${code}){}`
-  - Tag type params `<T extends X>` →  `function _<${code}>(){}`
-  - Attribute / tag args            →  `_(${code})`
-  - Attribute value `=expr`         →  sent as a bare TS expression
-
-Apply the same mental model in the grammar: shape grammar rules so the external scanner
-consumes full JS spans as opaque tokens, or use injections.scm to delegate those ranges
-to the JavaScript/TypeScript tree-sitter grammar. This is especially important for:
-  - Group 1 (TS generics): `<Tag<T>>` — second `<` must NOT be seen as a new HTML open
-    tag; consume the whole `<…>` type-arg span (balanced) before the HTML layer sees it,
-    just as marko-prettier wraps it as `_<T>`.
-  - Group 2–4 (attr expressions): `typeof x`, `void 0`, `!x`, `/regex/` — all valid JS
-    that marko-prettier sends straight to the TS expression parser without any wrapping.
-    The grammar's attribute value rule must accept these without producing ERROR nodes.
-  - Group 6 (tag variable): `/{ x }: Type` — marko-prettier wraps as `var X=_`. The
-    tag_variable grammar rule must accept any JS destructuring LHS including typed patterns.
-  - Group 5 (attr method): `onClick() {}` — marko-prettier prepends "function". The
-    grammar external scanner must correctly handle the opening `(` of the params.
-
-When starting a fix:
-1. `tree-sitter test -i "<test name regex>"` to see the diff (expected vs actual).
-2. Read the relevant corpus file in test/corpus/.
-3. Read grammar.js and understand the rule(s) involved.
-4. Check ../marko-prettier/src/index.ts for how the same construct is handled there.
-5. Make the minimal, correct grammar change (refactor if fundamentally broken — no quick hacks).
-6. `tree-sitter generate && tree-sitter test -i "<test name>"` to verify.
-7. Run full `tree-sitter test --overview-only` to confirm no regressions.
-8. Commit, update tracking file, move to next test.
-
-Pick the next FAIL test from the tracking file (Group 1 first) and start fixing now.
-```
-
----
-
 ## Progress log
 
 | Date | Tests fixed | Commit |
@@ -362,6 +300,7 @@ Pick the next FAIL test from the tracking file (Group 1 first) and start fixing 
 | 2026-04-10 | 0 — deep investigation into ts-generic-function-type; no tests fixed this session. See investigation notes below. | — |
 | 2026-04-10 | 1 — ts-function-type PASS: extend `_implicit_close` in scanner.c to also fire at ` =>` (space + arrow). The TS function return type `(x: T) => ReturnType` after `attribute_arguments` leaves the rest as document-level text. Guard: require whitespace before `=>` so `class=>` (attribute missing value) stays ERROR. | 8375ef4 |
 | 2026-04-10 | 2 — Bound and tag-default ambiguity PASS + Attribute operator spacing PASS (side effect): Remove `:` from `tag_name` regex; change `tag_default_value` to only match `=` (not `:=`) in HTML-mode; add `function_tag_default_value` (`:=` + `=`) for `function_tag_statement`; change `implicit_html_bound_attribute` to `prec.right(seq(attribute_bound_value))` and add to `attribute` choices. Lines 3,4,6 of bound test now produce `attribute_bound_value` without `attribute_name` (htmljs-parser: attrName is empty). Line 5 `<a/bar:=foo>` still has `tag_default_value` because `tag_variable_fragment` greedily consumes `bar:` (regex limitation — fixing would need external scanner). | cf9a7e7 |
+| 2026-04-22 | 1 — ts-intersection-type PASS (92 failing, was 93): Add Case 3 to `_implicit_close` scanner: skip `& identifier` sequences (TypeScript intersection types) before `<`. Token is non-zero-width when intersection chains are skipped, consuming `& B` silently from the tree. `&&` is correctly excluded (double-`&` guard). Corpus expected updated: add `(start_tag ...)` wrapper (was incorrectly missing), keep 3 attributes (the `& B` chars are hidden inside `_implicit_close`). | (this commit) |
 
 ---
 

@@ -91,9 +91,19 @@ bool tree_sitter_marko_external_scanner_scan(
    *   Sets after_implicit=false (no GT_AFTER_IMPLICIT needed here — the
    *   content after this point is plain text, not a start_tag_doc).
    *
+   * Case 3 — TS intersection-type `& identifier` sequences followed by '<':
+   *   Fires for constructs like `as A & B<T>` where `& B` is a TypeScript
+   *   intersection-type continuation.  The token is NON-zero-width: it
+   *   consumes the leading whitespace plus `& B ` chars so they are hidden
+   *   from the parse tree.  Only single `&` (not `&&`) is handled; `&&` is
+   *   not an intersection operator and must NOT trigger implicit close.
+   *   Sets after_implicit=true so the following `<T>` is a start_tag_doc.
+   *
    * We do not check for EOF — a tag at EOF errors out via normal recovery. */
   if (valid_symbols[IMPLICIT_CLOSE]) {
-    /* Mark end FIRST so the token is always zero-width from this position. */
+    /* Mark end FIRST so the token is zero-width from this position by
+     * default.  For case 3 we update mark_end later to consume the skipped
+     * `& identifier` text. */
     lexer->mark_end(lexer);
 
     if (lexer->lookahead == '<') {
@@ -102,16 +112,59 @@ bool tree_sitter_marko_external_scanner_scan(
       return true;
     }
 
-    /* Skip ONE OR MORE whitespace chars, then look for '=>'.
-     * Requiring actual whitespace before '=>' ensures we don't fire for
-     * `class=>` (attribute with `=` immediately before `>` tag-close) but
-     * DO fire for `as (x: T) => ReturnType` (space before `=>`). */
+    /* Skip ONE OR MORE whitespace chars. */
     bool skipped_ws = false;
     while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
       lexer->advance(lexer, false);
       skipped_ws = true;
     }
-    if (skipped_ws && lexer->lookahead == '=') {
+    if (!skipped_ws) return false;
+
+    /* Case 3: TS intersection `& identifier` sequences followed by '<'.
+     * After consuming `& B ` (non-zero-width), the subsequent `<T>` can be
+     * parsed as a start_tag_doc, matching the expected tree structure for
+     * inputs like `as A & B<T>`. */
+    if (lexer->lookahead == '&') {
+      for (;;) {
+        /* Consume the '&'. */
+        lexer->advance(lexer, false);
+        /* A second '&' means logical-AND (&&), not intersection — bail out.
+         * The scanner position is reset to zero on false return. */
+        if (lexer->lookahead == '&') return false;
+        /* Require at least one space after '&'. */
+        if (lexer->lookahead != ' ' && lexer->lookahead != '\t') return false;
+        while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+          lexer->advance(lexer, false);
+        }
+        /* Consume the identifier after '& ' (must start with a letter/$ /_). */
+        bool has_ident = false;
+        while ((lexer->lookahead >= 'A' && lexer->lookahead <= 'Z') ||
+               (lexer->lookahead >= 'a' && lexer->lookahead <= 'z') ||
+               (lexer->lookahead >= '0' && lexer->lookahead <= '9') ||
+               lexer->lookahead == '_' || lexer->lookahead == '$' ||
+               lexer->lookahead == '-') {
+          lexer->advance(lexer, false);
+          has_ident = true;
+        }
+        if (!has_ident) return false;
+        /* Skip trailing whitespace. */
+        while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+          lexer->advance(lexer, false);
+        }
+        if (lexer->lookahead == '<') {
+          /* Found `& ident <`: update mark_end (now non-zero-width) and fire. */
+          lexer->mark_end(lexer);
+          s->after_implicit = true;
+          lexer->result_symbol = IMPLICIT_CLOSE;
+          return true;
+        }
+        /* Allow chained intersections: `A & B & C<T>`. */
+        if (lexer->lookahead != '&') return false;
+      }
+    }
+
+    /* Case 2: TS arrow `=>` — requires whitespace before (already checked). */
+    if (lexer->lookahead == '=') {
       lexer->advance(lexer, false);
       if (lexer->lookahead == '>') {
         s->after_implicit = false; /* no GT_AFTER_IMPLICIT needed */
