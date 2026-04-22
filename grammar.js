@@ -55,7 +55,7 @@ module.exports = grammar({
       $.text,
     ),
 
-    doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, optional('>')),
+    doctype: $ => seq('<!', /[Dd][Oo][Cc][Tt][Yy][Pp][Ee]/, /[^>]+/, '>'),
 
     declaration: $ => seq('<?', /[^?>]+/, optional('?>')),
 

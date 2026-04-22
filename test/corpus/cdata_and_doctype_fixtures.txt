@@ -61,5 +61,5 @@ EOF doctype without closing bracket
 --------------------------------------------------------------------------------
 
 (document
-  (doctype)
-  (MISSING ">"))
+  (doctype
+    (MISSING ">")))
