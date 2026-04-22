@@ -74,7 +74,7 @@ module.exports = grammar({
 
     statement_line_tail: _ => /[^\n]*/,
 
-    statement_block_tail: _ => /[^\n]*(\n[ \t][^\n]*)*(\n\})?/,
+    statement_block_tail: _ => /[^\n]*(\n[ \t>][^\n]*)*(\n\})?/,
 
     style_block_css: $ => prec(2, seq('style', '{', optional($.style_block_content), '}')),
 
@@ -125,8 +125,10 @@ module.exports = grammar({
         optional($.tag_arguments),
         optional($.tag_method),
         optional($.tag_default_value),
-        optional($.concise_attribute_group),
-        repeat(alias($.concise_attribute, $.attribute)),
+        repeat(choice(
+          $.concise_attribute_group,
+          alias($.same_line_concise_attribute, $.attribute),
+        )),
         optional($.concise_terminator),
       )),
     ),
@@ -557,6 +559,34 @@ module.exports = grammar({
         $.unquoted_attribute_value,
       )))),
     )), $.regular_attribute),
+
+    // Inner rule aliased to regular_attribute (like regular_attribute_no_comments
+    // but uses same_line_comma_attribute_name so the GLR parser explores both
+    // paths — comma-separated (variant 2) and non-comma (variant 3).  When
+    // there is no following comma, only the non-comma path succeeds.
+    same_line_regular_attribute: $ => alias(prec.right(seq(
+      field('name', alias($.same_line_comma_attribute_name, $.attribute_name)),
+      optional($.attribute_bound_value),
+      optional($.attribute_arguments),
+      optional($.attribute_method),
+      optional(seq('=', field('value', choice(
+        $.attribute_expression_value,
+        $.attribute_brace_value,
+        $.backtick_attribute_value,
+        $.quoted_attribute_value,
+        $.attribute_bracket_value,
+        $.attribute_paren_value,
+        seq($.attribute_value_fragment, $.quoted_attribute_value),
+        seq($.attribute_value_fragment, $.attribute_paren_value),
+        $.attribute_value_fragment,
+        $.unquoted_attribute_value,
+      )))),
+    )), $.regular_attribute),
+
+    // Wrapper choice (mirrors concise_attribute) so that
+    // alias($.same_line_concise_attribute, $.attribute) produces
+    // attribute(regular_attribute(...)) — the same nesting as HTML-mode attrs.
+    same_line_concise_attribute: $ => choice($.same_line_regular_attribute),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 

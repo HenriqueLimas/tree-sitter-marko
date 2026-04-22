@@ -335,7 +335,6 @@ div
 (document
   (top_level_statement
     (statement_block_tail))
-  (text)
   (concise_tag
     (tag_name)))
 
@@ -398,21 +397,12 @@ export interface Foo {
 (document
   (top_level_statement
     (statement_block_tail))
-  (text)
-  (concise_tag
-    (tag_name))
-  (attribute_name)
   (top_level_statement
     (statement_block_tail))
-  (text)
-  (concise_tag
-    (tag_name))
   (top_level_statement
     (statement_block_tail))
-  (text)
   (top_level_statement
     (statement_block_tail))
-  (text)
   (top_level_statement
     (statement_block_tail)))
 

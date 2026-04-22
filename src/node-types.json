@@ -85,7 +85,7 @@
           "named": true
         },
         {
-          "type": "regular_attribute_no_comments",
+          "type": "same_line_regular_attribute",
           "named": true
         },
         {
@@ -1030,7 +1030,7 @@
     }
   },
   {
-    "type": "regular_attribute_no_comments",
+    "type": "same_line_regular_attribute",
     "named": true,
     "fields": {
       "name": {
@@ -1038,13 +1038,13 @@
         "required": true,
         "types": [
           {
-            "type": "regular_attribute",
+            "type": "attribute_name",
             "named": true
           }
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {

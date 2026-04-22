@@ -105,7 +105,7 @@ These all fail because `<` inside a type argument position is interpreted as ano
 | 4 | `Fixture ts-function-type (htmljs target)` | PASS |
 | 5 | `Fixture ts-intersection-type (htmljs target)` | PASS |
 | 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
-| 7 | `Fixture ts-type-statement (htmljs target)` | FAIL |
+| 7 | `Fixture ts-type-statement (htmljs target)` | PASS |
 | 8 | `Fixture ts-unary-exression (htmljs target)` | FAIL |
 | 9 | `Fixture tag-with-type-arguments (htmljs target)` | FAIL |
 | 10 | `Fixture tag-type-argument-arrow-function (htmljs target)` | FAIL |
@@ -304,6 +304,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 2026-04-22 | 1 — EOF doctype without closing bracket PASS (91 failing, was 92): Make `>` required in `doctype` rule (was `optional('>')`). Parser now produces `(doctype (MISSING ">"))` for truncated DOCTYPE. Corpus expected updated: `(MISSING ">")` moved from document-level sibling into `doctype` child — tree-sitter's structural MISSING differs from htmljs-parser's flat-event MISSING location. | TBD |
 | 2026-04-22 | 1 — backtick-string-eof PASS (91 → 90 failing): Remove stray debug line accidentally included in corpus expected output. Line `/Users/hlimas/.../input.marko  0.04 ms  1194 bytes/ms  (ERROR [0,0]-[1,20])` was left from htmljs-parser test import; tree-sitter corpus parser extracted `(ERROR)` from it, creating a spurious second-ERROR expectation. The actual grammar output (one ERROR node spanning entire input) is correct and matches htmljs-parser semantics. | TBD |
 | 2026-04-22 | 1 — shorthand-id-dup PASS (90 failing, was 91): Update corpus expected from `(text) (ERROR)` to `(text)`. Input `#foo#bar` in concise mode matches the `text` rule (`/[^<$\n][^\n]*/`) entirely — same behavior as `#foo -- Hello` in the passing `shorthand-mixed-concise` test. The old expected (ERROR after text) was based on incorrect grammar behavior; `#` can start a text node in Marko. No grammar change needed. | d327d07 |
+| 2026-04-22 | 1 — ts-type-statement PASS (91 → 90 failing): Extend `statement_block_tail` regex to allow `>` as a valid start char for continuation lines: `/[^\n]*(\n[ \t>][^\n]*)*(\n\})?/` (was `[ \t]`). TypeScript generic closing `> {`, `> = A &`, `>;`, `> = baz;` lines are now captured as part of the block instead of becoming separate text nodes at document level. Side effect: `ts-static-type` corpus updated (remove spurious `(text)` for the `>` line — now correctly inside `statement_block_tail`). Both tests now match htmljs-parser semantics: each `static`/`export` block is a single `top_level_statement`. | TBD |
 
 ---
 
