@@ -248,7 +248,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 
 | # | Test | Status |
 |---|------|--------|
-| 88 | `Fixture unclosed-tag-eof (htmljs target)` | FAIL |
+| 88 | `Fixture unclosed-tag-eof (htmljs target)` | PASS |
 | 89 | `EOF doctype without closing bracket` | PASS |
 | 90 | `Fixture eof-xml-declaration (htmljs target)` | FAIL |
 | 91 | `Fixture multiline-html-block-missing-end (htmljs target)` | FAIL |
@@ -305,6 +305,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 2026-04-22 | 1 — backtick-string-eof PASS (91 → 90 failing): Remove stray debug line accidentally included in corpus expected output. Line `/Users/hlimas/.../input.marko  0.04 ms  1194 bytes/ms  (ERROR [0,0]-[1,20])` was left from htmljs-parser test import; tree-sitter corpus parser extracted `(ERROR)` from it, creating a spurious second-ERROR expectation. The actual grammar output (one ERROR node spanning entire input) is correct and matches htmljs-parser semantics. | TBD |
 | 2026-04-22 | 1 — shorthand-id-dup PASS (90 failing, was 91): Update corpus expected from `(text) (ERROR)` to `(text)`. Input `#foo#bar` in concise mode matches the `text` rule (`/[^<$\n][^\n]*/`) entirely — same behavior as `#foo -- Hello` in the passing `shorthand-mixed-concise` test. The old expected (ERROR after text) was based on incorrect grammar behavior; `#` can start a text node in Marko. No grammar change needed. | d327d07 |
 | 2026-04-22 | 1 — ts-type-statement PASS (91 → 90 failing): Extend `statement_block_tail` regex to allow `>` as a valid start char for continuation lines: `/[^\n]*(\n[ \t>][^\n]*)*(\n\})?/` (was `[ \t]`). TypeScript generic closing `> {`, `> = A &`, `>;`, `> = baz;` lines are now captured as part of the block instead of becoming separate text nodes at document level. Side effect: `ts-static-type` corpus updated (remove spurious `(text)` for the `>` line — now correctly inside `statement_block_tail`). Both tests now match htmljs-parser semantics: each `static`/`export` block is a single `top_level_statement`. | TBD |
+| 2026-04-22 | 1 — unclosed-tag-eof PASS (90 → 89 failing): Remove stray debug line from corpus expected output (same pattern as backtick-string-eof). Line `/Users/hlimas/.../unclosed-tag-eof/input.marko  0.04 ms  356 bytes/ms  (ERROR [0,0]-[1,9])` was left from htmljs-parser test import; tree-sitter corpus parser extracted `(ERROR)` from it, creating a spurious second-ERROR expectation. No grammar change needed — the actual parser output is correct. | TBD |
 
 ---
 
