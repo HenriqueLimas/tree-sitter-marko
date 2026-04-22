@@ -72,34 +72,9 @@ Rules (non-negotiable):
   ../htmljs-parser/src/__tests__/fixtures/<fixture-name>/__snapshots__/<fixture-name>.expected.txt
   and translate its event-based output into the correct tree-sitter s-expression. Update the
   corpus file directly, then fix the grammar to match the corrected expectation.
+- Update test/failing_tests_tracking.md (flip FAIL → PASS for fixed tests).
 - Commit after each fixed test or coherent group: `git add -p && git commit -m "..."`.
-- After each commit, update test/failing_tests_tracking.md (flip FAIL → PASS for fixed tests).
-- ONLY WORK ON A SINGLE TEST CASE
-
-Design reference — marko-prettier strategy (../marko-prettier/src/index.ts):
-marko-prettier solves the same parsing ambiguities by wrapping Marko sub-expressions
-in JavaScript/TypeScript scaffolding before handing them to the Babel/TS parser:
-  - Attribute method `onClick() {}`  →  `function${value}` sent to TS, strips "function" back
-  - Tag variable `/{ x }: T`        →  `var ${code}=_` sent to babel-ts, strips "=_" back
-  - Tag type args `<T, U>`          →  `_<${code}>` sent to TS expression parser, strips "_"
-  - Tag params `|x, y|`             →  `function _(${code}){}` sent to babel-ts
-  - Tag type params `<T extends X>` →  `function _<${code}>(){}` sent to babel-ts
-  - Attribute args / tag args       →  `_(${code})` sent to TS, strips "_"
-  - Attribute value `=expr`         →  sent as-is to the TS expression parser
-
-Apply the same mental model in the grammar: instead of reimplementing JS/TS expression
-parsing in Marko grammar rules, shape rules so the external scanner consumes the full
-JS span as an opaque token, OR use injections.scm to delegate those ranges to the
-JavaScript/TypeScript tree-sitter grammar. This is especially important for:
-  - Group 1 (TS generics): `<Tag<T>>` — the second `<` must not be seen as a new HTML
-    open tag. The type-arg span should be consumed as a balanced `<…>` range before
-    the HTML layer sees it, mirroring `_<${code}>` in marko-prettier.
-  - Group 2-4 (attr expressions): `typeof x`, `void 0`, unary `!`, regex `/…/` — all
-    valid JS that marko-prettier sends straight to the TS expression parser. The grammar
-    rule for attribute values must accept these without producing ERROR nodes.
-  - Group 6 (tag variable): `/{ x }: Type` — marko-prettier wraps as `var X=_`. The
-    grammar rule for tag_variable must accept any JS destructuring LHS including typed
-    patterns.
+- ONLY WORK ON A SINGLE TEST CASE at time, after it your job is done!
 
 Workflow for each fix:
 1. `tree-sitter test -i "<test name regex>"` — see expected vs actual diff.
@@ -110,7 +85,7 @@ Workflow for each fix:
 6. `tree-sitter generate && tree-sitter test -i "<test name>"` — verify fix.
 7. `tree-sitter test --overview-only` — confirm no regressions.
 8. Append your progress to the test/failing_tests_tracking.md file. Use this to leave a note for the next person working in the codebase.
-9. Commit, update tracking file.'
+9. Commit, update tracking file and you are DONE for the day!'
 
 while true; do
   ITERATION=$((ITERATION + 1))
