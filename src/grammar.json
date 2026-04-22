@@ -926,7 +926,7 @@
                       "type": "ALIAS",
                       "content": {
                         "type": "SYMBOL",
-                        "name": "same_line_concise_attribute"
+                        "name": "_same_line_concise_attribute"
                       },
                       "named": true,
                       "value": "attribute"
@@ -3699,7 +3699,7 @@
       "named": true,
       "value": "regular_attribute"
     },
-    "same_line_regular_attribute": {
+    "_same_line_regular_attribute": {
       "type": "ALIAS",
       "content": {
         "type": "PREC_RIGHT",
@@ -3846,12 +3846,12 @@
       "named": true,
       "value": "regular_attribute"
     },
-    "same_line_concise_attribute": {
+    "_same_line_concise_attribute": {
       "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "same_line_regular_attribute"
+          "name": "_same_line_regular_attribute"
         }
       ]
     },

@@ -127,7 +127,7 @@ module.exports = grammar({
         optional($.tag_default_value),
         repeat(choice(
           $.concise_attribute_group,
-          alias($.same_line_concise_attribute, $.attribute),
+          alias($._same_line_concise_attribute, $.attribute),
         )),
         optional($.concise_terminator),
       )),
@@ -564,7 +564,9 @@ module.exports = grammar({
     // but uses same_line_comma_attribute_name so the GLR parser explores both
     // paths — comma-separated (variant 2) and non-comma (variant 3).  When
     // there is no following comma, only the non-comma path succeeds.
-    same_line_regular_attribute: $ => alias(prec.right(seq(
+    // Hidden rule (_) so it doesn't appear as a node in the tree — its children
+    // inline directly into the parent attribute node.
+    _same_line_regular_attribute: $ => alias(prec.right(seq(
       field('name', alias($.same_line_comma_attribute_name, $.attribute_name)),
       optional($.attribute_bound_value),
       optional($.attribute_arguments),
@@ -584,9 +586,10 @@ module.exports = grammar({
     )), $.regular_attribute),
 
     // Wrapper choice (mirrors concise_attribute) so that
-    // alias($.same_line_concise_attribute, $.attribute) produces
+    // alias($._same_line_concise_attribute, $.attribute) produces
     // attribute(regular_attribute(...)) — the same nesting as HTML-mode attrs.
-    same_line_concise_attribute: $ => choice($.same_line_regular_attribute),
+    // Hidden rule (_) so it doesn't appear as a node in the tree.
+    _same_line_concise_attribute: $ => choice($._same_line_regular_attribute),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 

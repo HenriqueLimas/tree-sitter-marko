@@ -18,7 +18,7 @@
         ]
       },
       "value": {
-        "multiple": false,
+        "multiple": true,
         "required": false,
         "types": [
           {
@@ -82,10 +82,6 @@
         },
         {
           "type": "regular_attribute",
-          "named": true
-        },
-        {
-          "type": "same_line_regular_attribute",
           "named": true
         },
         {
@@ -1024,42 +1020,6 @@
         },
         {
           "type": "quoted_dollar_fragment",
-          "named": true
-        }
-      ]
-    }
-  },
-  {
-    "type": "same_line_regular_attribute",
-    "named": true,
-    "fields": {
-      "name": {
-        "multiple": false,
-        "required": true,
-        "types": [
-          {
-            "type": "attribute_name",
-            "named": true
-          }
-        ]
-      },
-      "value": {
-        "multiple": true,
-        "required": false,
-        "types": [
-          {
-            "type": "regular_attribute",
-            "named": true
-          }
-        ]
-      }
-    },
-    "children": {
-      "multiple": true,
-      "required": false,
-      "types": [
-        {
-          "type": "regular_attribute",
           "named": true
         }
       ]

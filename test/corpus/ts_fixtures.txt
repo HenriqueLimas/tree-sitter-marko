@@ -417,26 +417,29 @@ div foo=val as readonly string[] bar=true
 
 (document
   (concise_tag
-    (tag_name))
-  (attribute
-    (attribute_name)
-    (regular_attribute)
-    (regular_attribute))
-  (attribute
-    (attribute_name)
-    (regular_attribute)
-    (regular_attribute))
+    (tag_name)
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute)))
   (concise_tag
     (tag_name)
     (attribute
       (attribute_name)
       (regular_attribute)
       (regular_attribute))
-    (attribute_name)
-    (attribute_name)
-    (tag_name)
-    (concise_attribute_group))
-  (concise_tag
-    (tag_name)
-    (tag_default_value
-      (tag_default_fragment))))
+    (attribute
+      (attribute_name))
+    (attribute
+      (attribute_name))
+    (attribute
+      (attribute_name))
+    (concise_attribute_group)
+    (attribute
+      (attribute_name)
+      (regular_attribute)
+      (regular_attribute))))
