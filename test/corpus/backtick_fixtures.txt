@@ -13,7 +13,6 @@ Fixture backtick-string-eof (htmljs target)
     (attribute_name)
     (placeholder
       (javascript_fragment))))
-/Users/hlimas/Development/github/htmljs-parser/src/__tests__/fixtures/backtick-string-eof/input.marko	0.04 ms	  1194 bytes/ms	(ERROR [0, 0] - [1, 20])
 
 ================================================================================
 Fixture backtick-string-nested-with-space (htmljs target)
