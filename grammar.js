@@ -1,4 +1,4 @@
-module.exports = grammar({
+export default grammar({
   name: 'marko',
 
   extras: $ => [/\s/, /\uFEFF/],
