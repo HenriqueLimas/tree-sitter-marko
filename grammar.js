@@ -12,7 +12,6 @@ export default grammar({
   externals: $ => [$._implicit_close, $._gt_after_implicit],
 
   conflicts: $ => [
-    [$.function_tag_statement, $.self_closing_element],
     [$.function_tag_statement, $._tag_name],
   ],
 

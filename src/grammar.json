@@ -4460,10 +4460,6 @@
   "conflicts": [
     [
       "function_tag_statement",
-      "self_closing_element"
-    ],
-    [
-      "function_tag_statement",
       "_tag_name"
     ]
   ],
