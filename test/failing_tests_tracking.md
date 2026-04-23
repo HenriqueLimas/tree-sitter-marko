@@ -99,14 +99,16 @@ These all fail because `<` inside a type argument position is interpreted as ano
 
 | # | Test | Status |
 |---|------|--------|
-| 1 | `Fixture ts-generic-simple (htmljs target)` | PASS |
-| 2 | `Fixture ts-generic-complex (htmljs target)` | PASS |
+| 1 | `Fixture ts-generic-simple (htmljs target)` | FAIL |
+| 2 | `Fixture ts-generic-complex (htmljs target)` | FAIL |
 | 3 | `Fixture ts-generic-function-type (htmljs target)` | FAIL (deep investigation 2026-04-10 — see notes below) |
-| 4 | `Fixture ts-function-type (htmljs target)` | PASS |
-| 5 | `Fixture ts-intersection-type (htmljs target)` | PASS |
-| 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
+| 4 | `Fixture ts-function-type (htmljs target)` | FAIL |
+| 5 | `Fixture ts-intersection-type (htmljs target)` | FAIL |
+| 6 | `Fixture ts-nested-generics (htmljs target)` | FAIL |
+| 6a | `Fixture ts-keyof-typeof (htmljs target)` | FAIL |
+| 6b | `Fixture ts-tag-var-type-generic (htmljs target)` | FAIL |
 | 7 | `Fixture ts-type-statement (htmljs target)` | PASS |
-| 8 | `Fixture ts-unary-exression (htmljs target)` | PASS |
+| 8 | `Fixture ts-unary-exression (htmljs target)` | FAIL |
 | 9 | `Fixture tag-with-type-arguments (htmljs target)` | FAIL |
 | 10 | `Fixture tag-type-argument-arrow-function (htmljs target)` | FAIL |
 | 11 | `Fixture tag-params-with-type-parameters (htmljs target)` | FAIL |

@@ -7,18 +7,13 @@ Fixture ts-function-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_arguments
-          (attribute_arguments_fragment)))))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-generic-complex (htmljs target)
@@ -30,56 +25,20 @@ Fixture ts-generic-complex (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (text)
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-generic-function-type (htmljs target)
@@ -91,30 +50,20 @@ Fixture ts-generic-function-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text)
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-generic-simple (htmljs target)
@@ -126,36 +75,20 @@ Fixture ts-generic-simple (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text)
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-intersection-type (htmljs target)
@@ -167,36 +100,20 @@ Fixture ts-intersection-type (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text)
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-keyof-typeof (htmljs target)
@@ -213,19 +130,7 @@ Fixture ts-keyof-typeof (htmljs target)
       (attribute
         (regular_attribute
           (attribute_name)
-          (attribute_value_fragment)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name)))
-      (attribute
-        (regular_attribute
-          (attribute_name))))))
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-nested-generics (htmljs target)
@@ -237,50 +142,20 @@ Fixture ts-nested-generics (htmljs target)
 --------------------------------------------------------------------------------
 
 (document
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (text)
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name)
-        (attribute_value_fragment)))
-    (attribute
-      (regular_attribute
-        (attribute_name)))
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name))
-  (start_tag
-    (tag_name)
-    (attribute
-      (regular_attribute
-        (attribute_name))))
-  (text))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value)))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (attribute
+        (regular_attribute
+          (attribute_name)
+          (attribute_expression_value))))))
 
 ================================================================================
 Fixture ts-static-const-arrow-function-return-type (htmljs target)
@@ -353,13 +228,8 @@ const/foo:Bar<
   (concise_tag
     (function_tag_name)
     (tag_variable
-      (tag_variable_fragment)))
-  (concise_tag
-    (tag_name))
-  (text)
-  (concise_tag
-    (tag_name))
-  (text))
+      (tag_variable_fragment))
+    (tag_default_value)))
 
 ================================================================================
 Fixture ts-type-statement (htmljs target)
@@ -431,14 +301,7 @@ div foo=val as readonly string[] bar=true
     (attribute
       (attribute_name)
       (regular_attribute)
-      (regular_attribute))
-    (attribute
-      (attribute_name))
-    (attribute
-      (attribute_name))
-    (attribute
-      (attribute_name))
-    (concise_attribute_group)
+      (attribute_expression_value))
     (attribute
       (attribute_name)
       (regular_attribute)
