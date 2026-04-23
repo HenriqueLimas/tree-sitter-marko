@@ -1,6 +1,6 @@
 {
   "name": "tree-sitter-marko",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Marko grammar for tree-sitter",
   "type": "module",
   "repository": {
@@ -44,6 +44,8 @@
     }
   },
   "scripts": {
+    "generate": "tree-sitter generate",
+    "build": "tree-sitter build",
     "install": "node-gyp-build",
     "prestart": "tree-sitter build --wasm",
     "start": "tree-sitter playground",
