@@ -54,6 +54,9 @@
 ((attribute_value_fragment) @injection.content
  (#set! injection.language "javascript"))
 
+((attribute_expression_value) @injection.content
+ (#set! injection.language "typescript"))
+
 ((tag_default_fragment) @injection.content
  (#set! injection.language "javascript"))
 
