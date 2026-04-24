@@ -3261,10 +3261,6 @@
         }
       ]
     },
-    "tag_variable_fragment": {
-      "type": "PATTERN",
-      "value": "[^\\s=|(){}>]+"
-    },
     "tag_default_fragment": {
       "type": "PATTERN",
       "value": "[^\\s>\\/()\\[\\]{}\"'`]+"
@@ -3850,6 +3846,37 @@
       "type": "CHOICE",
       "members": [
         {
+          "type": "PREC",
+          "value": 1,
+          "content": {
+            "type": "SEQ",
+            "members": [
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "SYMBOL",
+                  "name": "same_line_comma_attribute_name"
+                },
+                "named": true,
+                "value": "attribute_name"
+              },
+              {
+                "type": "ALIAS",
+                "content": {
+                  "type": "STRING",
+                  "value": "="
+                },
+                "named": true,
+                "value": "regular_attribute"
+              },
+              {
+                "type": "SYMBOL",
+                "name": "attribute_expression_value"
+              }
+            ]
+          }
+        },
+        {
           "type": "SYMBOL",
           "name": "_same_line_regular_attribute"
         }
@@ -4144,27 +4171,36 @@
       "value": "[^\\s>\"'`()\\[\\]{}\\/]+"
     },
     "attribute_expression_value": {
-      "type": "SEQ",
+      "type": "CHOICE",
       "members": [
         {
           "type": "SYMBOL",
-          "name": "attribute_expression_atom"
+          "name": "_ts_attr_expression_value"
         },
         {
-          "type": "REPEAT1",
-          "content": {
-            "type": "SEQ",
-            "members": [
-              {
-                "type": "SYMBOL",
-                "name": "attribute_expression_operator"
-              },
-              {
-                "type": "SYMBOL",
-                "name": "attribute_expression_atom"
+          "type": "SEQ",
+          "members": [
+            {
+              "type": "SYMBOL",
+              "name": "attribute_expression_atom"
+            },
+            {
+              "type": "REPEAT1",
+              "content": {
+                "type": "SEQ",
+                "members": [
+                  {
+                    "type": "SYMBOL",
+                    "name": "attribute_expression_operator"
+                  },
+                  {
+                    "type": "SYMBOL",
+                    "name": "attribute_expression_atom"
+                  }
+                ]
               }
-            ]
-          }
+            }
+          ]
         }
       ]
     },
@@ -4472,6 +4508,14 @@
     {
       "type": "SYMBOL",
       "name": "_gt_after_implicit"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "_ts_attr_expression_value"
+    },
+    {
+      "type": "SYMBOL",
+      "name": "tag_variable_fragment"
     }
   ],
   "inline": [],

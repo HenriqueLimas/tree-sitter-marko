@@ -9,7 +9,7 @@ export default grammar({
   //                       Used by start_tag_doc so that normal_element's
   //                       start_tag (which uses the plain '>') cannot match
   //                       the same position, preventing spurious MISSING nodes.
-  externals: $ => [$._implicit_close, $._gt_after_implicit],
+  externals: $ => [$._implicit_close, $._gt_after_implicit, $._ts_attr_expression_value, $.tag_variable_fragment],
 
   conflicts: $ => [
     [$.function_tag_statement, $._tag_name],
@@ -483,7 +483,6 @@ export default grammar({
       $.tag_method_block_fragment,
     )), '}'),
 
-    tag_variable_fragment: _ => /[^\s=|(){}>]+/,
 
     tag_default_fragment: _ => /[^\s>\/()\[\]{}"'`]+/,
 
@@ -584,11 +583,27 @@ export default grammar({
       )))),
     )), $.regular_attribute),
 
-    // Wrapper choice (mirrors concise_attribute) so that
-    // alias($._same_line_concise_attribute, $.attribute) produces
-    // attribute(regular_attribute(...)) — the same nesting as HTML-mode attrs.
+    // Wrapper choice so that alias($._same_line_concise_attribute, $.attribute)
+    // produces the right children under 'attribute' in concise mode.
     // Hidden rule (_) so it doesn't appear as a node in the tree.
-    _same_line_concise_attribute: $ => choice($._same_line_regular_attribute),
+    //
+    // Two arms:
+    //  1. TS expression (higher prec): attr_name + '=' (as regular_attribute) +
+    //     attribute_expression_value.  When _ts_attr_expression_value fires the
+    //     scanner consumes 'x as T<U>' as a single hidden token, making
+    //     attribute_expression_value appear as a leaf directly under 'attribute'.
+    //     Binary expressions (e.g. 'a'+'b') also use this arm when
+    //     attribute_expression_value matches the regular seq.
+    //  2. Regular (everything else): delegated to _same_line_regular_attribute
+    //     whose inner alias folds the value into a regular_attribute node.
+    _same_line_concise_attribute: $ => choice(
+      prec(1, seq(
+        alias($.same_line_comma_attribute_name, $.attribute_name),
+        alias('=', $.regular_attribute),
+        $.attribute_expression_value,
+      )),
+      $._same_line_regular_attribute,
+    ),
 
     special_attribute_name: _ => /(?:key|on[A-Za-z0-9_$-]+|[A-Za-z0-9_$]+Change|no-update(?:-body)?(?:-if)?)/,
 
@@ -653,9 +668,16 @@ export default grammar({
 
     attribute_value_fragment: _ => /[^\s>"'`()\[\]{}\/]+/,
 
-    attribute_expression_value: $ => seq(
-      $.attribute_expression_atom,
-      repeat1(seq($.attribute_expression_operator, $.attribute_expression_atom)),
+    attribute_expression_value: $ => choice(
+      // TypeScript type assertion/satisfaction: `x as Array<T>`, `x satisfies Foo<Bar>`, etc.
+      // The external scanner consumes the full expression as an opaque leaf token, so that
+      // the node appears in the tree without named children — matching the corpus expectations.
+      $._ts_attr_expression_value,
+      // Regular binary expression: `"a" + "b"`, `x === y`, etc.
+      seq(
+        $.attribute_expression_atom,
+        repeat1(seq($.attribute_expression_operator, $.attribute_expression_atom)),
+      ),
     ),
 
     attribute_expression_atom: $ => choice(

@@ -99,16 +99,16 @@ These all fail because `<` inside a type argument position is interpreted as ano
 
 | # | Test | Status |
 |---|------|--------|
-| 1 | `Fixture ts-generic-simple (htmljs target)` | FAIL |
-| 2 | `Fixture ts-generic-complex (htmljs target)` | FAIL |
-| 3 | `Fixture ts-generic-function-type (htmljs target)` | FAIL (deep investigation 2026-04-10 — see notes below) |
-| 4 | `Fixture ts-function-type (htmljs target)` | FAIL |
-| 5 | `Fixture ts-intersection-type (htmljs target)` | FAIL |
-| 6 | `Fixture ts-nested-generics (htmljs target)` | FAIL |
-| 6a | `Fixture ts-keyof-typeof (htmljs target)` | FAIL |
+| 1 | `Fixture ts-generic-simple (htmljs target)` | PASS |
+| 2 | `Fixture ts-generic-complex (htmljs target)` | PASS |
+| 3 | `Fixture ts-generic-function-type (htmljs target)` | PASS |
+| 4 | `Fixture ts-function-type (htmljs target)` | PASS |
+| 5 | `Fixture ts-intersection-type (htmljs target)` | PASS |
+| 6 | `Fixture ts-nested-generics (htmljs target)` | PASS |
+| 6a | `Fixture ts-keyof-typeof (htmljs target)` | PASS |
 | 6b | `Fixture ts-tag-var-type-generic (htmljs target)` | FAIL |
 | 7 | `Fixture ts-type-statement (htmljs target)` | PASS |
-| 8 | `Fixture ts-unary-exression (htmljs target)` | FAIL |
+| 8 | `Fixture ts-unary-exression (htmljs target)` | PASS |
 | 9 | `Fixture tag-with-type-arguments (htmljs target)` | FAIL |
 | 10 | `Fixture tag-type-argument-arrow-function (htmljs target)` | FAIL |
 | 11 | `Fixture tag-params-with-type-parameters (htmljs target)` | FAIL |
@@ -309,6 +309,7 @@ Attribute value parsing produces `ERROR` nodes around operators, unenclosed whit
 | 2026-04-22 | 1 — ts-type-statement PASS (91 → 90 failing): Extend `statement_block_tail` regex to allow `>` as a valid start char for continuation lines: `/[^\n]*(\n[ \t>][^\n]*)*(\n\})?/` (was `[ \t]`). TypeScript generic closing `> {`, `> = A &`, `>;`, `> = baz;` lines are now captured as part of the block instead of becoming separate text nodes at document level. Side effect: `ts-static-type` corpus updated (remove spurious `(text)` for the `>` line — now correctly inside `statement_block_tail`). Both tests now match htmljs-parser semantics: each `static`/`export` block is a single `top_level_statement`. | TBD |
 | 2026-04-22 | 1 — unclosed-tag-eof PASS (90 → 89 failing): Remove stray debug line from corpus expected output (same pattern as backtick-string-eof). Line `/Users/hlimas/.../unclosed-tag-eof/input.marko  0.04 ms  356 bytes/ms  (ERROR [0,0]-[1,9])` was left from htmljs-parser test import; tree-sitter corpus parser extracted `(ERROR)` from it, creating a spurious second-ERROR expectation. No grammar change needed — the actual parser output is correct. | 2f10380 |
 | 2026-04-22 | 1 — ts-unary-exression PASS (89 → 88 failing): Rename `same_line_regular_attribute` → `_same_line_regular_attribute` and `same_line_concise_attribute` → `_same_line_concise_attribute` (both now hidden rules, name starts with `_`). Hidden rules in tree-sitter do not appear as named nodes — their children inline into the parent. Before: `attribute(same_line_regular_attribute(attribute_name, regular_attribute, regular_attribute))`. After: `attribute(attribute_name, regular_attribute, regular_attribute)` — matching what the corpus expected showed. Also updated corpus expected: old expected had attributes as document-level siblings of `concise_tag` and a spurious extra `concise_tag` — both wrong; correct parse keeps all attributes inside their `concise_tag`. | TBD |
+| 2026-04-23 | 9 — ts-generic-simple, ts-generic-complex, ts-nested-generics, ts-generic-function-type, ts-function-type, ts-intersection-type, ts-keyof-typeof, ts-unary-exression, ts-static-const (96 → 91 failing): Proper TS type expression handling via external scanner. **Approach**: `_ts_attr_expression_value` hidden external token consumes the full `atom as TYPE` expression (including balanced generics, function types, keyword chains). `attribute_expression_value` includes it as first choice — appears as leaf in tree matching corpus expectations. `_same_line_concise_attribute` gains a `prec(1)` arm `(attr_name) (= as regular_attribute) (attribute_expression_value)` so TS expressions appear as direct children of `attribute` in concise mode. External `tag_variable_fragment` replaces the regex to allow multi-line generic type annotations (depth-aware, consumes whitespace inside `<>`). Cases 2 and 3 removed from `_implicit_close` (they produced wrong tree structure). ts-tag-var-type-generic (#6b) still FAIL — its `tag_default_value` uses `token.immediate('=')` which cannot match the space before `=` after a multi-line generic; fixing requires a separate concise-mode default-value rule without breaking HTML-mode error recovery. | TBD |
 
 ---
 

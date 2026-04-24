@@ -229,7 +229,8 @@ const/foo:Bar<
     (function_tag_name)
     (tag_variable
       (tag_variable_fragment))
-    (tag_default_value)))
+    (tag_default_value
+      (tag_default_fragment))))
 
 ================================================================================
 Fixture ts-type-statement (htmljs target)
