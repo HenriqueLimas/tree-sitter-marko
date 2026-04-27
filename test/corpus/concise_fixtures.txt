@@ -48,8 +48,7 @@ div - Hello World
 (document
   (concise_tag
     (tag_name))
-  (text)
-  (ERROR))
+  (text))
 
 ================================================================================
 Fixture concise-line-whitespace-ending (htmljs target)

@@ -9,7 +9,16 @@ export default grammar({
   //                       Used by start_tag_doc so that normal_element's
   //                       start_tag (which uses the plain '>') cannot match
   //                       the same position, preventing spurious MISSING nodes.
-  externals: $ => [$._implicit_close, $._gt_after_implicit, $._ts_attr_expression_value, $.tag_variable_fragment],
+  externals: $ => [
+    $._implicit_close,
+    $._gt_after_implicit,
+    $._ts_attr_expression_value,
+    $.tag_variable_fragment,
+    $._tag_type_args_lt,    // hidden: consumes '<' immediately (no space), fires before _implicit_close
+    $.tag_type_args_fragment,
+    $._tag_type_params_lt,  // hidden: consumes '<' after optional whitespace (with space), fires before _implicit_close
+    $.tag_type_params_fragment,
+  ],
 
   conflicts: $ => [
     [$.function_tag_statement, $._tag_name],
@@ -286,6 +295,7 @@ export default grammar({
         '<',
         field('name', choice($._tag_name, $.void_tag_name)),
         repeat($.shorthand_attribute),
+        optional($.tag_type_args),
         optional($.tag_variable),
         optional($.tag_default_value),
         optional($.tag_parameters),
@@ -299,6 +309,7 @@ export default grammar({
       seq(
         '<',
         repeat1($.shorthand_attribute),
+        optional($.tag_type_args),
         optional($.tag_variable),
         optional($.tag_default_value),
         optional($.tag_parameters),
@@ -316,10 +327,15 @@ export default grammar({
         '<',
         field('name', $._tag_name),
         repeat($.shorthand_attribute),
+        optional($.tag_type_args),    // <foo<A>…  (immediate, no space)
+        optional($.tag_type_params),  // <foo<A><B>… or <foo <A>… (with or without space after first token)
         optional($.tag_variable),
+        optional($.tag_type_params),  // <foo/x <A>…
         optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
+        optional($.tag_type_params),  // <foo() <A>…
+        optional($.tag_parameters),   // <foo()<A> |data|…
         optional($.tag_method),
         optional($.tag_default_value),
         repeat($._attribute_entry),
@@ -329,10 +345,12 @@ export default grammar({
       seq(
         '<',
         repeat1($.shorthand_attribute),
+        optional($.tag_type_args),
         optional($.tag_variable),
         optional($.tag_default_value),
         optional($.tag_parameters),
         optional($.tag_arguments),
+        optional($.tag_type_params),
         optional($.tag_method),
         optional($.tag_default_value),
         repeat($._attribute_entry),
@@ -441,6 +459,15 @@ export default grammar({
     tag_name: _ => /[A-Za-z0-9_@][A-Za-z0-9_@-]*/,
 
     tag_variable: $ => seq('/', optional($.tag_variable_fragment)),
+
+    // Type arguments: <A> with no preceding whitespace (e.g. foo<A>).
+    // _tag_type_args_lt fires BEFORE _implicit_close in the scanner.
+    tag_type_args: $ => seq($._tag_type_args_lt, optional($.tag_type_args_fragment), '>'),
+
+    // Type parameters: <A> with optional preceding whitespace (e.g. foo <A>).
+    // _tag_type_params_lt fires when '<' appears after whitespace.
+    tag_type_params: $ => seq($._tag_type_params_lt, optional($.tag_type_params_fragment), '>'),
+
 
     tag_default_value: $ => seq(token.immediate('='), choice(
       $.quoted_attribute_value,

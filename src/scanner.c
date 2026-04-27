@@ -40,15 +40,23 @@ enum TokenType {
   GT_AFTER_IMPLICIT,
   TS_ATTR_EXPRESSION_VALUE,
   TAG_VAR_FRAGMENT,
+  TAG_TYPE_ARGS_LT,       /* hidden: consumes '<' immediately (no space) */
+  TAG_TYPE_ARGS_FRAGMENT,  /* content inside tag_type_args */
+  TAG_TYPE_PARAMS_LT,     /* hidden: consumes '<' after optional whitespace (with space) */
+  TAG_TYPE_PARAMS_FRAGMENT, /* content inside tag_type_params */
 };
 
 typedef struct {
   bool after_implicit;
+  bool after_tag_type_args_lt;    /* true immediately after _tag_type_args_lt fired */
+  bool after_tag_type_params_lt;  /* true immediately after _tag_type_params_lt fired */
 } Scanner;
 
 void *tree_sitter_marko_external_scanner_create(void) {
   Scanner *s = malloc(sizeof(Scanner));
   s->after_implicit = false;
+  s->after_tag_type_args_lt = false;
+  s->after_tag_type_params_lt = false;
   return s;
 }
 
@@ -57,19 +65,26 @@ void tree_sitter_marko_external_scanner_destroy(void *payload) {
 }
 
 void tree_sitter_marko_external_scanner_reset(void *payload) {
-  ((Scanner *)payload)->after_implicit = false;
+  Scanner *s = payload;
+  s->after_implicit = false;
+  s->after_tag_type_args_lt = false;
+  s->after_tag_type_params_lt = false;
 }
 
 unsigned tree_sitter_marko_external_scanner_serialize(void *payload, char *buffer) {
   Scanner *s = payload;
   buffer[0] = (char)s->after_implicit;
-  return 1;
+  buffer[1] = (char)s->after_tag_type_args_lt;
+  buffer[2] = (char)s->after_tag_type_params_lt;
+  return 3;
 }
 
 void tree_sitter_marko_external_scanner_deserialize(
     void *payload, const char *buffer, unsigned length) {
   Scanner *s = payload;
   s->after_implicit = length > 0 && buffer[0];
+  s->after_tag_type_args_lt = length > 1 && buffer[1];
+  s->after_tag_type_params_lt = length > 2 && buffer[2];
 }
 
 /* ── helpers ──────────────────────────────────────────────────────────────── */
@@ -299,15 +314,27 @@ static bool scan_ts_attr_expression_value(TSLexer *lexer) {
 
 /* ── TAG_VAR_FRAGMENT scanner ─────────────────────────────────────────────── */
 
+/*
+ * Returns true if `c` is a "hard stop" character when encountered as the next
+ * non-space character during lookahead (used by the space-peeking logic).
+ */
+static bool is_tag_var_peek_stop(int32_t c) {
+  return c == '=' || c == '|' || c == '(' || c == ')' ||
+         c == '{' || c == '}' || c == '>' || c == '/' ||
+         c == ':' || c == '\n' || c == '\r' || c == 0;
+}
+
 static bool scan_tag_var_fragment(TSLexer *lexer) {
+  /* First char: must not be a stop char (includes / and - as new stops) */
   {
     int32_t c = lexer->lookahead;
     if (c == 0 || c == ' ' || c == '\t' || c == '\n' || c == '\r' ||
-        c == '=' || c == '|' || c == '(' || c == ')' ||
-        c == '{' || c == '}' || c == '>') return false;
+        c == '=' || c == '|' || c == ')' ||
+        c == '{' || c == '}' || c == '>' ||
+        c == '/' || c == '-') return false;
   }
 
-  int depth = 0;
+  int depth_paren = 0; /* tracks ( ) nesting in type annotations  */
   bool consumed = false;
 
   for (;;) {
@@ -315,39 +342,177 @@ static bool scan_tag_var_fragment(TSLexer *lexer) {
 
     if (c == 0) break;
 
-    if (c == '<') {
-      depth++;
+    /* '<' is now a hard stop so that tag_type_args/_params can consume it */
+    if (c == '<') break;
+
+    /* '>' is a hard stop at depth 0 (closes the tag) */
+    if (c == '>') break;
+
+    /* ── paren tracking (type annotations like a:(B | C)) ── */
+    if (c == '(') {
+      depth_paren++;
+      lexer->advance(lexer, false);
+      consumed = true;
+      continue;
+    }
+    if (c == ')') {
+      if (depth_paren == 0) break;
+      depth_paren--;
+      lexer->advance(lexer, false);
+      consumed = true;
+      if (depth_paren == 0) lexer->mark_end(lexer);
+      continue;
+    }
+
+    /* ── inside parens: consume everything freely ── */
+    if (depth_paren > 0) {
       lexer->advance(lexer, false);
       consumed = true;
       continue;
     }
 
-    if (c == '>') {
-      if (depth == 0) break;
-      depth--;
-      lexer->advance(lexer, false);
-      consumed = true;
-      if (depth == 0) {
+    /* ── at depth 0: hard stops ── */
+    if (c == '/' || c == '}' || c == '{' || c == '|' || c == '=') break;
+    if (c == '\n' || c == '\r') break;
+
+    /* ── space handling: peek-ahead for arithmetic/expression operators ── */
+    if (c == ' ' || c == '\t') {
+      /*
+       * Consume the whitespace tentatively (without updating mark_end).
+       * Only continue scanning (include the space) if the next non-space char
+       * is an arithmetic/expression operator like + - * % & ? !.  For all
+       * other next chars (identifier, :, =, punctuation, ...) the space acts
+       * as a separator and we stop, leaving the remaining text for the grammar.
+       *
+       * Special case: if the operator char is immediately followed by '=',
+       * it is an assignment operator (+=, -=, …) which terminates the var.
+       */
+      while (lexer->lookahead == ' ' || lexer->lookahead == '\t')
+        lexer->advance(lexer, false);
+
+      int32_t c1 = lexer->lookahead;
+
+      /* Only continue for binary arithmetic / expression operators */
+      if (c1 == '+' || c1 == '-' || c1 == '*' || c1 == '%' ||
+          c1 == '&' || c1 == '?' || c1 == '!') {
+        /* Advance c1 tentatively and check c2 */
+        lexer->advance(lexer, false);
+        int32_t c2 = lexer->lookahead;
+
+        if (c2 == '=') {
+          /* operator= (+=, -=, …) terminates the fragment */
+          break;
+        }
+        if (c1 == '-' && c2 == '-') {
+          /* Marko concise fence marker '--' terminates the fragment */
+          break;
+        }
+
+        /* Include space + operator in the fragment */
         lexer->mark_end(lexer);
-        break;
+        consumed = true;
+        /* c1 already consumed; main loop sees c2 next */
+        continue;
       }
-      continue;
+
+      /* Default: space is a separator – stop */
+      break;
     }
 
-    if (depth > 0 && is_ws(c)) {
-      lexer->advance(lexer, false);
-      consumed = true;
-      continue;
-    }
-
-    if (depth == 0 &&
-        (c == ' ' || c == '\t' || c == '\n' || c == '\r' ||
-         c == '=' || c == '|' || c == '(' || c == ')' ||
-         c == '{' || c == '}' || c == '>')) break;
-
+    /* ── regular character ── */
     lexer->advance(lexer, false);
     consumed = true;
-    if (depth == 0) lexer->mark_end(lexer);
+    lexer->mark_end(lexer);
+  }
+
+  return consumed;
+}
+
+/* ── TAG_TYPE_ARGS_FRAGMENT scanner ──────────────────────────────────────── */
+/*
+ * Scans the content between the opening '<' (already consumed by the grammar
+ * rule) and the closing '>' of tag type arguments / parameters / attribute
+ * type parameters.  Handles:
+ *   - Nested angle brackets:  A extends B<C>
+ *   - Braces with '>':         { bar: () => void }
+ *   - Parentheses:             (arg: A) => B
+ *   - Stops at '>' at angle-bracket depth 0.
+ *   - Returns false for empty content (so the fragment node is optional).
+ */
+static bool scan_tag_type_args_fragment(TSLexer *lexer) {
+  if (lexer->lookahead == '>' || lexer->lookahead == 0) return false;
+  /* Only start scanning if the first char looks like a TypeScript type expression.
+   * Reject operators, punctuation, and other chars that can't start a type. */
+  {
+    int32_t c = lexer->lookahead;
+    /* Allow: letters, digits, _, $, @, {, (, [, ? (conditional), | (union start?) */
+    bool is_type_start =
+      (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z') ||
+      (c >= '0' && c <= '9') ||
+      c == '_' || c == '$' || c == '@' ||
+      c == '{' || c == '(' || c == '[' ||
+      c == '"' || c == '\'' || c == '`' || /* string literal types */
+      c == '?' || c == '!' || /* conditional / not */
+      c == ' ' || c == '\t' || c == '\n'; /* whitespace is OK (empty type args) */
+    if (!is_type_start) return false;
+  }
+
+  int depth_angle = 0, depth_paren = 0, depth_brace = 0;
+  bool consumed = false;
+
+  for (;;) {
+    int32_t c = lexer->lookahead;
+    if (c == 0) break;
+
+    if (c == '<') {
+      depth_angle++;
+      lexer->advance(lexer, false);
+      consumed = true;
+      continue;
+    }
+    if (c == '>') {
+      if (depth_angle == 0 && depth_paren == 0 && depth_brace == 0) break;
+      if (depth_angle > 0) depth_angle--;
+      lexer->advance(lexer, false);
+      consumed = true;
+      if (depth_angle == 0 && depth_paren == 0 && depth_brace == 0)
+        lexer->mark_end(lexer);
+      continue;
+    }
+    if (c == '(') {
+      depth_paren++;
+      lexer->advance(lexer, false);
+      consumed = true;
+      continue;
+    }
+    if (c == ')') {
+      if (depth_paren > 0) depth_paren--;
+      lexer->advance(lexer, false);
+      consumed = true;
+      if (depth_angle == 0 && depth_paren == 0 && depth_brace == 0)
+        lexer->mark_end(lexer);
+      continue;
+    }
+    if (c == '{') {
+      depth_brace++;
+      lexer->advance(lexer, false);
+      consumed = true;
+      continue;
+    }
+    if (c == '}') {
+      if (depth_brace > 0) depth_brace--;
+      lexer->advance(lexer, false);
+      consumed = true;
+      if (depth_angle == 0 && depth_paren == 0 && depth_brace == 0)
+        lexer->mark_end(lexer);
+      continue;
+    }
+
+    /* All other characters (including whitespace, &, |, ,, =, /, etc.) */
+    lexer->advance(lexer, false);
+    consumed = true;
+    if (depth_angle == 0 && depth_paren == 0 && depth_brace == 0)
+      lexer->mark_end(lexer);
   }
 
   return consumed;
@@ -385,6 +550,86 @@ bool tree_sitter_marko_external_scanner_scan(
       return true;
     }
   }
+
+  /*
+   * TAG_TYPE_ARGS_LT: consumes '<' immediately (no preceding whitespace).
+   * Placed BEFORE IMPLICIT_CLOSE so it takes priority when both are valid —
+   * this prevents _implicit_close from ending open_element before tag_type_args
+   * can consume its opening '<'.
+   * Only fires if there is no whitespace between the last token and '<'
+   * (enforced by checking that the lookahead is '<' with no preceding extras).
+   */
+  if (valid_symbols[TAG_TYPE_ARGS_LT]) {
+    if (lexer->lookahead == '<') {
+      lexer->advance(lexer, false);
+      lexer->mark_end(lexer);
+      s->after_tag_type_args_lt = true;
+      lexer->result_symbol = TAG_TYPE_ARGS_LT;
+      return true;
+    }
+  }
+
+  if (valid_symbols[TAG_TYPE_ARGS_FRAGMENT]) {
+    /* Only fire if the immediately preceding external token was _tag_type_args_lt. */
+    if (s->after_tag_type_args_lt) {
+      s->after_tag_type_args_lt = false;
+      lexer->mark_end(lexer);
+      if (scan_tag_type_args_fragment(lexer)) {
+        lexer->result_symbol = TAG_TYPE_ARGS_FRAGMENT;
+        return true;
+      }
+    }
+  }
+
+  /*
+   * TAG_TYPE_PARAMS_LT: consumes '<' that MAY be preceded by whitespace.
+   * Fires when '<' appears after optional spaces/tabs — this distinguishes
+   * tag_type_params (space allowed) from tag_type_args (no space).
+   * Also placed BEFORE IMPLICIT_CLOSE to prevent open_element from firing.
+   * We only fire if the lookahead is currently whitespace or '<'.
+   */
+  if (valid_symbols[TAG_TYPE_PARAMS_LT]) {
+    /* Skip any leading whitespace (advance with skip=true so they become extras) */
+    bool had_space = false;
+    while (lexer->lookahead == ' ' || lexer->lookahead == '\t') {
+      lexer->advance(lexer, true); /* mark as extra (skip) */
+      had_space = true;
+    }
+    if (lexer->lookahead == '<') {
+      if (had_space) {
+        /* Space was present before '<': this is a tag_type_params context */
+        lexer->advance(lexer, false);
+        lexer->mark_end(lexer);
+        s->after_tag_type_params_lt = true;
+        lexer->result_symbol = TAG_TYPE_PARAMS_LT;
+        return true;
+      }
+      /* No space: this might be tag_type_args, but TAG_TYPE_ARGS_LT would have
+       * fired earlier. If we reach here, TAG_TYPE_ARGS_LT was not valid in this
+       * state, so fire TAG_TYPE_PARAMS_LT for the direct '<' case too. */
+      lexer->advance(lexer, false);
+      lexer->mark_end(lexer);
+      s->after_tag_type_params_lt = true;
+      lexer->result_symbol = TAG_TYPE_PARAMS_LT;
+      return true;
+    }
+  }
+
+  if (valid_symbols[TAG_TYPE_PARAMS_FRAGMENT]) {
+    /* Only fire if the immediately preceding external token was _tag_type_params_lt. */
+    if (s->after_tag_type_params_lt) {
+      s->after_tag_type_params_lt = false;
+      lexer->mark_end(lexer);
+      if (scan_tag_type_args_fragment(lexer)) { /* reuse same fragment scanner */
+        lexer->result_symbol = TAG_TYPE_PARAMS_FRAGMENT;
+        return true;
+      }
+    }
+  }
+
+  /* Any other token resets the type-lt flags */
+  s->after_tag_type_args_lt = false;
+  s->after_tag_type_params_lt = false;
 
   if (valid_symbols[IMPLICIT_CLOSE]) {
     lexer->mark_end(lexer);

@@ -333,13 +333,13 @@ style/style --
 (document
   (concise_tag
     (builtin_tag_name)
-    (tag_variable))
-  (concise_tag
-    (builtin_tag_name))
+    (tag_variable
+      (tag_variable_fragment)))
   (concise_fence_line)
   (concise_tag
     (tag_name))
-  (attribute_name))
+  (text)
+  (text))
 
 ================================================================================
 Fixture tag-var-declaration (htmljs target)
@@ -384,10 +384,11 @@ Fixture tag-var-declaration (htmljs target)
         (tag_variable
           (tag_variable_fragment)))
       (end_tag)))
-  (function_tag_statement
-    (function_tag_name)
-    (tag_variable
-      (tag_variable_fragment)))
+  (element
+    (self_closing_element
+      (function_tag_name)
+      (tag_variable
+        (tag_variable_fragment))))
   (element
     (self_closing_element
       (function_tag_name)
@@ -405,18 +406,14 @@ Fixture tag-var-declaration (htmljs target)
       (function_tag_name)
       (tag_variable
         (tag_variable_fragment))
-      (attribute_expression_operator)))
-  (function_tag_statement
-    (function_tag_name)
-    (tag_variable
-      (tag_variable_fragment)))
+      (attribute
+        (regular_attribute
+          (attribute_name)))))
   (element
     (self_closing_element
       (function_tag_name)
       (tag_variable
-        (tag_variable_fragment))
-      (attribute_name)
-      (tag_name)))
+        (tag_variable_fragment))))
   (element
     (self_closing_element
       (function_tag_name)
@@ -447,7 +444,6 @@ Fixture tag-var-declaration (htmljs target)
       (function_tag_name)
       (tag_variable
         (tag_variable_fragment))
-      (tag_arguments)
       (tag_method
         (tag_method_block_fragment)
         (quoted_attribute_value)
@@ -468,21 +464,23 @@ Fixture tag-var-declaration (htmljs target)
           (tag_variable_fragment)))
       (text)
       (end_tag)))
-  (start_tag
-    (tag_name)
-    (tag_variable
-      (tag_variable_fragment)))
   (element
     (self_closing_element
       (tag_name)
       (tag_variable
         (tag_variable_fragment))))
-  (start_tag
-    (tag_name)
-    (shorthand_attribute)
-    (shorthand_attribute)
-    (tag_variable
-      (tag_variable_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (tag_variable
+        (tag_variable_fragment))))
+  (element
+    (self_closing_element
+      (tag_name)
+      (shorthand_attribute)
+      (shorthand_attribute)
+      (tag_variable
+        (tag_variable_fragment)))))
 
 ================================================================================
 Fixture tag-var-type-with-parens (htmljs target)
@@ -503,43 +501,33 @@ let/a: B & (C | D) = D
 (document
   (concise_tag
     (function_tag_name)
-    (tag_variable))
+    (tag_variable
+      (tag_variable_fragment)))
+  (text)
   (concise_tag
-    (tag_name)
+    (function_tag_name)
+    (tag_variable
+      (tag_variable_fragment))
     (tag_arguments
       (tag_arguments_fragment)))
   (text)
   (concise_tag
     (function_tag_name)
-    (tag_variable))
-  (concise_tag
-    (tag_name)
-    (tag_arguments
-      (tag_arguments_fragment)))
+    (tag_variable
+      (tag_variable_fragment)))
   (text)
   (concise_tag
     (function_tag_name)
-    (tag_variable))
-  (concise_tag
-    (tag_name))
+    (tag_variable
+      (tag_variable_fragment)))
   (text)
   (concise_tag
     (function_tag_name)
-    (tag_variable))
-  (concise_tag
-    (tag_name))
-  (text)
-  (concise_tag
-    (function_tag_name)
-    (tag_variable))
-  (concise_tag
-    (tag_name))
-  (attribute
-    (attribute_name)
-    (regular_attribute
-      (attribute_arguments_fragment))
-    (regular_attribute)
-    (regular_attribute)))
+    (tag_variable
+      (tag_variable_fragment))
+    (attribute
+      (attribute_name)))
+  (text))
 
 ================================================================================
 Fixture tag-var-with-params (htmljs target)
